@@ -6,20 +6,22 @@ Panini isn't a full-fledged static site generator&mdash;rather, it solves the ve
 
 
 
+
 ## Installation
 
 For now, just add 
 ```bash
 
-    "patternlibrary": "file:../../js/patternlibrary"
+    "patternlibrary": "file:path/to/patternlibrary"
 
 ```
-to your **package.json** file.
+to your `package.json` file.
 
 Once this might be ready, install via npm
 ```bash
 npm install patternlibrary --save-dev
 ```
+
 
 
 
@@ -59,6 +61,7 @@ Note that the pattern-library loads layouts, partials, helpers, and data files o
 ```js
 gulp.watch(['./src/{layouts,partials,helpers,data}/**/*'], [patternlibrary.refresh]);
 ```
+
 
 
 
@@ -110,12 +113,13 @@ Set panini options. **mandatory**
 
 
 
-
 ## CLI
 
 You can (currently not yet) use the pattern-library via the CLI.
 
 ```
+THIS IS SUBJECT TO CHANGE!  D O   N O T   U S E  ! ! !
+
 Usage: patternlibrary --layouts=[layoutdir] --root=[rootdir] --dest=[destdir] [other options]
 
 Options:
@@ -125,8 +129,9 @@ Options:
   --partials            path to root folder for partials
   --helpers             path to folder for additional helpers
   --data                path to folder for additional data
+  ...
 
-Example: patternlibrary --root=src/pages --layouts=src/layouts --partials=src/partials --data=src/data --output=dist 'src/pages/**/*.html'
+Example: patternlibrary --root=src/pages --layouts=src/layouts --partials=src/partials --data=src/data --output=dist ...
 ```
 
 
