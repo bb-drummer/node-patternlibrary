@@ -8,8 +8,17 @@ Panini isn't a full-fledged static site generator&mdash;rather, it solves the ve
 
 ## Installation
 
+For now, just add 
 ```bash
-npm install panini --save-dev
+
+    "patternlibrary": "file:../../js/patternlibrary"
+
+```
+to your **package.json** file.
+
+Once this might be ready, install via npm
+```bash
+npm install patternlibrary --save-dev
 ```
 
 
