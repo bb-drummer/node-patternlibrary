@@ -9,7 +9,6 @@
   "author": "Björn Bartels <me@bjoernbartels.earth>",
   "license": "APACHE2",
   "bin": {
-    "patternlibrary": "./bin/patternlibrary.js"
   },
   "dependencies": {
     "deep-extend": "^0.4.1",
