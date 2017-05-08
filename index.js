@@ -1,6 +1,7 @@
 var patternlibrary;
 
-import Patternlibrary from './lib/class.patternlibrary.js';
+//import Patternlibrary from './lib/class.patternlibrary.js';
+var Patternlibrary = require ( './lib/class.patternlibrary.js' );
 
 /**
  * Gulp stream function that renders HTML pages. 
