@@ -18,7 +18,8 @@
     "nopt": "^4.0.1",
     "slash": "^1.0.0",
     "through2": "^2.0.0",
-    "vinyl-fs": "^2.4.4"
+    "vinyl-fs": "^2.4.4",
+    "panini": "^1.3.0"
   },
   "devDependencies": {
     "assert-dir-equal": "^1.0.1",

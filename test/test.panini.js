@@ -1,9 +1,9 @@
 import { src, dest } from 'vinyl-fs';
 import assert from 'assert';
 import equal from 'assert-dir-equal';
-import { Panini } from '..';
+import { Panini } from 'panini';
 
-const FIXTURES = 'test/fixtures/';
+const FIXTURES = 'test/fixtures.panini/';
 
 describe('Panini', () => {
   it('builds a page with a default layout', done => {
