@@ -21,7 +21,7 @@ module.exports = function(options) {
   }
 
   // Compile pages with the above helpers
-  return patternlibrary.processGulpFileStream();
+  return patternlibrary.processFileStream();
 };
 
 module.exports.Patternlibrary = Patternlibrary;

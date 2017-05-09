@@ -4,7 +4,7 @@
   "description": "A super tiny flat file pattern-library generator.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-register --reporter nyan"
+    "test": "mocha --compilers js:babel-register"
   },
   "author": "Björn Bartels <me@bjoernbartels.earth>",
   "license": "APACHE2",
