@@ -12,7 +12,7 @@ Panini isn't a full-fledged static site generator&mdash;rather, it solves the ve
 For now, just add 
 ```bash
 
-    "patternlibrary": "file:path/to/patternlibrary"
+    "patternlibrary": "git+https://gitlab.bjoernbartels.earth/js/patternlibrary.git"
 
 ```
 to your `package.json` file.
