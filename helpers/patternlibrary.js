@@ -37,7 +37,7 @@ module.exports = function(options) {
 	extend(patternData, options.data.root);
 	extend(patternData, options.hash);
     
-    $PL.patternUsage(patternName, this);
+    $PL.updateDataFile();
 	options.data.root.Patternlibrary = $PL ;
 
 	var result = new $PL.Handlebars.SafeString( $PL.renderPattern(patternContent , patternData) );
