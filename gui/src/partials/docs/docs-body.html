@@ -1,0 +1,51 @@
+<section id="patternlibrarySection" class="patternlibrary">
+	<div class="row column small-12">
+	    {{> top-bar}}
+		
+	    <div class="small-12 columns">
+			<section class="row panel patternlist">
+			    <div class="small-12 columns">
+					{{> patterns-list-filter no_demo="true"}}
+				</div>
+				 
+			    <div class="small-12 columns">
+					<!-- PATTERNLIBRARY_CONTENT -->
+					
+<div class="row panel-body">
+    <div class="row columns large-12">
+		<ul class="accordion" data-accordion data-multi-expand="true" data-allow-all-closed="true" data-deep-link="true" data-update-history>
+
+		    <li class="accordion-item row columns is-active" data-accordion-item>
+		    	<!-- Accordion tab title {{../root}}/patterns/{{pattern.name}} -->
+		    	<a href="{{patternlink title}}" class="accordion-title row columns is-active">
+			        <div class="columns medium-6 small-12">Name: {{title}}</div>
+			        <div class="columns medium-6 hide-for-small show-for-medium categories">Categories:
+			        {{#each pattern.categories as |category|}}
+			            <span class="name">{{category}}</span>
+			        {{/each}}
+                          </div>
+			    </a>
+		 
+			    <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->
+			    <div class="accordion-content is-active" data-tab-content>
+			    
+			        {{> docs-sections-tabs}}
+			        
+			    </div>
+		    </li>
+
+		</ul>
+    </div>
+</div>
+
+					
+
+		        </div>
+		
+			</section>
+		</div>
+
+		
+	</div>
+</section>
+		

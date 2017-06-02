@@ -1,0 +1,16 @@
+{{#unless changelog}}
+<section>
+    {{#heading 3}}no change-log info available...{{/heading}}
+</section>
+{{/unless}}
+{{#if changelog}}
+<section>
+    {{#heading 2}}Change-Log{{/heading}}
+
+    <article>
+        {{changelog}}
+    </article>
+
+</section>
+{{/if}}
+    

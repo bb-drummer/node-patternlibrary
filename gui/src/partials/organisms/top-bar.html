@@ -1,0 +1,23 @@
+<!-- #PL:TOPBAR -->
+<div class="row">
+	<div class="large-12 columns">
+		<div class="title-bar" data-responsive-toggle="pl-main-menu" data-hide-for="medium">
+		    <button class="menu-icon" type="button" data-toggle="pl-main-menu"></button>
+		    <div class="title-bar-title">{{> text-project-title}}</div>
+		    <div class="title-bar-title float-right">{{> topbar-size}}</div>
+		</div> 
+
+		<div class="top-bar" id="pl-main-menu">
+		    <div class="top-bar-left">  
+		    	{{> topbar-navigation}}
+		    </div>
+		    <div class="top-bar-right">
+		    	{{> topbar-search}}
+		    </div>
+		    <div class="top-bar-right hide-for-small-only">
+		    	{{> topbar-size}}
+		    </div>
+		</div>
+	</div>
+</div>
+<!-- /PL:TOPBAR -->

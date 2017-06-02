@@ -1,10 +1,11 @@
-var patternlibrary;
+// (global) Patternlibrary module instance
+var the_patternlibrary;
 
-//import Patternlibrary from './lib/class.patternlibrary.js';
-var Patternlibrary = require ( './lib/class.patternlibrary.js' );
+// import main Patternlibrary class from file;
+var Patternlibrary = require ( './lib/patternlibrary.js' );
 
 /**
- * Gulp stream function that renders HTML pages. 
+ * Patternlibrary instance factory
  * 
  * The first time the function is invoked in the stream, a new instance of 
  * the pattern-library is created with the given options.
@@ -13,20 +14,16 @@ var Patternlibrary = require ( './lib/class.patternlibrary.js' );
  * @returns {function} Transform stream function that renders HTML pages.
  */
 module.exports = function(options) {
-  if (!patternlibrary) {
-	  patternlibrary = new Patternlibrary(options);
-	  patternlibrary.refresh();
-      module.exports.refresh = patternlibrary.refresh.bind(patternlibrary);
-      module.exports.middleware = patternlibrary.middleware.bind(patternlibrary);
-  }
+    if (!the_patternlibrary) {
+    	the_patternlibrary = new Patternlibrary(options);
+    	//the_patternlibrary.refresh();
+    }
 
-  // Compile pages with the above helpers
-  return patternlibrary.processFileStream();
+    // return initialized Patternlibrary
+    return the_patternlibrary;
 };
 
-module.exports.Patternlibrary = Patternlibrary;
-module.exports.refresh = Patternlibrary.refresh;
-module.exports.middleware = Patternlibrary.middleware;
+
 
 
 /**
@@ -38,5 +35,5 @@ var help = function () {
 }; // require('./lib/helpMessage');
 
 module.exports.help = function() {
-  help();
+    help();
 };

@@ -1,0 +1,46 @@
+<article class="docs-component" id="docs-{{escape title}}">
+
+<!--<a href="#docs-menu" class="small secondary button expanded hide-for-medium mobile-nav-button">Jump to Nav</a>-->
+
+{{#if video-hero}}
+{{> video-hero-header}}
+{{/if}}
+
+{{!-- Start container for docs and table of contents --}}
+<div class="row">
+
+{{!-- Start container for docs --}}
+<div class="large-9 columns docs-component-inner {{#if video-hero}}has-video-hero{{/if}}" id="docs">
+<div>
+{{#unless video-hero}}
+{{> header}}
+{{/unless}}
+
+{{ docs }}
+
+{{#if sass}}
+<hr>
+{{> sass-reference}}
+{{/if}}
+
+{{#if js}}
+<hr>
+{{> javascript-reference}}
+{{/if}}
+
+{{#if sass}}
+<!-- <hr> -->
+{{> building-blocks}}
+{{/if}}
+</div>
+</div>
+{{!-- End container for docs --}}
+
+<div class="large-3 columns show-for-medium">
+{{> table-of-contents}}
+</div>
+
+</div>
+{{!-- End container for docs and table of contents --}}
+
+</article>

@@ -1,0 +1,24 @@
+<section>
+
+	<p class="lead">{{ description }}</p>
+	
+	{{ docs }}
+	
+</section>
+
+{{#unless tests}}
+<section>
+    {{#heading 3}}no tests info available...{{/heading}}
+</section>
+{{/unless}}
+{{#if tests}}
+<section>
+    {{#heading 2}}Tests{{/heading}}
+
+    <article>
+        {{tests}}
+    </article>
+
+</section>
+{{/if}}
+    

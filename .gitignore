@@ -9,3 +9,5 @@ npm-debug.log
 .buildpath
 .project
 .settings
+*_save*
+*.save*

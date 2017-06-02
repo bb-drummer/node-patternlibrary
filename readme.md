@@ -1,4 +1,4 @@
-# (Panini) Pattern-library
+# Pattern-library
 
 A super simple flat file pattern-library generator for use with Gulp. It compiles a series of HTML **patterns** using an **atomic desing pattern**. These pages can also include HTML **partials**, external Handlebars **helpers**, or external **data** as JSON or YAML.
 
@@ -17,7 +17,23 @@ For now, just add
 ```
 to your `package.json` file.
 
-Once this might be ready, install via npm
+
+During pattern-library development, just link the (local) repo to your project via npm
+```bash
+
+	$> cd projectname
+	
+    $> npm link ../path/to/patternlibrary
+
+```
+
+
+
+
+
+
+
+Once the stable release has arrived, install via npm
 ```bash
 npm install patternlibrary --save-dev
 ```

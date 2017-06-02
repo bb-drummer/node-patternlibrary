@@ -1,0 +1,24 @@
+<section>
+
+	<p class="lead">{{ description }}</p>
+	
+	{{ docs }}
+	
+</section>
+
+{{#unless specs}}
+<section>
+    {{#heading 3}}no template specifications available...{{/heading}}
+</section>
+{{/unless}}
+{{#if specs}}
+<section>
+    {{#heading 2}}Template Specifications{{/heading}}
+
+    <article>
+        {{specs}}
+    </article>
+
+</section>
+{{/if}}
+    

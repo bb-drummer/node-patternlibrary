@@ -1,0 +1,43 @@
+<div class="row collapse">
+	<div class="small-12 columns">
+	
+		<ul class="tabs" data-tabs id="example-tabs">
+			<li class="tabs-title is-active"><a href="#panel-pattern" aria-selected="true">Pattern</a></li>
+			<li class="tabs-title"><a href="#panel-readme">ReadMe</a></li>
+			<li class="tabs-title"><a href="#panel-markup">Markup</a></li>
+			<li class="tabs-title"><a href="#panel-javascript">JS</a></li>
+			<li class="tabs-title"><a href="#panel-scss">SCSS</a></li>
+			<li class="tabs-title"><a href="#panel-specs">Specs</a></li>
+			<li class="tabs-title"><a href="#panel-tests">Tests</a></li>
+			<li class="tabs-title"><a href="#panel-changelog">Changelog</a></li>
+		</ul>
+		
+		<div class="tabs-content" data-tabs-content="example-tabs">
+			<div class="tabs-panel is-active" id="panel-pattern">
+				{{> docs-section-pattern}}
+		 	</div>
+			<div class="tabs-panel" id="panel-readme">
+				{{> docs-section-readme}}
+			</div>
+			<div class="tabs-panel" id="panel-markup">
+				{{> docs-section-markup}}
+		 	</div>
+			<div class="tabs-panel" id="panel-javascript">
+				{{> docs-section-javascript}}
+		 	</div>
+			<div class="tabs-panel" id="panel-scss">
+				{{> docs-section-scss}}
+			</div>
+			<div class="tabs-panel" id="panel-specs">
+				{{> docs-section-specs}}
+			</div>
+			<div class="tabs-panel" id="panel-tests">
+				{{> docs-section-tests}}
+			</div>
+			<div class="tabs-panel" id="panel-changelog">
+				{{> docs-section-changelog}}
+			</div>
+		</div>
+		
+	</div>
+</div>
