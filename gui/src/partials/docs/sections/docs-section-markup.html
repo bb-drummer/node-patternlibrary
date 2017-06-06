@@ -1,7 +1,17 @@
 <section>
 
-	<p class="lead">{{ description }}</p>
+	{{#heading 2}}Template Source:{{/heading}}
 	
-	{{ docs }}
+{{source.highlight}}
+	
+	<hr>
+	
+	{{#heading 2}}Example:{{/heading}}
+	
+{{example.highlight}}
+	
+	{{#heading 2}}Output:{{/heading}}
+	
+{{example.raw}}
 	
 </section>

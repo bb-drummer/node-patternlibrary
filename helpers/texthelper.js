@@ -75,7 +75,7 @@ module.exports = function(mode) {
 		    return 'contact@example.com';
 		break;
 		case 'url' :
-		    return 'http://example.com';
+		    return 'https://www.example.com';
 		break;
 		case 'social' :
 		    return '@twitter_user';
@@ -103,18 +103,45 @@ module.exports = function(mode) {
 		    return 'Lorem ipsum dolor sit amet';
 		break;
 		case 'normal' :
-		    return 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
+		    return 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \n'
+		          +'tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \n'
+		          +'vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \n'
+		          +'no sea takimata sanctus est Lorem ipsum dolor sit amet.';
 		break;
 		case 'long' :
-		    return 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.';
+		    return 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \n'
+	          +'tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \n'
+	          +'vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \n'
+	          +'no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, \n'
+	          +'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore \n'
+	          +'magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea \n'
+	          +'rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. \n'
+	          +'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor \n'
+	          +'invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam \n'
+	          +'et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est \n'
+	          +'Lorem ipsum dolor sit amet.';
 		break;
 		case 'xlong' :
-		    return 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,';
+		    return 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \n'
+	          +'tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \n'
+	          +'vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \n'
+	          +'no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, \n'
+	          +'consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore \n'
+	          +'magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea \n'
+	          +'rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. \n'
+	          +'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor \n'
+	          +'invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam \n'
+	          +'et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est \n'
+	          +'Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit \n'
+	          +'esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan \n'
+	          +'et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te \n'
+	          +'feugait nulla facilisi. Lorem ipsum dolor sit amet,';
 		break;
 		
 		case 'short' :
 		default :
-		    return 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.';
+		    return 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \n'
+	          +'tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.';
 		break;
 		
 	}
