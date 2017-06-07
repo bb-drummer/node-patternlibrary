@@ -7,8 +7,6 @@ var extend  = require('deep-extend');
  */
 module.exports = function(options) {
 
-    //console.log('arguments: ', arguments);
-    
     var args = [];
     var patternContent = '';
     var patternData = {};
@@ -18,7 +16,6 @@ module.exports = function(options) {
     if (arguments.length > 1) {
         for (var i = 0; i < arguments.length; i++) {
             if ( i != (arguments.length-1) ) {
-                console.log('arg '+i+': ', arguments[i]);
                 args.push(arguments[i])
             } else {
                 options = arguments[arguments.length-1];
@@ -46,8 +43,8 @@ module.exports = function(options) {
     var $PL = options.data.root.Patternlibrary;
     var patterns = $PL.getPatterns();
     
-    for (var i = 0; i < args.length; i++) {
-        var thisPatternName = args[i];
+    for (var j = 0; i < args.length; i++) {
+        var thisPatternName = args[j];
         
         $PL.Panini.data.Patternlibrary = null;
         extend(patternData, $PL.Panini.data);
