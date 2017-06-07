@@ -1,6 +1,6 @@
 // import in package.json via
 // "node-patternlibrary": "git+https://git@gitlab.bjoernbartels.earth/js/patternlibrary"
-// "node-patternlibrary": "file:../../js/patternlibrary"
+// "node-patternlibrary": "file:../../js/node-patternlibrary"
 
 // (global) Patternlibrary module instance
 var the_patternlibrary;

@@ -47,22 +47,22 @@ module.exports = function(options) {
     var patterns = $PL.getPatterns();
     
     for (var i = 0; i < args.length; i++) {
-        var patternName = args[i];
+        var thisPatternName = args[i];
         
         $PL.Panini.data.Patternlibrary = null;
         extend(patternData, $PL.Panini.data);
         $PL.Panini.data.Patternlibrary = $PL;
         
-        if (typeof patterns[patternName] != 'undefined') {
-            patternContent = patterns[patternName].body;
-            $PL.patternUsage(patternName, options.data.root);
+        if (typeof patterns[thisPatternName] != 'undefined') {
+            patternContent = patterns[thisPatternName].body;
+            $PL.patternUsage(thisPatternName, options.data.root);
         } else {
-            throw ('Patternlibrary error: pattern "'+patternName+'" not found');
+            throw ('Patternlibrary error: pattern "'+thisPatternName+'" not found');
             patternContent = '';
         }
         
         options.data.root.Patternlibrary = null ;
-        extend(patternData, patterns[patternName]);
+        extend(patternData, patterns[thisPatternName]);
         extend(patternData, options.data.root);
         extend(patternData, options.hash);
         
@@ -71,15 +71,11 @@ module.exports = function(options) {
 
         var layoutTemplate = $PL.Handlebars.compile('{{> body}}' /*+ '\n'*/, {noEscape: true});
         var patternTemplate = $PL.Handlebars.compile(patternContent /*+ '\n'*/, {noEscape: true});
-        //var rendered = patternTemplate(patternData);
+        
         $PL.Handlebars.registerPartial('body', patternTemplate);
         var rendered = layoutTemplate(patternData);
         
         result = ( new $PL.Panini.Handlebars.SafeString( rendered ) );
-        
-        //result += ( new $PL.Handlebars.SafeString( $PL.getDocRenderer().renderPattern(patternContent , patternData) ) );
-        
-        //result += ( new $PL.Handlebars.SafeString( $PL.getDocRenderer().renderPage(patternContent , layoutTemplate) ) );
         
     }
     return (result);
