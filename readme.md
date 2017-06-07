@@ -1,8 +1,6 @@
 # Pattern-library
 
-A super simple flat file pattern-library generator for use with Gulp. It compiles a series of HTML **patterns** using an **atomic desing pattern**. These pages can also include HTML **partials**, external Handlebars **helpers**, or external **data** as JSON or YAML.
-
-Panini isn't a full-fledged static site generator&mdash;rather, it solves the very specific problem of assembling flat files from common elements, using a templating language.
+A super simple flat file pattern-library generator for use with Gulp. It compiles a series of HTML **patterns** structred as in an **atomic desing pattern**. These patterns can also include HTML **partials**, external Handlebars **helpers**, or external **data** as JSON or YAML.
 
 
 

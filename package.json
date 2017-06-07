@@ -1,13 +1,13 @@
 {
-  "name": "patternlibrary",
-  "version": "0.0.1-dev",
+  "name": "node-patternlibrary",
+  "version": "0.0.1",
   "description": "a tiny flat file pattern-library generator",
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register"
   },
   "author": "Björn Bartels <development@bjoernbartels.earth>",
-  "license": "APACHE-2.0",
+  "license": "Apache-2.0",
   "bin": {},
   "dependencies": {
     "require-dir": "^0.3.0",
@@ -66,5 +66,5 @@
   "babel": {
     "presets": ["es2015"]
   },
-  "private": true
+  "private": false
 }

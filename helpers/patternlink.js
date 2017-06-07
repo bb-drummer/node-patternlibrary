@@ -16,29 +16,29 @@ var path = require('path');
 
 module.exports = function ( ) {
 
-	var name     = arguments[0];
-	var options  = arguments[1];
-	
-	const PREFIX = 'uid-';
-	name = String(name)
-		.replace('atom/', 'atoms/')
-		.replace('molecule/', 'molecules/')
-		.replace('organism/', 'organisms/')
-		.replace('template/', 'templates/');
-	
-	var $PL = options.data.root.Patternlibrary;
-	//console.log('data: ', options.data.root);
-	
-	var linkUrl = path.join( 
-		((typeof $PL != 'undefined') && $PL) ? $PL.Config.get('basepath') : '/',
-		'/patterns', 
-		String(name)
-			.replace('atom/', 'atoms/')
-			.replace('molecule/', 'molecules/')
-			.replace('organism/', 'organisms/')
-			.replace('template/', 'templates/')
-	);
-	
+    var name     = arguments[0];
+    var options  = arguments[1];
+    
+    const PREFIX = 'uid-';
+    name = String(name)
+        .replace('atom/', 'atoms/')
+        .replace('molecule/', 'molecules/')
+        .replace('organism/', 'organisms/')
+        .replace('template/', 'templates/');
+    
+    var $PL = options.data.root.Patternlibrary;
+    //console.log('data: ', options.data.root);
+    
+    var linkUrl = path.join( 
+        ((typeof $PL != 'undefined') && $PL) ? $PL.Config.get('basepath') : '/',
+        '/patterns', 
+        String(name)
+            .replace('atom/', 'atoms/')
+            .replace('molecule/', 'molecules/')
+            .replace('organism/', 'organisms/')
+            .replace('template/', 'templates/')
+    );
+    
     return new Handlebars.SafeString( linkUrl );
     
 }

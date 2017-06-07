@@ -17,31 +17,31 @@
  * 
  */
 module.exports = function(options) {
-	var 
-	    modes = ['eq', 'lt', 'gt', 'lte', 'gte', 'neq'],
-	    mode = ( (typeof options.hash.mode != 'undefined') && (modes.indexOf(options.hash.mode) != -1) ) ? options.hash.mode : 'eq'
-	;
-	
-	switch (mode) {
-		case 'lt' :
-		    if (options.hash.value < options.hash.comp) return options.fn(this);
-		break;
-		case 'gt' :
-		    if (options.hash.value > options.hash.comp) return options.fn(this);
-		break;
-		case 'lte' :
-		    if (options.hash.value <= options.hash.comp) return options.fn(this);
-		break;
-		case 'gte' :
-		    if (options.hash.value >= options.hash.comp) return options.fn(this);
-		break;
-		case 'neq' :
-		    if (options.hash.value != options.hash.comp) return options.fn(this);
-		break;
-		case 'eq' :
-		default :
-		    if (options.hash.value == options.hash.comp) return options.fn(this);
-		break;
-	}
+    var 
+        modes = ['eq', 'lt', 'gt', 'lte', 'gte', 'neq'],
+        mode = ( (typeof options.hash.mode != 'undefined') && (modes.indexOf(options.hash.mode) != -1) ) ? options.hash.mode : 'eq'
+    ;
+    
+    switch (mode) {
+        case 'lt' :
+            if (options.hash.value < options.hash.comp) return options.fn(this);
+        break;
+        case 'gt' :
+            if (options.hash.value > options.hash.comp) return options.fn(this);
+        break;
+        case 'lte' :
+            if (options.hash.value <= options.hash.comp) return options.fn(this);
+        break;
+        case 'gte' :
+            if (options.hash.value >= options.hash.comp) return options.fn(this);
+        break;
+        case 'neq' :
+            if (options.hash.value != options.hash.comp) return options.fn(this);
+        break;
+        case 'eq' :
+        default :
+            if (options.hash.value == options.hash.comp) return options.fn(this);
+        break;
+    }
     return options.inverse(this);
 }

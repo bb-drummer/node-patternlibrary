@@ -23,27 +23,27 @@ var Handlebars = require('handlebars');
  */
 
 module.exports = function ( name ) {
-	const PREFIX = 'uid-';
-	
-	if (typeof this.IDs == 'undefined') {
-		this.IDs = {};
-	}
-	if (name) {
-		if ( (typeof this.IDs[name] != 'undefined') ) {
-			return new Handlebars.SafeString( this.IDs[name] );
-		}
-	}
-	
+    const PREFIX = 'uid-';
+    
+    if (typeof this.IDs == 'undefined') {
+        this.IDs = {};
+    }
+    if (name) {
+        if ( (typeof this.IDs[name] != 'undefined') ) {
+            return new Handlebars.SafeString( this.IDs[name] );
+        }
+    }
+    
     var d = new Date().getTime();
     var uid = (PREFIX+'xxx-yxxx').replace(/[xy]/g, function(c) {
         var r = (d + Math.random()*16)%16 | 0;
         d = Math.floor(d/16);
         return (c=='x' ? r : (r&0x3|0x8)).toString(16);
     });
-	if (name) {
+    if (name) {
         this.IDs[name] = uid;
-	}
-	
+    }
+    
     return new Handlebars.SafeString( uid );
     
 }

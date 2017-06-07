@@ -1,7 +1,7 @@
 import { src, dest } from 'vinyl-fs';
 import assert from 'assert';
 import equal from 'assert-dir-equal';
-import { Patternlibrary } from '..';
+import Patternlibrary from '..';
 
 const FIXTURES = 'test/fixtures.patternlibrary/';
 
@@ -31,12 +31,12 @@ describe('Patternlibrary', () => {
 	  layouts : FIXTURES + 'basic/layouts',
 	  partials: FIXTURES + 'basic/partials'
 	};
-    var p = new Patternlibrary(patternlibraryOptions);
+    var p = Patternlibrary(patternlibraryOptions);
 
     p.refresh();
 
     src(FIXTURES + 'basic/pages/*')
-      .pipe(p.processFileStream())
+      .pipe(p.getFileStream().stream())
       .pipe(dest(FIXTURES + 'basic/build'))
       .on('finish', () => {
         equal(FIXTURES + 'basic/expected', FIXTURES + 'basic/build');
@@ -46,27 +46,3 @@ describe('Patternlibrary', () => {
 
 });
 
-describe('Patternlibrary helpers', () => {
-
-  it('#code helper that renders code blocks', done => {
-	patternlibraryOptions.dest = FIXTURES + 'helper-code/build';
-	patternlibraryOptions.panini = {
-	  root    : FIXTURES + 'helper-code/pages/',
-	  layouts : FIXTURES + 'helper-code/layouts',
-	  partials: FIXTURES + 'helper-code/partials'
-	};
-    var p = new Patternlibrary(patternlibraryOptions);
-
-    //p.loadBuiltinHelpers();
-    p.refresh();
-
-    src(FIXTURES + 'helper-code/pages/**/*.html')
-      .pipe(p.processFileStream())
-      .pipe(dest(FIXTURES + 'helper-code/build'))
-      .on('finish', () => {
-        equal(FIXTURES + 'helper-code/expected', FIXTURES + 'helper-code/build');
-        done();
-      });
-  });
-
-});
