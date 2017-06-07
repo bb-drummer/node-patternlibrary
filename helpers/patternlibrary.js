@@ -43,7 +43,7 @@ module.exports = function(options) {
     var $PL = options.data.root.Patternlibrary;
     var patterns = $PL.getPatterns();
     
-    for (var j = 0; i < args.length; i++) {
+    for (var j = 0; j < args.length; j++) {
         var thisPatternName = args[j];
         
         $PL.Panini.data.Patternlibrary = null;
@@ -66,8 +66,8 @@ module.exports = function(options) {
         $PL.updateDataFile();
         options.data.root.Patternlibrary = $PL ;
 
-        var layoutTemplate = $PL.Handlebars.compile('{{> body}}' /*+ '\n'*/, {noEscape: true});
-        var patternTemplate = $PL.Handlebars.compile(patternContent /*+ '\n'*/, {noEscape: true});
+        var layoutTemplate = $PL.Handlebars.compile('{{> body}}', {noEscape: true});
+        var patternTemplate = $PL.Handlebars.compile(patternContent, {noEscape: true});
         
         $PL.Handlebars.registerPartial('body', patternTemplate);
         var rendered = layoutTemplate(patternData);
