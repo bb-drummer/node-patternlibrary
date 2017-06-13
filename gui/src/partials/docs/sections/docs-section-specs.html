@@ -1,24 +1,80 @@
-<section>
-
-	<p class="lead">{{ description }}</p>
-	
-	{{ docs }}
-	
-</section>
-
 {{#unless specs}}
 <section>
-    {{#heading 3}}no template specifications available...{{/heading}}
+    {{#heading 3}}no pattern specifications available...{{/heading}}
 </section>
 {{/unless}}
 {{#if specs}}
 <section>
-    {{#heading 2}}Template Specifications{{/heading}}
+    {{#heading 2}}Pattern Specifications:{{/heading}}
 
     <article>
-        {{specs}}
+        <div class="row">
+            <div class="columns large-6 small-12">
+        		<div class="row">
+		            <div class="columns medium-6 small-12">	 
+				        {{#heading 3}}Info:{{/heading}}           
+				        {{#if specs.pattern}}
+				            <ul>
+				                <li><strong>Name:</strong> {{specs.pattern.name}}</li>
+				                <li><strong>Categories:</strong>
+							        {{#if specs.pattern.categories}}
+							            {{#each specs.pattern.categories as |cat|}}
+							                <a href="{{../root}}/categories/{{cat}}">{{cat}}</a>{{#unless @last}}, {{/unless}}<!-- {{categorylink cat}} -->
+							            {{/each}}
+							        {{/if}}    
+							        {{#unless specs.pattern.categories}}
+							        <span class="n_a_">n.a.</span>
+							        {{/unless}}
+				                </li>
+				            </ul>
+				        {{/if}}    
+		            </div>
+		            <div class="columns medium-6 small-12">
+				        {{#heading 3}}Dependencies:{{/heading}}
+				        {{#if specs.pattern.uses}}
+				            <ul>
+				            {{#each specs.pattern.uses as |dep|}}
+				                <li><a href="{{patternlink dep}}">{{dep}} {{#with specs}}{{> "icon-pattern"}}{{/with}}</a></li>
+				            {{/each}}
+				            </ul>
+				        {{/if}}    
+				        {{#unless specs.pattern.uses}}
+				        <p>no dependencies</p>
+				        {{/unless}}
+		            </div>
+	            </div>
+            </div>
+            
+            <div class="columns large-6 small-12">
+		        {{#heading 3}}Parameters:{{/heading}}
+		        {{#if specs.params}}
+				    <ul>
+		                {{#each specs.params as |values paramname|}}
+				        <li><strong>{{paramname}}:</strong> {{values}} {{#each ../specs.defaults as |value defname| }}{{#ifCond value=defname comp=paramname mode="eq"}}<br>default: {{value}}{{/ifCond}}{{/each}}
+				        </li>
+				        {{/each}}        
+				    </ul>
+		        {{/if}}    
+		        {{#unless specs.params}}
+		        <p>no parameters available</p>
+		        {{/unless}}
+            </div>
+        </div>
+        
+        
+        
     </article>
 
 </section>
 {{/if}}
-    
+
+<hr>
+
+<section>
+
+	{{#heading 2}}Pattern Source:{{/heading}}
+	
+{{source.highlight}}
+	
+</section>
+	

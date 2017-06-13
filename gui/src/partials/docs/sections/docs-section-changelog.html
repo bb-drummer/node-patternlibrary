@@ -5,10 +5,28 @@
 {{/unless}}
 {{#if changelog}}
 <section>
-    {{#heading 2}}Change-Log{{/heading}}
+    {{#heading 2}}Change-Log:{{/heading}}
 
     <article>
         {{changelog}}
+    </article>
+
+</section>
+{{/if}}
+
+<hr>
+
+{{#unless gitinfo.log}}
+<section>
+    {{#heading 3}}no git-log info available...{{/heading}}
+</section>
+{{/unless}}
+{{#if gitinfo.log}}
+<section>
+    {{#heading 2}}Git-Log:{{/heading}}
+
+    <article>
+        {{gitinfo.log.list}}
     </article>
 
 </section>

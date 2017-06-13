@@ -18,12 +18,10 @@
 		    <li class="accordion-item row columns is-active" data-accordion-item>
 		    	<!-- Accordion tab title {{../root}}/patterns/{{pattern.name}} -->
 		    	<a href="{{patternlink title}}" class="accordion-title row columns is-active">
-			        <div class="columns medium-6 small-12">Name: {{title}}</div>
+			        <div class="columns medium-6 small-12">Name: {{title}} {{#with specs}}{{> "icon-pattern"}}{{/with}}</div>
 			        <div class="columns medium-6 hide-for-small show-for-medium categories">Categories:
-			        {{#each pattern.categories as |category|}}
-			            <span class="name">{{category}}</span>
-			        {{/each}}
-                          </div>
+			        {{#with specs}}{{> "text-pattern-categories"}}{{/with}}
+                    </div>
 			    </a>
 		 
 			    <!-- Accordion tab content: it would start in the open state due to using the `is-active` state class. -->

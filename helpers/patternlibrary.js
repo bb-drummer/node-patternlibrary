@@ -66,14 +66,19 @@ module.exports = function(options) {
         $PL.updateDataFile();
         options.data.root.Patternlibrary = $PL ;
 
-        var layoutTemplate = $PL.Handlebars.compile('{{> body}}', {noEscape: true});
-        var patternTemplate = $PL.Handlebars.compile(patternContent, {noEscape: true});
-        
-        $PL.Handlebars.registerPartial('body', patternTemplate);
-        var rendered = layoutTemplate(patternData);
-        
-        result = ( new $PL.Panini.Handlebars.SafeString( rendered ) );
-        
+        try {
+        	
+	        var layoutTemplate = $PL.Handlebars.compile('{{> body}}', {noEscape: true});
+	        var patternTemplate = $PL.Handlebars.compile(patternContent, {noEscape: true});
+	        
+	        $PL.Handlebars.registerPartial('body', patternTemplate);
+	        var rendered = layoutTemplate(patternData);
+	        
+	        result = ( new $PL.Panini.Handlebars.SafeString( rendered ) );
+	
+	    } catch (err) {
+	    	this.$PL.warn('pattern Helper Error: ', err);
+	    }        
     }
     return (result);
     

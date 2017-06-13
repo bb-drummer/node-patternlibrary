@@ -6,11 +6,9 @@
 				    <li class="accordion-item row columns" data-accordion-item>
 				    	<!-- Accordion tab title {{../root}}/patterns/{{pattern.name}} -->
 				    	<a href="{{patternlink pattern.name}}" class="accordion-title row columns">
-					        <div class="columns medium-6 small-12">Name: {{pattern.name}}</div>
+					        <div class="columns medium-6 small-12">Name: <strong>{{pattern.name}}</strong> {{> "icon-pattern"}}</div>
 					        <div class="columns medium-6 hide-for-small show-for-medium categories">Categories:
-					        {{#each pattern.categories as |category|}}
-					            <span class="name">{{category}}</span>
-					        {{/each}}
+					        <strong>{{> "text-pattern-categories"}}</strong>
                             </div>
 					    </a>
 				 

@@ -27,7 +27,6 @@ module.exports = function ( ) {
         .replace('template/', 'templates/');
     
     var $PL = options.data.root.Patternlibrary;
-    //console.log('data: ', options.data.root);
     
     var linkUrl = path.join( 
         ((typeof $PL != 'undefined') && $PL) ? $PL.Config.get('basepath') : '/',
