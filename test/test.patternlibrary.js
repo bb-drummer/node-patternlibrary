@@ -33,15 +33,20 @@ describe('Patternlibrary', () => {
 	};
     var p = Patternlibrary(patternlibraryOptions);
 
-    p.refresh();
-
+    //p.run();
+    
+    //done();
+    
     src(FIXTURES + 'basic/pages/*')
       .pipe(p.getFileStream().stream())
       .pipe(dest(FIXTURES + 'basic/build'))
       .on('finish', () => {
-        equal(FIXTURES + 'basic/expected', FIXTURES + 'basic/build');
+
+    	equal(FIXTURES + 'basic/expected', FIXTURES + 'basic/build');
         done();
       });
+    
+    
   });
 
 });

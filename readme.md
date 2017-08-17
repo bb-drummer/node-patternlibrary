@@ -1,161 +1,49 @@
-# Pattern-library
+# (Node-)**Patternlibrary**
 
-A super simple flat file pattern-library generator for use with Gulp. It compiles a series of HTML **patterns** structred as in an **atomic desing pattern**. These patterns can also include HTML **partials**, external Handlebars **helpers**, or external **data** as JSON or YAML.
-
-
-
-
-## Installation
-
-For now, just add 
-```bash
-
-    "patternlibrary": "git+https://gitlab.bjoernbartels.earth/js/patternlibrary.git"
-
-```
-to your `package.json` file.
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/gl/bjoernbartels-earth/js/patternlibrary/badges/quality-score.png?b=master&s=974f5fcc342590b04f6b62f995f7f991ad6e32c7)](https://scrutinizer-ci.com/gl/bjoernbartels-earth/js/patternlibrary/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/gl/bjoernbartels-earth/js/patternlibrary/badges/build.png?b=master&s=bcca11629f60424efbc35db6c110e4091a513681)](https://scrutinizer-ci.com/gl/bjoernbartels-earth/js/patternlibrary/build-status/master)
 
 
-During pattern-library development, just link the (local) repo to your project via npm
-```bash
-
-	$> cd projectname
-	
-    $> npm link ../path/to/patternlibrary
-
-```
+## About
 
 
+**Patternlibrary** (a.k.a. _node-patternlibrary_) is a simple flat file documentaion generator for use with Node, Gulp or Grunt.   
+It compiles a series of HTML **patterns** (a.k.a. _partials_) structured in an **atomic desing pattern**. These patterns can also include other HTML **patterns**/**partials**, external Handlebars **helpers**, or external **data** as JSON or YAML.   
+Documentation pages for each pattern are created according to the specific pattern meta-data supplied. Those pages are combined under a GUI to view in your browser.
 
 
+## Documentation
 
 
+For detailed explanations of each of the parts that made up **Patternlibrary**, please see the following pages:
 
-Once the stable release has arrived, install via npm
-```bash
-npm install patternlibrary --save-dev
-```
+- [Installation and (basic) usage](docs/usage_docs.md)
 
+- [Options](docs/options_docs.md)
 
+- [Generating pattern documentation](docs/patternspecs_docs.md)
 
+  To generate the pattern-specific documentation pages, at least two requirements must be satisfied for each pattern:
 
-## Usage
-
-Feed the pattern-library a stream of HTML files, and get the compiled patterns and a frontend out the other end.
-
-```js
-var gulp = require('gulp');
-var patternlibrary = require('patternlibrary');
-
-gulp.task('default', function() {
-  gulp.src('partials/patterns/**/*.html')
-    .pipe(patternlibrary(
-      dest: 'build/pattern-library/',
-      verbose: true,
-      dirs : {
-        atoms     : 'atoms/',
-        molecules : 'molecules/',
-        organisms : 'organisms/',
-        templates : 'tempates/'
-      },
-      panini: {
-        root      : 'pages/',
-        layouts   : 'layouts/',
-        partials  : 'partials/',
-        helpers   : 'helpers/',
-        data      : 'data/'
-      }
-    }))
-    .pipe(gulp.dest('build'));
-});
-```
-
-Note that the pattern-library loads layouts, partials, helpers, and data files once on first run, also meta-data is gather from all pattern templates. Whenever these files change, call `patternlibrary.refresh()` to get it up to date. You can easily do this inside a call to `gulp.watch()`:
-
-```js
-gulp.watch(['./src/{layouts,partials,helpers,data}/**/*'], [patternlibrary.refresh]);
-```
+  - the [Pattern specifications](docs/patternspecs_docs.md)
+  
+  and...
+  
+  - the [`readme.md` file](docs/readme_docs.md)
+  
+  
+  Optionally, you can also apply...
+  
+  - [SASS reference documentation](docs/sassdoc_docs.md),
+  
+  - [JavaScript reference documentation](docs/jsdoc_docs.md),
+  
+  - a [`changelog.md` file](docs/changelog_docs.md) and
+  
+  - [Test files and testing](docs/testing_docs.md)
+  
+- [GUI usage](docs/gui_docs.md)
+  
+- [API documentation and advanced usage](docs/api_docs.md)
 
 
-
-
-## Options
-
-### `dest`
-
-**Type:** `String`
-
-Set destination path. **mandatory**
-
-### `verbose`
-
-**Type:** `Boolean`
-
-Create verbose console output. Default: false
-
-### `dirs`
-
-**Type:** `Object`
-
-Set the pattern specific source-paths. **mandatory**
-
-```js
-{
-  atoms     : 'atoms/',
-  molecules : 'molecules/',
-  organisms : 'organisms/',
-  templates : 'tempates/'
-}
-```
-
-### `panini`
-
-**Type:** `Object`
-
-Set panini options. **mandatory**
-
-```js
-{
-  root      : 'pages/',
-  layouts   : 'layouts/',
-  partials  : 'partials/',
-  helpers   : 'helpers/',
-  data      : 'data/'
-}
-```
-
-
-
-
-## CLI
-
-You can (currently not yet) use the pattern-library via the CLI.
-
-```
-THIS IS SUBJECT TO CHANGE!  D O   N O T   U S E  ! ! !
-
-Usage: patternlibrary --layouts=[layoutdir] --root=[rootdir] --dest=[destdir] [other options]
-
-Options:
-  --layouts  (required) path to a folder containing layouts
-  --root     (required) path to the root folder all pages live in
-  --dest     (required) path to the folder compiled pages should get sent to
-  --partials            path to root folder for partials
-  --helpers             path to folder for additional helpers
-  --data                path to folder for additional data
-  ...
-
-Example: patternlibrary --root=src/pages --layouts=src/layouts --partials=src/partials --data=src/data --output=dist ...
-```
-
-
-
-## Local Development
-
-```bash
-git clone https://gitlab.bjoernbartels.earth/js/patternlibrary
-cd panini
-npm install
-```
-
-Use `npm test` to run tests.
