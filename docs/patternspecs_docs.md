@@ -1,4 +1,24 @@
-[TOC]
+*   [Generating the library and pattern documentation](#generating-the-library-and-pattern-documentation) 
+    *   [Pattern files and folders](#pattern-files-and-folders)
+    *   [Including a pattern inside other templates](#including-a-pattern-inside-other-templates)
+    *   [Main pattern file: index.html](#main-pattern-file-indexhtml) 
+        *   [Pattern specifications](#pattern-specifications)
+            *   [pattern](#pattern)
+            *   [params](#params)
+            *   [defaults](#defaults)
+        *   [Pattern parameters](#pattern-parameters)
+            *   [Parameter formats and legend:](#parameter-formats-and-legend)
+    *   [Pattern documentation](#pattern-documentation)
+        *   [The pattern and its variants](#the-pattern-and-its-variants)
+        *   [Pattern file: ‘readme.md’](#pattern-file-readmemd)
+        *   [CSS/SCSS documentation](#cssscss-documentation)
+        *   [JavaScript documentation](#javascript-documentation)
+        *   [Pattern tests](#pattern-tests)
+        *   [Pattern log](#pattern-log)
+    *   [Patternlibrary helpers](#patternlibrary-helpers)
+        *   [the “PL” helper](#the-pl-helper)
+            *   [Differences between {{>...}} and {{PL...}}](#differences-between-and-pl)
+
 
 ---
 

@@ -44,9 +44,6 @@ Table of content:
     *   [Main pattern file: index.html](#main-pattern-file-indexhtml) 
         *   [Pattern specifications](#pattern-specifications)
             *   [pattern](#pattern)
-                *   [name](#name)
-                *   [categories](#categories)
-                *   [uses](#uses)
             *   [params](#params)
             *   [defaults](#defaults)
         *   [Pattern parameters](#pattern-parameters)
@@ -92,34 +89,36 @@ The main template engine behind this is *handlebars* ([-> homepage](http://handl
 
 For detailed explanations of each of the parts that made up **Patternlibrary**, please see the following pages:
 
-- [Installation and (basic) usage](docs/usage_docs.md)
+- [Installation and (basic) usage](#installation)
 
-- [Options](docs/options_docs.md)
+- [Options](#options)
 
-- [Generating the pattern documentation](docs/patternspecs_docs.md)
+- [Generating the pattern documentation](#generating-the-library-and-pattern-documentation)
 
-  To generate the pattern-specific documentation pages, at least two requirements must be satisfied for each pattern:
+  To generate the pattern-specific documentation pages, some requirements must be satisfied for each pattern:
 
-  - the [Pattern specifications](docs/patternspecs_docs.md)
+  - the [Pattern specifications](#main-pattern-file-indexhtml)
   
   and...
   
-  - the [`readme.md` file](docs/readme_docs.md)
+  - a [`readme.md` file](#pattern-file-readmemd)
   
   
   Optionally, you can also apply...
   
-  - [SASS reference documentation](docs/sassdoc_docs.md),
+  - [SASS reference documentation](#cssscss-documentation),
   
-  - [JavaScript reference documentation](docs/jsdoc_docs.md),
+  - [JavaScript reference documentation](#javascript-documentation),
   
-  - a [`changelog.md` file](docs/changelog_docs.md) and
+  - a [`changelog.md` file](#pattern-log) and
   
-  - [Test files and testing](docs/testing_docs.md)
+  - [Test files and testing](#pattern-tests)
   
 - [GUI usage](docs/gui_docs.md)
   
 - [API documentation and advanced usage](docs/api_docs.md)
+  
+- [Gulp/Grunt middleware usage](docs/middleware_docs.md)
 
 
 ## Installation

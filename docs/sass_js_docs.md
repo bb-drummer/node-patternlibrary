@@ -1,7 +1,7 @@
 ## SASS and JavaScript Reference
 
 
-This section is about creating reference and API documentation.
+This section is about creating sytling and scripting reference and API documentation.
 ...
 
 
