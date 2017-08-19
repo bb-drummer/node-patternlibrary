@@ -4,7 +4,32 @@
 [![Build Status](https://scrutinizer-ci.com/gl/bjoernbartels-earth/js/patternlibrary/badges/build.png?b=master&s=bcca11629f60424efbc35db6c110e4091a513681)](https://scrutinizer-ci.com/gl/bjoernbartels-earth/js/patternlibrary/build-status/master)
 
 
-[TOC]
+*   [(Node-)Patternlibrary](#node-patternlibrary)
+    *   [About](#about)
+    *   [Documentation](#documentation)
+    *   [Installation](#installation)
+    *   [Gulp usage](#gulp-usage)
+    *   [Standalone module usage](#standalone-module-usage)
+    *   [CLI](#cli)
+    *   [Local Development](#local-development)
+    *   [Testing](#testing)
+    *   [Options](#options)*   [Basics](#basics)*   [dest](#dest)
+            *   [partials](#partials)
+            *   [root](#root)
+            *   [layouts](#layouts)
+            *   [data](#data)
+        *   [Special options](#special-options)*   [verbose](#verbose)
+            *   [patterns](#patterns)
+            *   [patternfilenames](#patternfilenames)
+            *   [patternsearchpath](#patternsearchpath)
+            *   [templates](#templates)
+        *   [Plug-in options](#plug-in-options)*   [plugins](#plugins)
+        *   [Sub-modules’ options](#sub-modules-options)*   [handlebars](#handlebars)
+            *   [panini](#panini)
+            *   [supercollider](#supercollider)
+            *   [marked](#marked)
+            *   [sassdoc](#sassdoc)
+            *   [jsdoc](#jsdoc)
 
 
 ---
