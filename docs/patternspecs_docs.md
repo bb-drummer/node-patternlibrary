@@ -18,6 +18,11 @@
     *   [Patternlibrary helpers](#patternlibrary-helpers)
         *   [the “PL” helper](#the-pl-helper)
             *   [Differences between {{>...}} and {{PL...}}](#differences-between-and-pl)
+        *   [the “texthelper”](#the-texthelper)
+        *   [the “uniqueid” helper](#the-uniqueid-helper)
+        *   [the “raw” helper](#the-raw-helper)
+        *   [the “categorylink” helper](#the-categorylink-helper)
+        *   [the “patternlink” helper](#the-patternlink-helper)
 
 
 ---
@@ -194,38 +199,35 @@ The following objects and properties are recognized and processed by the *Patter
 
 
   - ##### `categories`
+    *Type:* `[String]`
+    *optional*, default: []
 
-      *Type:* `[String]`, *optional*, default: []
-
-      List of categories to apply to the pattern
+    List of categories to apply to the pattern
       
 
 
   - ##### `uses`
-
-      **Type:** `[String]`
-
+      *Type:* `[String]`
+      *optional*, default: []
+      
       List of other patterns used, a.k.a. included, by the pattern
-      _optional, default: []
 
 
 - #### `params`
-
-  **Type:** `Object`
-
-  Set of pattern-specific parameters to apply to the pattern upon inclusion, i.e.:
-  ```html
-  {{> "mypattern" some_parameter="value"}}
-  ```
-  _optional_, default: {}
+    *Type:* `Object`
+    *optional*, default: {}
+    
+    Set of pattern-specific parameters to apply to the pattern upon inclusion, i.e.:
+    ```html
+    {{> "mypattern" some_parameter="value"}}
+    ```
 
 
 - #### `defaults`
+    *Type:* `Object`
+    *optional*, default: {}
 
-  **Type:** `Object`
-
-  Set of values to apply to the pattern parameters if those are omitted upon inclusion. To function correctly, these object keys must match the keys of the `params` object.
-  _optional_, default: {}
+    Set of values to apply to the pattern parameters if those are omitted upon inclusion. To function correctly, these object keys must match the keys of the `params` object.
 
 
 ### Pattern parameters
@@ -234,7 +236,7 @@ To help making a pattern more flexible and re-usable, it can provide parameters.
 In general, when including a sub-pattern/template, a parameter may contain any value that is supported through *handlebars*.
 However, the *Patternlibrary*'s pattern specifications `params` definition should restrict a parameter's value to the ones given to provide (more) detailed documentation and assist is generating test cases for the pattern.
 
-#### Parameter formats and legend:
+#### Parameter formats:
 
 | format | description |
 | :----- | ----------- |
@@ -251,23 +253,31 @@ A pattern's complete documentation, browsable in *Patternlibrary*'s GUI, is asse
 
 A (generic) sample output is created from the pattern's main template file. If the pattern provides parameters and also provides default values for them, those default values are substituted.
 
-Possible combinations of parameters and their more ore less defined values are shown as a variant of the pattern. They can be selected by filling an input filed with values for ` key: *` or ` key: [*] ` parameters or selecting from its combinations of values from ` key: ['a', 'b'] ` parameters.
+Possible combinations of parameters and their more or less defined values are shown as a variant of the pattern. They can be selected by filling an input filed with values for ` key: *` or ` key: [*] ` parameters or selecting from its combinations of values from ` key: ['a', 'b'] ` parameters.
 
 ### Pattern file: 'readme.md'
 
-This is the generic textual description of the pattern. 
+This is the generic textual description of the pattern. Using the *markdown* syntax, it may contain anything you like. Explain the purpose and the behavior of the pattern and its parameters. If applicable, describe the pattern's variants. Point out context, the quirks and pit-falls. 
+
+Include code examples by using *markdown*'s back-tick syntax 
+``` \`\`\` ... \`\`\`  ```
+In case, apply syntax highlighting to it 
+``` \`\`\`html ... \`\`\`  ``` or ``` \`\`\`javascript ... \`\`\`  ```
+A special one is...
+``` \`\`\`html_example ... \`\`\`  ```
+...which outputs highlighted HTML source code along with that same code into an example output section.
 
 ### CSS/SCSS documentation
 
-The pattern's CSS/SCSS documentation is gathered from its main CSS/SCSS source file `styles.scss` via [SassDoc](http://sassdoc.com/). 
+The pattern's CSS/SCSS documentation is gathered from its main CSS/SCSS source file `styles.scss` via [SassDoc](http://sassdoc.com/). The *Patternlibrary* processes information about variables, mixins and functions as they are described in the source file.
  
-
+Please, see the [`docs/sassdoc_docs.md`](docs/sassdoc_docs.md) file for more information and detailed examples.
 
 ### JavaScript documentation
 
-The pattern's JavaScript documentation is gathered from its main script source file `index.js` or `module.js` via [JSDoc](http://usejsdoc.org). 
-
-
+The pattern's JavaScript documentation is gathered from its main script source file `index.js` or `module.js` via [JSDoc](http://usejsdoc.org). The *Patternlibrary* processes information about the module, classes ond objects, as well as their properties, methods and events, as they are described in the source file.
+ 
+Please, see the [`docs/jsdoc_docs.md`](docs/jsdoc_docs.md) file for more information and detailed examples.
 
 
 ### Pattern tests
@@ -281,14 +291,22 @@ The pattern's JavaScript documentation is gathered from its main script source f
 
 ## *Patternlibrary* helpers
 
-Besides the *handlebars* and *Panini* built-in helpers, *Patternlibrary* provide several helpers on its own to assist creating patterns and utilizing *Patternlibrary* features.
+In addition to the built-in *handlebars* and *Panini* helpers, *Patternlibrary* provide several helpers on its own to assist creating patterns and utilizing *Patternlibrary* features.
 
 ### the "PL" helper
 
 #### Differences between `{{>...}}` and `{{PL...}}`
 
+### the "texthelper"
+
+### the "uniqueid" helper
+
+### the "raw" helper
+
+### the "categorylink" helper
+
+### the "patternlink" helper
+
 
 ...
-
-
 
