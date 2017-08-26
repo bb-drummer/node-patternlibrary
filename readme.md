@@ -24,7 +24,7 @@ It compiles a series of HTML **patterns** (a.k.a. _partials_) structured in an *
 
 Documentation pages for each pattern are created according to the specific pattern meta-data supplied. Those pages are combined under a GUI to view in your browser.
 
-The main template engine behind this is *handlebars* ([-> homepage](http://handlebarsjs.com)) which itself is extended by *Zurb Foundation*'s *Panini* ([-> GitHub](https://github.com/zurb/panini)). The style and script source files are parsed by *Zurb Foundation*'s *Supercollider* ([-> GitHub](https://github.com/zurb/supercollider)) utilizing [SassDoc](http://sassdoc.com/) and [JSDoc](http://usejsdoc.org).
+The main template engine behind this is *handlebars* ([-> homepage](http://handlebarsjs.com)) which itself is extended by *Zurb Foundation*'s *Panini* ([-> GitHub](https://github.com/zurb/panini)). The style and script source files are parsed by *Zurb Foundation*'s *Supercollider* ([-> GitHub](https://github.com/zurb/supercollider)) utilizing *SassDoc* ([-> homepage](http://sassdoc.com/)) and *JSDoc* ([-> homepage](http://usejsdoc.org)).
 
 
 ## Documentation

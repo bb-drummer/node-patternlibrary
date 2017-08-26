@@ -44,9 +44,6 @@ Table of content:
     *   [Main pattern file: index.html](#main-pattern-file-indexhtml) 
         *   [Pattern specifications](#pattern-specifications)
             *   [pattern](#pattern)
-                *   [name](#name)
-                *   [categories](#categories)
-                *   [uses](#uses)
             *   [params](#params)
             *   [defaults](#defaults)
         *   [Pattern parameters](#pattern-parameters)
@@ -60,12 +57,16 @@ Table of content:
         *   [Pattern log](#pattern-log)
     *   [Patternlibrary helpers](#patternlibrary-helpers)
         *   [the “PL” helper](#the-pl-helper)
-            *   [Differences between {{>...}} and {{PL...}}](#differences-between-and-pl)
+            *   [Including a pattern using the default {{>...}}](#including-a-pattern-using-the-default-)
+            *   [Differences between {{>...}} and {{PL...}}](#differences-between-and-pl) (!)
         *   [the “texthelper”](#the-texthelper)
+            *   [“texthelper” modes](#texthelper-modes)
         *   [the “uniqueid” helper](#the-uniqueid-helper)
+            *   [“uniqueid” examples](#uniqueid-examples)
         *   [the “raw” helper](#the-raw-helper)
-        *   [the “categorylink” helper](#the-categorylink-helper)
-        *   [the “patternlink” helper](#the-patternlink-helper)
+        *   [the “categorylink” helper](#the-categorylink-helper) (internal)
+        *   [the “patternlink” helper](#the-patternlink-helper) (internal)
+
 
 
 ---
@@ -90,7 +91,8 @@ It compiles a series of HTML **patterns** (a.k.a. _partials_) structured in an *
 
 Documentation pages for each pattern are created according to the specific pattern meta-data supplied. Those pages are combined under a GUI to view in your browser.
 
-The main template engine behind this is *handlebars* ([-> homepage](http://handlebarsjs.com)) which itself is extended by *Zurb Foundation*'s *Panini* ([-> GitHub](https://github.com/zurb/panini)). The style and script source files are parsed by *Zurb Foundation*'s *Supercollider* ([-> GitHub](https://github.com/zurb/supercollider)) utilizing [SassDoc](http://sassdoc.com/) and [JSDoc](http://usejsdoc.org).
+The main template engine behind this is *handlebars* ([-> homepage](http://handlebarsjs.com)) which itself is extended by *Zurb Foundation*'s *Panini* ([-> GitHub](https://github.com/zurb/panini)). The style and script source files are parsed by *Zurb Foundation*'s *Supercollider* ([-> GitHub](https://github.com/zurb/supercollider)) utilizing *SassDoc* ([-> homepage](http://sassdoc.com/)) and *JSDoc* ([-> homepage](http://usejsdoc.org)).
+
 
 ## Documentation
 
@@ -125,6 +127,8 @@ For detailed explanations of each of the parts that made up **Patternlibrary**, 
 - [GUI usage](docs/gui_docs.md)
   
 - [API documentation and advanced usage](docs/api_docs.md)
+  
+- [Gulp/Grunt middleware usage](docs/middleware_docs.md)
 
 
 ## Installation
@@ -644,13 +648,13 @@ The pattern can be referenced by its structural item path `{{> "{type}/{group}/{
 
 Referencing when using the *handlebars* helper:
 ```
-   {{> "atom/link"}}  and {{> "atom/nav/link"}}
+{{> "atom/link"}}  or {{> "atom/nav/link"}}
 ```
 ...or using the *Patternlibrary* helper:
 ```
-   {{PL atom="link"}}  and {{PL atom="nav/link"}}
+{{PL atom="link"}}  or {{PL atom="nav/link"}}
    
-   {{PL molecule="nav/topbar/navitem"}}  and {{PL molecule="nav/sub/navitem"}}
+{{PL molecule="nav/topbar/navitem"}}  or {{PL molecule="nav/sub/navitem"}}
 ```
 
 For more information on the *Patternlibrary* helper, please take a look at the [helpers section](#patternlibrary-helpers).
@@ -744,15 +748,32 @@ The following objects and properties are recognized and processed by the *Patter
 
 To help making a pattern more flexible and re-usable, it can provide parameters. This is a built-in feature of *handlebars* itself.
 In general, when including a sub-pattern/template, a parameter may contain any value that is supported through *handlebars*.
-However, the *Patternlibrary*'s pattern specifications `params` definition should restrict a parameter's value to the ones given to provide (more) detailed documentation and assist is generating test cases for the pattern.
 
-#### Parameter formats:
+However, the *Patternlibrary*'s pattern specifications `params` definition should restrict a parameter's value to the ones given to provide (more) detailed documentation and assist is generating test cases for the pattern. 
+Additionally and more importantly, the *Patternlibrary* performs a check of the submitted values against the requirements of the parameter on sub-pattern inclusion using the ["**`PL`**" helper](#the-pl-helper). 
+If a value does not match the requirement, an optionally given [default value](#pattern-parameter-defaults) is substituted and a warning thrown to console output if available.
+
+#### Parameter describing syntax:
+
+The generic format of a pattern's parameter description in the `params` section, aka YAML object, follows a simple syntax:
 
 | format | description |
 | :----- | ----------- |
-| ` key: * ` | the property 'key' may contain any scalar value or nothing |
-| ` key: [*] ` | the property 'key' may contain any list of scalar values or nothing |
-| ` key: ['a', 'b'] ` | the property 'key' may contain only value 'a' or 'b' |
+| ` key: '*' ` | the parameter 'key' may contain any scalar value |
+| ` key: '[*]' ` | the parameter 'key' may contain any list of scalar values |
+| ` key: '[a, b...]' ` | the parameter 'key' may contain only value 'a' or 'b' and so on
+
+
+#### Pattern parameter defaults
+
+The `defaults` section/YAML object defines the corresponding default values for a parameter. Its value is substituted if an invalid parameter value is submitted on inclusion.
+
+The simple syntax for a parameter's default value is
+
+| format | description |
+| :----- | ----------- |
+| ` key: 'my value' ` | set the parameter to the string 'my value' | 
+
 
 
 ## Pattern documentation
@@ -779,43 +800,167 @@ A special one is...
 
 ### CSS/SCSS documentation
 
-The pattern's CSS/SCSS documentation is gathered from its main CSS/SCSS source file `styles.scss` via [SassDoc](http://sassdoc.com/). The *Patternlibrary* processes information about variables, mixins and functions as they are described in the source file.
+The pattern's CSS/SCSS documentation is gathered from its main CSS/SCSS source file `styles.scss` via *SassDoc* ([-> homepage](http://sassdoc.com/)). The *Patternlibrary* processes information about variables, mixins and functions as they are described in the source file.
  
 Please, see the [`docs/sassdoc_docs.md`](docs/sassdoc_docs.md) file for more information and detailed examples.
 
 ### JavaScript documentation
 
-The pattern's JavaScript documentation is gathered from its main script source file `index.js` or `module.js` via [JSDoc](http://usejsdoc.org). The *Patternlibrary* processes information about the module, classes ond objects, as well as their properties, methods and events, as they are described in the source file.
+The pattern's JavaScript documentation is gathered from its main script source file `index.js` or `module.js` via *JSDoc* ([-> homepage](http://usejsdoc.org)). The *Patternlibrary* processes information about the module, classes ond objects, as well as their properties, methods and events, as they are described in the source file.
  
-Please, see the [`docs/jsdoc_docs.md`](docs/jsdoc_docs.md) file for more information and detailed examples.
+Please, see the [`docs/jsdoc_docs.md`](docs/jsdoc_docs.md) file for more information and detailed examples on creating JavaScript Components and documentation.
 
 
-### Pattern tests
+### Pattern tests 
 
+[@TODO]
+Front-end and JavaScript tests can be stored and imported into the pattern's `test.js` file. The tests are utilizing the *Mocha* unit testing framework. Results and browser tests will be assembled for display.
 
-
+Please, see the [`docs/testing_docs.md`](docs/testing_docs.md) file for more information and detailed examples on testing a pattern.
+ 
 
 ### Pattern log
 
+A pattern's evolution information can be gathered from two sources. 
+A `changelog.md` file can be included with every pattern. It will be displayed as it is, wether it just includes an ordered list of change entries or much more expressive prose.
+Secondly, if available, the current git history is rendered for display in chronological order.
 
 
 ## *Patternlibrary* helpers
 
 In addition to the built-in *handlebars* and *Panini* helpers, *Patternlibrary* provide several helpers on its own to assist creating patterns and utilizing *Patternlibrary* features.
 
-### the "PL" helper
 
-#### Differences between `{{>...}}` and `{{PL...}}`
+### The "PL" helper
 
-### the "texthelper"
+The *Patternlibrary* helper "**`PL`**" is your *swiss army knife* for interacting with the *Patternlibrary*.
 
-### the "uniqueid" helper
+Essentially, it started out as a wrapper around *handlebars*/*panini*'s "**`>` **" helper limitations. Therefor its main functionality is to include some sub-pattern into another pattern.
+So, a simple call like
+```
+{{PL atom="link"}}  or {{PL atom="nav/link"}}
+```
+obviously includes an *atom* `link`, respectivly an *atom* `nav/link`.
+Accordingly, include a *molecule* via
+```
+{{PL molecule="nav/topbar/navitem"}}  or {{PL molecule="nav/sub/navitem"}}
+```
+and an *organism* via
+```
+{{PL organism="content/article-panel"}}
+```
 
-### the "raw" helper
+As well as with the default *handlebars* helper, the "**`PL`**"  helper also accepts *parameters*. Those parameters may, but do not have to, be defined in the pattern template file's `params` and `defaults` section, [please see above](#pattern-parameters).
 
-### the "categorylink" helper
 
-### the "patternlink" helper
+#### Syntax
+
+The generic syntax for the helper is
+```
+{{PL {atom|molecule|organism}="path/to/pattern" [param1="val1" [param2="val2" ...[paramN="valN"]]] }}
+```
+
+
+#### Including a pattern using the default `{{>...}}` 
+
+Since all patterns are registered to *handlebars*/*panini*'s default partial repository, of cause, it is possible to include a pattern using the default *handlebars* helper The pattern has to be referenced by its full structural item path, meaning: the path starting with the pattern's type:
+```
+{{> "atom/link"}}  and {{> "atom/nav/link"}}
+```
+**An important part is, you will have to wrap the pattern's path in quotes " !**
+
+
+
+#### Differences between `{{>...}}` and `{{PL...}}` (!)
+
+Using the  "**`PL`**"  helper, some internal operations take place when incuding a sub-pattern:
+
+  -  **dependencies**: internally dependency info is collected and usage stats for the patterns are stored
+  -  **parameter checks**: checks if the given parameters match the requirements defined in the pattern template file's `params` and `defaults` section
+
+*The consequence is*: 
+if you instead chose to use the default  "**`>`**"  helper, those operations do not take place, obviously. 
+But therefore, some functions and/or behavior of the *Patternlibrary* may differ from what might be expected, for example: a pattern's GUI specifications page shows incorrect dependency information, or a sub-pattern may return unexpected results due to invalid parameter values.
+
+
+### The "texthelper"
+
+This helper outputs consistent demo texts for a given 'type', aka. `mode`. Please, see below for the list of [texthelper modes](#texthelper-modes).
+
+
+#### Syntax
+
+The generic syntax for the helper is
+```
+{{texthelper [mode="..."] }}
+```
+
+
+#### 'texthelper' modes
+
+Currently, the helper provides the following modes and corresponding text values:
+
+| `mode` | text output |
+| :----- | :---------- |
+| | | 
+| // product | | 
+| 'product-name' | 'An Awesome Product Name' |
+| 'product-id' | '98765-432109' |
+| 'product-ean' | '987-65432-109-8' |
+| | | 
+| // contact | | 
+| 'name' | 'Marianne Mustermann' |
+| 'name-rev' | 'Mustermann, Marianne' |
+| 'prename' | 'Marianne' |
+| 'lastname' | 'Mustermann' |
+| 'street' | 'Musterstraße' |
+| 'housenumber' | '12a' |
+| 'streetnr' | 'Musterstraße 12a' |
+| 'zipcode' | '12345' |
+| 'city' | 'Musterstadt' |
+| 'zipcity' | '12345 Musterstadt' |
+| 'cityzip' | 'Musterstadt, 12345' |
+| 'country' | 'Deutschland' |
+| 'iso' | 'DE' |
+| 'phone' | '+49 1234 5678-9012' |
+| 'email' | 'contact@example.com' |
+| 'url' | 'https://www.example.com' |
+| 'social' | '@twitter_user' |
+| | | 
+| // date/time | | 
+| 'time' | '13:54h' |
+| 'date' | '12.06.2017' |
+| 'date-long' | '12. Juni 2017' |
+| | | 
+|  // text | | 
+| 'word' | 'Loremipsum' |
+| 'word-dashed' | 'Lorem-ipsum' |
+| 'words' | 'Lorem ipsum dolor sit amet' |
+| 'normal' | 'Lorem ipsum' text with 50 words |
+| 'long' | 'Lorem ipsum' text with 100 words |
+| 'xlong' | 'Lorem ipsum' text with 200 words |
+| 'short' |  |
+| default | 'Lorem ipsum' text with 25 words |
+
+
+
+
+### The "uniqueid" helper
+
+
+
+
+### The "raw" helper
+
+
+
+
+### The "categorylink" helper
+
+
+
+
+### The "patternlink" helper
 
 
 ...
