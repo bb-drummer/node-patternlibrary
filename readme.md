@@ -64,6 +64,11 @@ For detailed explanations of each of the parts that made up **Patternlibrary**, 
 - [Gulp/Grunt middleware usage](docs/middleware_docs.md)
 
 
+
+## Example project
+
+[An example front-end/theme project](https://gitlab.bjoernbartels.earth//themes/foundation-theme-base/tree/patternlibrary) can be found in our [GitLab](https://gitlab.bjoernbartels.earth//themes/foundation-theme-base/tree/patternlibrary).
+
 ---
 
 Copyright (c) 2017, [bjoernbartels.earth]
