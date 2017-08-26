@@ -32,36 +32,36 @@ The main template engine behind this is *handlebars* ([-> homepage](http://handl
 
 For detailed explanations of each of the parts that made up **Patternlibrary**, please see the following pages:
 
-- [Installation and (basic) usage](docs/usage_docs.md)
+- [Installation and (basic) usage](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/usage_docs.md)
 
-- [Options](docs/options_docs.md)
+- [Options](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/options_docs.md)
 
-- [Generating pattern documentation](docs/patternspecs_docs.md)
+- [Generating pattern documentation](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/patternspecs_docs.md)
 
   To generate the pattern-specific documentation pages, some requirements must be satisfied for each pattern:
 
-  - the [Pattern specifications](docs/patternspecs_docs.md)
+  - the [Pattern specifications](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/patternspecs_docs.md)
   
   and...
   
-  - a [`readme.md` file](docs/patternspecs_docs.md)
+  - a [`readme.md` file](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/patternspecs_docs.md)
   
   
   Optionally, you can also apply...
   
-  - [SASS reference documentation](docs/sassdoc_docs.md),
+  - [SASS reference documentation](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/sassdoc_docs.md),
   
-  - [JavaScript reference documentation](docs/jsdoc_docs.md),
+  - [JavaScript reference documentation](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/jsdoc_docs.md),
   
-  - a [`changelog.md` file](docs/changelog_docs.md) and
+  - a [`changelog.md` file](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/changelog_docs.md) and
   
-  - [Test files and testing](docs/testing_docs.md)
+  - [Test files and testing](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/testing_docs.md)
   
-- [GUI usage](docs/gui_docs.md)
+- [GUI usage](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/gui_docs.md)
   
-- [API documentation and advanced usage](docs/api_docs.md)
+- [API documentation and advanced usage](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/api_docs.md)
   
-- [Gulp/Grunt middleware usage](docs/middleware_docs.md)
+- [Gulp/Grunt middleware usage](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/middleware_docs.md)
 
 
 
