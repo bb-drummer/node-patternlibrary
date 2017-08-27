@@ -4,12 +4,12 @@
 Just add and install via npm
 
 ```bash
-$> npm install patternlibrary --save
+$> npm install node-patternlibrary --save
 ```
 
 or manually add 
 ```js
-  "patternlibrary": "^0.0.1"
+  "node-patternlibrary": "^0.0.1"
 ```
 to your `package.json` file and run 
 ```js
@@ -165,7 +165,7 @@ $> npm link ../path/to/node-patternlibrary
 
 If you like to try the to the minute up-to-date progress you can add the repository to your `package.json` file
 ```
-  "patternlibrary": "git+https://gitlab.bjoernbartels.earth/js/patternlibrary.git"
+  "node-patternlibrary": "git+https://gitlab.bjoernbartels.earth/js/patternlibrary.git"
 ```
 
 
