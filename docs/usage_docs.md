@@ -163,10 +163,12 @@ $> npm link ../path/to/node-patternlibrary
 
 ### Bleeding edge
 
-If you like to try the to the minute up-to-date progress you can add the repository to your `package.json` file
-```
-  "node-patternlibrary": "git+https://gitlab.bjoernbartels.earth/js/patternlibrary.git"
-```
+If you like to try the to the minute up-to-date progress you can add one of the source repositories directly to your `package.json` file.
+
+-  from our [GitLab](https://gitlab.bjoernbartels.earth/js/patternlibrary):
+   `"node-patternlibrary": "git+https://gitlab.bjoernbartels.earth/js/patternlibrary.git"`
+-  from [GitHub](https://github.com/bb-drummer/node-patternlibrary):
+   `"node-patternlibrary": "git+https://github.com/bb-drummer/node-patternlibrary.git"`
 
 
 ### Testing
