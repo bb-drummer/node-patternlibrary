@@ -173,4 +173,4 @@ If you like to try the to the minute up-to-date progress you can add one of the 
 
 ### Testing
 
-Simply, use `npm test` to run **Patternlibrary** tests.
+In your local repository, simply use `npm test` to run **Patternlibrary** tests.
