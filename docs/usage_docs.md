@@ -1,15 +1,19 @@
 ## Installation
 
-For now, just add 
-```js
-"patternlibrary": "git+https://gitlab.bjoernbartels.earth/js/patternlibrary.git"
-```
-to your `package.json` file.
 
-Once the stable release has arrived, install via npm
+Just add and install via npm
 
 ```bash
-$> npm install patternlibrary --save-dev
+$> npm install patternlibrary --save
+```
+
+or manually add 
+```js
+  "patternlibrary": "^0.0.1"
+```
+to your `package.json` file and run 
+```js
+$> npm update
 ```
 
 
@@ -136,7 +140,7 @@ Example: patternlibrary --partials=src/partials --dist=dist/pl/ ...
 
 
 
-## Local Development
+## Development
 
 If you like to contribute to/experiment with **Patternlibrary**, checkout the repo...
 ```bash
@@ -147,7 +151,7 @@ $> npm install
 
 ...just add the local repo to your `package.json` file...
 ```js
-    "node-patternlibrary": "file:../path/to/node-patternlibrary"
+  "node-patternlibrary": "file:../path/to/node-patternlibrary"
 ```
 
 ...and link the repo to your project via npm
@@ -157,6 +161,14 @@ $> cd projectname
 $> npm link ../path/to/node-patternlibrary 
 ```
 
-## Testing
+### Bleeding edge
+
+If you like to try the to the minute up-to-date progress you can add the repository to your `package.json` file
+```
+  "patternlibrary": "git+https://gitlab.bjoernbartels.earth/js/patternlibrary.git"
+```
+
+
+### Testing
 
 Simply, use `npm test` to run **Patternlibrary** tests.
