@@ -1,8 +1,9 @@
 # (Node-)**Patternlibrary**
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/gl/bjoernbartels-earth/js/patternlibrary/badges/quality-score.png?b=master&s=974f5fcc342590b04f6b62f995f7f991ad6e32c7)](https://scrutinizer-ci.com/gl/bjoernbartels-earth/js/patternlibrary/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/gl/bjoernbartels-earth/js/patternlibrary/badges/build.png?b=master&s=bcca11629f60424efbc35db6c110e4091a513681)](https://scrutinizer-ci.com/gl/bjoernbartels-earth/js/patternlibrary/build-status/master)
+[![Build Status](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/badges/build.png?b=master)](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/build-status/master)
 
+[![Build Status](https://travis-ci.org/bb-drummer/node-patternlibrary.svg?branch=master)](https://travis-ci.org/bb-drummer/node-patternlibrary)
 
 ### Work-In-Progress disclaimer
 
