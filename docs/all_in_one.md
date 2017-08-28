@@ -949,21 +949,95 @@ Currently, the helper provides the following modes and corresponding text values
 
 ### The "uniqueid" helper
 
+Calling this helper generates a random unique ID string like `uid-46ea-807b` and can remember it for later use.
+
+If you only want to create an id, just call the helper without any parameters, for example:
+```html
+  <section id="{{uniqueid}}" ...
+```
+simply outputs
+```html
+  <section id="uid-46ea-807b" ...
+```
+and the next time `{{uniqueid}}` is called, a new new id string will be put out.
+
+
+#### Re-using an id throughout the project
+
+If you also want to later re-use the id in your templates, just add a name string as its parameter.
+Imagine some markup of a widget, like
+```html
+  <div id="{{uniqueid 'cool_widget'}}" ...
+```
+which also just will output
+```html
+  <div id="uid-1a2-c3c4" ...
+```
+but, additionally, it keeps the name and the id in memory.
+Now, assume there is some other widget which is required to reference to the previous widget by its id. Simply re-calling the helper with the name
+```html
+  <div class="another widget" data-ref="{{uniqueid 'cool_widget'}}" ...
+```
+will remember the id and output
+```html
+  <div class="another widget" data-ref="uid-1a2-c3c4" ...
+```
+
+
+#### Syntax
+
+The generic syntax for the helper is
+```
+{{uniqueid ["{id-name}"] }}
+```
 
 
 
 ### The "raw" helper
 
+This helper has an open- and close-tag and prevents its content from further being processed by the template engine, for example, to output template source code or source code examples.
+```html
+  <code>
+  {{#raw}}
+      <!-- some template example... -->
+      ... {{> subpartial}}      
+  {{/raw}}
+  </code>
+```
+will simply re-output
+```html
+  <code>
+      <!-- some template example... -->
+      ... {{> subpartial}} 
+  </code>
+```
+instead of including the `subpartial` template.
+
+
+#### Syntax
+
+The generic syntax for the helper is
+```html
+{{#raw}}
+      {...the content
+         to be left un-rendered...}
+{{/raw}}
+```
 
 
 
 ### The "categorylink" helper
+
+ (internal)
+
+...
 
 
 
 
 ### The "patternlink" helper
 
+ (internal)
 
 ...
 

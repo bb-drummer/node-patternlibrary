@@ -1,7 +1,7 @@
 var Handlebars = require('handlebars');
 
 /**
- * tries to generate an random unique ID string linke "uid-46ea-807b"
+ * generates a random unique ID string like "uid-46ea-807b"
  *
  * usage:
  *   ```
