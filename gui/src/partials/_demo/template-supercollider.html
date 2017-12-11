@@ -154,7 +154,7 @@
   <section>
     {{#heading 3 'js-module'}}Initializing{{/heading}}
 
-    <p>The file <code>{{meta.filename}}</code> must be included in your JavaScript to use this plugin, along with <code>foundation.core.js</code>.{{#if requires}} <strong>This plugin also requires these utility libraries:</strong>{{/if}}</p>
+    <p>The file <code>{{meta.filename}}</code> must be included in your JavaScript to use this plugin, along with <code>siteapp.core.js</code>.{{#if requires}} <strong>This plugin also requires these utility libraries:</strong>{{/if}}</p>
 
     {{#if requires}}{{#each requires}}
     <ul>
@@ -167,7 +167,7 @@
 
   {{#each js.class}}
   <section>
-    {{#heading 3 'js-class'}}Foundation.{{this.name}}{{/heading}}
+    {{#heading 3 'js-class'}}Siteapp.{{this.name}}{{/heading}}
 
     {{md this.description}}
 
