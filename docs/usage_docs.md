@@ -7,7 +7,7 @@ Just add and install via npm
 $> npm install node-patternlibrary --save
 ```
 
-or manually add 
+You can also manually add 
 ```js
   "node-patternlibrary": "^0.0.1"
 ```
@@ -38,7 +38,11 @@ gulp.task('patternlibrary:init', function (done) {
             verbose  : true,
             dest     : 'dist/pl/',
             basepath : '/pl',
-            partials : 'src/partials/'
+            partials : 'src/patterns/',
+            helpers  : 'src/helpers/',
+            layouts  : 'src/layouts/',
+            root     : 'src/pages/',
+            data     : 'src/data/'
         });
     }
     
@@ -107,9 +111,13 @@ var Patternlibrary = require('node-patternlibrary');
 /** @var Patternlibrary */
 var $PL = Patternlibrary({
     verbose  : true,
-    dest     : patternlibraryDestination,
+    dest     : 'dist/pl/',
     basepath : '/pl',
-    partials : 'src/partials/'
+    partials : 'src/partials/',
+    helpers  : 'src/helpers/',
+    layouts  : 'src/layouts/',
+    root     : 'src/pages/',
+    data     : 'src/data/'
 });
 
 // run Patternlibrary generation
