@@ -11,3 +11,4 @@ npm-debug.log
 .settings
 *_save*
 *.save*
+.scanner*

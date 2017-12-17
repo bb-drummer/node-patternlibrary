@@ -3,3 +3,22 @@ node_js:
   - "5"
   - "6"
   - "7"
+
+dist: trusty
+sudo: required
+
+addons:
+  sonarcloud:
+    organization: "bb-drummer-github"
+    token:
+      secure: "n32t4+uaiGvVfB106DHnX0FFj8uw/0hXRDs9wduPgH6xnBYilycRf8Zw9IHRXEWi251sZxnHBrDttW4GeFa8SP3oskzoYc2kge6RLwDCn6o87zooWjU737yizIqm0OHIf/2Jgcuyfrrctx9F8CUqbfvhAOIq9oNjRs7rQip7hX6cYG736BvSqZUiTS1Y85rD5vTqvunjIOh5nsuPdSRKinmUt8iYJNp1L84Agd0g+dO3zwACyHNByZ20LRLWL8XbkUC35eApB/qcjqysH6PTfcbwJPUdVTuwggBh+umAD7eAPm42e7F7xdx2EMq+9mmazieTvmv1Cwtc9dm9X++PMkUt2sM0KzUqQXYgG3GbzLsCHxuRAiNnphxly4B0Ec/oq6CheVvQ1nVakecqj869lGDv/7Oxf2si/Dt8F1h+xpUrIIOECxvJPNqI4jT0SjWuT7yGDgp1EMD6GJ5GD5aX34jJ9MvgNYdliZpE/BFMTcP4HhUlGyC728XNJJPagzO8hZM4wMNXUGLz7gb/HXAZahSHKQ6MC1FUB9CYiFdZjezFJVeXwPHYvIBi2gINCCcCrpfEAchurRhSEluKvvg30eUfLvXmsqcF/nBM1e8KY5COcV/oLzFXFaWh6Kb7H1B5nKG1wXrMjp4xXdOsnQHGBXnMReP8Lk/rE7RDpDyOe2U="
+jdk:
+  - oraclejdk8
+script:
+  - npm install
+  - npm test
+  - sonar-scanner
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
+

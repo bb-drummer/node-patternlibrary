@@ -72,7 +72,7 @@ For detailed explanations of each of the parts that made up **Patternlibrary**, 
 
 ## Example project
 
-[An example front-end/theme project](https://gitlab.bjoernbartels.earth//themes/foundation-theme-base/tree/patternlibrary) can be found in our [GitLab](https://gitlab.bjoernbartels.earth//themes/foundation-theme-base/tree/patternlibrary).
+[An example front-end/theme project](https://gitlab.bjoernbartels.earth//themes/node-patternlibrary-demo) can be found in our [GitLab](https://gitlab.bjoernbartels.earth//themes/foundation-theme-base/tree/patternlibrary).
 
 ---
 
