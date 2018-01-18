@@ -1,0 +1,143 @@
+/* 
+	public settings 
+*/
+$body-fontsize: 12pt !default;
+
+
+/* 
+	private settings 
+*/
+$body-fontsize-h1: 1.66em !default;
+$body-fontsize-h2: 1.45em !default;
+$body-fontsize-h3: 1.25em !default;
+$body-fontsize-h4: 1.125em !default;
+$body-fontsize-h5: 1.125em !default;
+$body-fontsize-h6: 1.125em !default;
+$body-fontsize-p: 1em !default;
+
+
+/* 
+	element reset 
+*/
+/*div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, 
+ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, 
+tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, 
+mark, audio, video 
+*/
+html, 
+body {
+    font-size: $body-fontsize;
+}
+
+
+/*
+    FontAwesome
+*/
+.fa {
+    font-family: 'FontAwesome';
+}
+
+
+
+/* 
+	styles 
+*/
+
+h1 {
+    font-size: $body-fontsize-h1;
+    font-weight: bold;
+    margin-bottom: 0.66em;
+}
+
+
+h2 {
+    font-size: $body-fontsize-h2;
+    font-weight: bold;
+    margin-bottom: 0.55em;
+}
+
+
+h3 {
+    font-size: $body-fontsize-h3;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+
+h4,
+h5,
+h6 {
+    font-size: $body-fontsize-h4;
+    font-weight: normal;
+    margin-bottom: 0.5em;
+}
+
+p,
+dl, dt, dd, ol, ul, li, 
+fieldset, form, label, legend, caption, input, select, textarea,
+table, tbody, tfoot, thead, tr, th, td {
+    font-size: $body-fontsize-p;
+    font-weight: normal;
+}
+
+
+
+/*
+	viewport styles
+*/
+
+/* Wide */
+@include breakpoint(xlarge) {
+
+	/* Basic */
+
+		body {
+			font-size: $body-fontsize;
+		}
+
+		p,
+		dl, dt, dd, ol, ul, li, 
+		fieldset, form, label, legend, caption, input, select, textarea,
+		table, tbody, tfoot, thead, tr, th, td {
+		    font-size: $body-fontsize-p;
+		}
+
+}
+
+
+/* Normal */
+@include breakpoint(large) {
+
+	/* Basic */
+
+		body {
+			font-size: $body-fontsize - 1pt;
+		}
+
+		p,
+		dl, dt, dd, ol, ul, li, 
+		fieldset, form, label, legend, caption, input, select, textarea,
+		table, tbody, tfoot, thead, tr, th, td {
+		    font-size: $body-fontsize-p;
+		}
+
+}
+
+
+/* Mobile/Tablet */
+@include breakpoint(medium) {
+
+	/* Basic */
+
+		body {
+			font-size: $body-fontsize - 3pt;
+		}
+
+}
+
+
+/* Mobile/Phone (Portrait) */
+@include breakpoint(small) {
+
+}
+

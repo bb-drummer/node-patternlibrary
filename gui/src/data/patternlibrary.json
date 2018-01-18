@@ -1,0 +1,1762 @@
+{
+    "patterns": {
+        "atom/link": {
+            "pattern": {
+                "name": "atom/link",
+                "categories": [
+                    "basic",
+                    "typography"
+                ],
+                "uses": null
+            },
+            "params": {
+                "class": [
+                    "*"
+                ],
+                "href": [
+                    "*"
+                ],
+                "label": [
+                    "*"
+                ]
+            },
+            "body": "<a class=\"{{class}}\" href=\"{{#if href}}{{href}}{{/if}}{{#unless href}}{{texthelper 'url'}}{{/unless}}\">{{#if label}}{{label}}{{/if}}{{#unless label}}{{texthelper 'word'}}{{/unless}}</a>"
+        },
+        "atom/modal-close-button": {
+            "pattern": {
+                "name": "atom/modal-close-button",
+                "categories": [
+                    "button",
+                    "modal"
+                ]
+            },
+            "body": "<a class=\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\" href=\"javascript:return true;\" aria-label=\"Close modal\" data-close>\n  <span aria-hidden=\"true\">&times;</span>\n</a>"
+        },
+        "atom/text-headline": {
+            "pattern": {
+                "name": "atom/text-headline",
+                "categories": [
+                    "basic",
+                    "typography"
+                ],
+                "uses": null
+            },
+            "params": {
+                "heading": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6"
+                ],
+                "class": [
+                    "*"
+                ],
+                "text": [
+                    "*"
+                ]
+            },
+            "defaults": {
+                "heading": "1"
+            },
+            "body": "{{#unless heading}}\n<h{{defaults.heading}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{defaults.heading}}>\n{{/unless}}\n{{#if heading}}\n<h{{heading}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{heading}}>\n{{/if}}\n"
+        },
+        "atom/text-paragraph": {
+            "pattern": {
+                "name": "atom/text-paragraph",
+                "categories": [
+                    "basic",
+                    "typography"
+                ],
+                "uses": null
+            },
+            "params": {
+                "class": [
+                    "*"
+                ]
+            },
+            "body": "<p class=\"{{class}}\">{{texthelper 'normal'}}</p>"
+        },
+        "molecule/article-teaser": {
+            "pattern": {
+                "name": "molecule/article-teaser",
+                "categories": [
+                    "typography",
+                    "article"
+                ],
+                "uses": [
+                    "atom/text-headline",
+                    "atom/text-paragraph",
+                    "atom/link"
+                ]
+            },
+            "params": {
+                "class": [
+                    "*"
+                ],
+                "headline": [
+                    "*"
+                ],
+                "content": [
+                    "*"
+                ],
+                "url": [
+                    "*"
+                ]
+            },
+            "defaults": {
+                "headline": "This is some article headline..."
+            },
+            "body": "<article class=\"{{class}}\">\n    {{patternlibrary atom=\"text-headline\" text=headline}}\n    {{patternlibrary atom=\"text-paragraph\" text=content}}\n    {{patternlibrary atom=\"link\" href=url label=\"more\" class=\"more\"}}\n</article>"
+        }
+    },
+    "categories": [
+        {
+            "name": "basic",
+            "slug": "basic"
+        },
+        {
+            "name": "typography",
+            "slug": "typography"
+        },
+        {
+            "name": "button",
+            "slug": "button"
+        },
+        {
+            "name": "modal",
+            "slug": "modal"
+        },
+        {
+            "name": "basic",
+            "slug": "basic"
+        },
+        {
+            "name": "typography",
+            "slug": "typography"
+        },
+        {
+            "name": "basic",
+            "slug": "basic"
+        },
+        {
+            "name": "typography",
+            "slug": "typography"
+        },
+        {
+            "name": "typography",
+            "slug": "typography"
+        },
+        {
+            "name": "article",
+            "slug": "article"
+        }
+    ],
+    "tree": [
+        {
+            "title": "atom/link",
+            "description": "an inline link",
+            "sass": {
+                "variable": [
+                    {
+                        "description": "Font family for link elements.\n",
+                        "commentRange": {
+                            "start": 9,
+                            "end": 10
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-font-family",
+                            "value": "inherit",
+                            "scope": "default",
+                            "line": {
+                                "start": 11,
+                                "end": 11
+                            }
+                        },
+                        "type": "Font",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        }
+                    },
+                    {
+                        "description": "Padding inside links.\n",
+                        "commentRange": {
+                            "start": 13,
+                            "end": 14
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-padding",
+                            "value": "0.85em 1em",
+                            "scope": "default",
+                            "line": {
+                                "start": 15,
+                                "end": 15
+                            }
+                        },
+                        "type": "List",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        }
+                    },
+                    {
+                        "description": "Margin around links.\n",
+                        "commentRange": {
+                            "start": 17,
+                            "end": 18
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-margin",
+                            "value": "0 0 $global-margin 0",
+                            "scope": "default",
+                            "line": {
+                                "start": 19,
+                                "end": 19
+                            }
+                        },
+                        "type": "List",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        },
+                        "usedBy": [
+                            {
+                                "description": "Expands a link to make it full-width.\n",
+                                "context": {
+                                    "type": "mixin",
+                                    "name": "link-expand",
+                                    "code": "\n  @if $expand {\n    display: block;\n    width: 100%;\n    margin-right: 0;\n    margin-left: 0;\n  }\n  @else {\n    display: inline-block;\n    width: auto;\n    margin: $link-margin;\n  }\n",
+                                    "line": {
+                                        "start": 115,
+                                        "end": 127
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Default fill for links. Can either be `solid` or `hollow`.\n",
+                        "commentRange": {
+                            "start": 21,
+                            "end": 22
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-fill",
+                            "value": "solid",
+                            "scope": "default",
+                            "line": {
+                                "start": 23,
+                                "end": 23
+                            }
+                        },
+                        "type": "Keyword",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        }
+                    },
+                    {
+                        "description": "Default background color for links.\n",
+                        "commentRange": {
+                            "start": 25,
+                            "end": 26
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-background",
+                            "value": "$primary-color",
+                            "scope": "default",
+                            "line": {
+                                "start": 27,
+                                "end": 27
+                            }
+                        },
+                        "type": "Color",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        }
+                    },
+                    {
+                        "description": "Background color on hover for links.\n",
+                        "commentRange": {
+                            "start": 29,
+                            "end": 30
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-background-hover",
+                            "value": "scale-color($link-background, $lightness: -15%)",
+                            "scope": "default",
+                            "line": {
+                                "start": 31,
+                                "end": 31
+                            }
+                        },
+                        "type": "Color",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        }
+                    },
+                    {
+                        "description": "Font color for links.\n",
+                        "commentRange": {
+                            "start": 33,
+                            "end": 34
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-color",
+                            "value": "$white",
+                            "scope": "default",
+                            "line": {
+                                "start": 35,
+                                "end": 35
+                            }
+                        },
+                        "type": "List",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        },
+                        "usedBy": [
+                            {
+                                "description": "Sets the visual style of a link.\n",
+                                "context": {
+                                    "type": "mixin",
+                                    "name": "link-style",
+                                    "code": "\n  @if $color == auto {\n    $color: color-pick-contrast($background, ($link-color, $link-color-alt));\n  }\n\n  @if $background-hover == auto {\n    $background-hover: scale-color($background, $lightness: $background-hover-lightness);\n  }\n\n  background-color: $background;\n  color: $color;\n\n  &:hover, &:focus {\n    background-color: $background-hover;\n    color: $color;\n  }\n",
+                                    "line": {
+                                        "start": 133,
+                                        "end": 154
+                                    }
+                                }
+                            },
+                            {
+                                "description": "Adds disabled styles to a link by fading the element, reseting the cursor, and disabling pointer events.\n",
+                                "context": {
+                                    "type": "mixin",
+                                    "name": "link-disabled",
+                                    "code": "\n  @if $color == auto {\n    $color: color-pick-contrast($background, ($link-color, $link-color-alt));\n  }\n\n  opacity: $link-opacity-disabled;\n  cursor: not-allowed;\n\n  &, &:hover, &:focus {\n    background-color: $background;\n    color: $color;\n  }\n",
+                                    "line": {
+                                        "start": 196,
+                                        "end": 211
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Alternative font color for links.\n",
+                        "commentRange": {
+                            "start": 37,
+                            "end": 38
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-color-alt",
+                            "value": "$black",
+                            "scope": "default",
+                            "line": {
+                                "start": 39,
+                                "end": 39
+                            }
+                        },
+                        "type": "List",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        },
+                        "usedBy": [
+                            {
+                                "description": "Sets the visual style of a link.\n",
+                                "context": {
+                                    "type": "mixin",
+                                    "name": "link-style",
+                                    "code": "\n  @if $color == auto {\n    $color: color-pick-contrast($background, ($link-color, $link-color-alt));\n  }\n\n  @if $background-hover == auto {\n    $background-hover: scale-color($background, $lightness: $background-hover-lightness);\n  }\n\n  background-color: $background;\n  color: $color;\n\n  &:hover, &:focus {\n    background-color: $background-hover;\n    color: $color;\n  }\n",
+                                    "line": {
+                                        "start": 133,
+                                        "end": 154
+                                    }
+                                }
+                            },
+                            {
+                                "description": "Adds disabled styles to a link by fading the element, reseting the cursor, and disabling pointer events.\n",
+                                "context": {
+                                    "type": "mixin",
+                                    "name": "link-disabled",
+                                    "code": "\n  @if $color == auto {\n    $color: color-pick-contrast($background, ($link-color, $link-color-alt));\n  }\n\n  opacity: $link-opacity-disabled;\n  cursor: not-allowed;\n\n  &, &:hover, &:focus {\n    background-color: $background;\n    color: $color;\n  }\n",
+                                    "line": {
+                                        "start": 196,
+                                        "end": 211
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Border radius for links, defaulted to global-radius.\n",
+                        "commentRange": {
+                            "start": 41,
+                            "end": 42
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-radius",
+                            "value": "$global-radius",
+                            "scope": "default",
+                            "line": {
+                                "start": 43,
+                                "end": 43
+                            }
+                        },
+                        "type": "Number",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        }
+                    },
+                    {
+                        "description": "Border width for hollow outline links\n",
+                        "commentRange": {
+                            "start": 45,
+                            "end": 46
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-hollow-border-width",
+                            "value": "1px",
+                            "scope": "default",
+                            "line": {
+                                "start": 47,
+                                "end": 47
+                            }
+                        },
+                        "type": "Number",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        }
+                    },
+                    {
+                        "description": "Sizes for links.\n",
+                        "commentRange": {
+                            "start": 49,
+                            "end": 50
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-sizes",
+                            "value": "(\n  tiny: 0.6rem,\n  small: 0.75rem,\n  default: 0.9rem,\n  large: 1.25rem,\n)",
+                            "scope": "default",
+                            "line": {
+                                "start": 51,
+                                "end": 56
+                            }
+                        },
+                        "type": "Map",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        }
+                    },
+                    {
+                        "description": "Coloring classes. A map of classes to output in your CSS, like `.secondary`, `.success`, and so on.\n",
+                        "commentRange": {
+                            "start": 58,
+                            "end": 59
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-palette",
+                            "value": "$plfoundation-palette",
+                            "scope": "default",
+                            "line": {
+                                "start": 60,
+                                "end": 60
+                            }
+                        },
+                        "type": "Map",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        }
+                    },
+                    {
+                        "description": "opacity for a disabled link.\n",
+                        "commentRange": {
+                            "start": 62,
+                            "end": 63
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-opacity-disabled",
+                            "value": "0.25",
+                            "scope": "default",
+                            "line": {
+                                "start": 64,
+                                "end": 64
+                            }
+                        },
+                        "type": "List",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        },
+                        "usedBy": [
+                            {
+                                "description": "Adds disabled styles to a link by fading the element, reseting the cursor, and disabling pointer events.\n",
+                                "context": {
+                                    "type": "mixin",
+                                    "name": "link-disabled",
+                                    "code": "\n  @if $color == auto {\n    $color: color-pick-contrast($background, ($link-color, $link-color-alt));\n  }\n\n  opacity: $link-opacity-disabled;\n  cursor: not-allowed;\n\n  &, &:hover, &:focus {\n    background-color: $background;\n    color: $color;\n  }\n",
+                                    "line": {
+                                        "start": 196,
+                                        "end": 211
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Background color lightness on hover for links.\n",
+                        "commentRange": {
+                            "start": 66,
+                            "end": 67
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-background-hover-lightness",
+                            "value": "-20%",
+                            "scope": "default",
+                            "line": {
+                                "start": 68,
+                                "end": 68
+                            }
+                        },
+                        "type": "Number",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        }
+                    },
+                    {
+                        "description": "Color lightness on hover for hollow links.\n",
+                        "commentRange": {
+                            "start": 70,
+                            "end": 71
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-hollow-hover-lightness",
+                            "value": "-50%",
+                            "scope": "default",
+                            "line": {
+                                "start": 72,
+                                "end": 72
+                            }
+                        },
+                        "type": "Number",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        }
+                    },
+                    {
+                        "description": "transitions for links.\n",
+                        "commentRange": {
+                            "start": 79,
+                            "end": 80
+                        },
+                        "context": {
+                            "type": "variable",
+                            "name": "link-transition",
+                            "value": "background-color 0.25s ease-out, color 0.25s ease-out",
+                            "scope": "default",
+                            "line": {
+                                "start": 81,
+                                "end": 81
+                            }
+                        },
+                        "type": "List",
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        }
+                    }
+                ],
+                "mixin": [
+                    {
+                        "description": "Expands a link to make it full-width.\n",
+                        "commentRange": {
+                            "start": 113,
+                            "end": 114
+                        },
+                        "context": {
+                            "type": "mixin",
+                            "name": "link-expand",
+                            "code": "\n  @if $expand {\n    display: block;\n    width: 100%;\n    margin-right: 0;\n    margin-left: 0;\n  }\n  @else {\n    display: inline-block;\n    width: auto;\n    margin: $link-margin;\n  }\n",
+                            "line": {
+                                "start": 115,
+                                "end": 127
+                            }
+                        },
+                        "parameter": [
+                            {
+                                "type": "Boolean",
+                                "name": "expand",
+                                "default": "true",
+                                "description": "Set to `true` to enable the expand behavior. Set to `false` to reverse this behavior."
+                            }
+                        ],
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "require": [
+                            {
+                                "type": "variable",
+                                "name": "link-margin"
+                            }
+                        ],
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        },
+                        "usedBy": [
+                            {
+                                "description": "Adds all styles for a link. For more granular control over styles, use the individual link mixins.\n",
+                                "context": {
+                                    "type": "mixin",
+                                    "name": "link",
+                                    "code": "\n  @include link-base;\n\n  @if $style == solid {\n    @include link-style($background, $background-hover, $color);\n  }\n  @else if $style == hollow {\n    @include link-hollow;\n    @include link-hollow-style($background);\n  }\n\n  @if $expand {\n    @include link-expand;\n  }\n",
+                                    "line": {
+                                        "start": 239,
+                                        "end": 259
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Sets the visual style of a link.\n",
+                        "commentRange": {
+                            "start": 129,
+                            "end": 132
+                        },
+                        "context": {
+                            "type": "mixin",
+                            "name": "link-style",
+                            "code": "\n  @if $color == auto {\n    $color: color-pick-contrast($background, ($link-color, $link-color-alt));\n  }\n\n  @if $background-hover == auto {\n    $background-hover: scale-color($background, $lightness: $background-hover-lightness);\n  }\n\n  background-color: $background;\n  color: $color;\n\n  &:hover, &:focus {\n    background-color: $background-hover;\n    color: $color;\n  }\n",
+                            "line": {
+                                "start": 133,
+                                "end": 154
+                            }
+                        },
+                        "parameter": [
+                            {
+                                "type": "Color",
+                                "name": "background",
+                                "default": "$link-background",
+                                "description": "Background color of the link."
+                            },
+                            {
+                                "type": "Color",
+                                "name": "background-hover",
+                                "default": "$link-background-hover",
+                                "description": "Background color of the link on hover. Set to `auto` to have the mixin automatically generate a hover color."
+                            },
+                            {
+                                "type": "Color",
+                                "name": "color",
+                                "default": "$link-color",
+                                "description": "Text color of the link. Set to `auto` to automatically generate a color based on the background color."
+                            }
+                        ],
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "require": [
+                            {
+                                "type": "variable",
+                                "name": "link-color"
+                            },
+                            {
+                                "type": "variable",
+                                "name": "link-color-alt"
+                            }
+                        ],
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        },
+                        "usedBy": [
+                            {
+                                "description": "Adds all styles for a link. For more granular control over styles, use the individual link mixins.\n",
+                                "context": {
+                                    "type": "mixin",
+                                    "name": "link",
+                                    "code": "\n  @include link-base;\n\n  @if $style == solid {\n    @include link-style($background, $background-hover, $color);\n  }\n  @else if $style == hollow {\n    @include link-hollow;\n    @include link-hollow-style($background);\n  }\n\n  @if $expand {\n    @include link-expand;\n  }\n",
+                                    "line": {
+                                        "start": 239,
+                                        "end": 259
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Removes background fill on hover and focus for hollow links.\n",
+                        "commentRange": {
+                            "start": 156,
+                            "end": 156
+                        },
+                        "context": {
+                            "type": "mixin",
+                            "name": "link-hollow",
+                            "code": "\n  &,\n  &:hover, &:focus {\n    background-color: transparent;\n  }\n\n  &.disabled,\n  &[disabled] {\n    &,\n    &:hover, &:focus {\n      background-color: transparent;\n    }\n  }\n",
+                            "line": {
+                                "start": 157,
+                                "end": 170
+                            }
+                        },
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        },
+                        "usedBy": [
+                            {
+                                "description": "Adds all styles for a link. For more granular control over styles, use the individual link mixins.\n",
+                                "context": {
+                                    "type": "mixin",
+                                    "name": "link",
+                                    "code": "\n  @include link-base;\n\n  @if $style == solid {\n    @include link-style($background, $background-hover, $color);\n  }\n  @else if $style == hollow {\n    @include link-hollow;\n    @include link-hollow-style($background);\n  }\n\n  @if $expand {\n    @include link-expand;\n  }\n",
+                                    "line": {
+                                        "start": 239,
+                                        "end": 259
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Adds disabled styles to a link by fading the element, reseting the cursor, and disabling pointer events.\n",
+                        "commentRange": {
+                            "start": 193,
+                            "end": 195
+                        },
+                        "context": {
+                            "type": "mixin",
+                            "name": "link-disabled",
+                            "code": "\n  @if $color == auto {\n    $color: color-pick-contrast($background, ($link-color, $link-color-alt));\n  }\n\n  opacity: $link-opacity-disabled;\n  cursor: not-allowed;\n\n  &, &:hover, &:focus {\n    background-color: $background;\n    color: $color;\n  }\n",
+                            "line": {
+                                "start": 196,
+                                "end": 211
+                            }
+                        },
+                        "parameter": [],
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "require": [
+                            {
+                                "type": "variable",
+                                "name": "link-color"
+                            },
+                            {
+                                "type": "variable",
+                                "name": "link-color-alt"
+                            },
+                            {
+                                "type": "variable",
+                                "name": "link-opacity-disabled"
+                            }
+                        ],
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        }
+                    },
+                    {
+                        "description": "Adds a dropdown arrow to a link.\n",
+                        "commentRange": {
+                            "start": 213,
+                            "end": 216
+                        },
+                        "context": {
+                            "type": "mixin",
+                            "name": "link-dropdown",
+                            "code": "\n  &::after {\n    @include css-triangle($size, $color, down);\n    position: relative;\n    top: 0.4em; // Aligns the arrow with the text of the link\n\n    display: inline-block;\n    float: #{$global-right};\n    margin-#{$global-left}: $offset;\n  }\n",
+                            "line": {
+                                "start": 217,
+                                "end": 231
+                            }
+                        },
+                        "parameter": [
+                            {
+                                "type": "Number",
+                                "name": "size",
+                                "default": "0.4em",
+                                "description": "Size of the arrow. We recommend using an `em` value so the triangle scales when used inside different sizes of links."
+                            },
+                            {
+                                "type": "Color",
+                                "name": "color",
+                                "default": "white",
+                                "description": "Color of the arrow."
+                            },
+                            {
+                                "type": "Number",
+                                "name": "offset",
+                                "default": "$link-padding",
+                                "description": "Distance between the arrow and the text of the link. Defaults to whatever the right padding of a link is."
+                            }
+                        ],
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "require": [],
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        }
+                    },
+                    {
+                        "description": "Adds all styles for a link. For more granular control over styles, use the individual link mixins.\n",
+                        "commentRange": {
+                            "start": 233,
+                            "end": 238
+                        },
+                        "context": {
+                            "type": "mixin",
+                            "name": "link",
+                            "code": "\n  @include link-base;\n\n  @if $style == solid {\n    @include link-style($background, $background-hover, $color);\n  }\n  @else if $style == hollow {\n    @include link-hollow;\n    @include link-hollow-style($background);\n  }\n\n  @if $expand {\n    @include link-expand;\n  }\n",
+                            "line": {
+                                "start": 239,
+                                "end": 259
+                            }
+                        },
+                        "parameter": [
+                            {
+                                "type": "Boolean",
+                                "name": "expand",
+                                "default": "false",
+                                "description": "Set to `true` to make the link full-width."
+                            },
+                            {
+                                "type": "Color",
+                                "name": "background",
+                                "default": "$link-background",
+                                "description": "Background color of the link."
+                            },
+                            {
+                                "type": "Color",
+                                "name": "background-hover",
+                                "default": "$link-background-hover",
+                                "description": "Background color of the link on hover. Set to `auto` to have the mixin automatically generate a hover color."
+                            },
+                            {
+                                "type": "Color",
+                                "name": "color",
+                                "default": "$link-color",
+                                "description": "Text color of the link. Set to `auto` to automatically generate a color based on the background color."
+                            },
+                            {
+                                "type": "Keyword",
+                                "name": "style",
+                                "default": "solid",
+                                "description": "Set to `hollow` to create a hollow link. The color defined in `$background` will be used as the primary color of the link."
+                            }
+                        ],
+                        "group": [
+                            "link"
+                        ],
+                        "access": "public",
+                        "require": [
+                            {
+                                "type": "mixin",
+                                "name": "link-style"
+                            },
+                            {
+                                "type": "mixin",
+                                "name": "link-hollow"
+                            },
+                            {
+                                "type": "mixin",
+                                "name": "link-expand"
+                            }
+                        ],
+                        "file": {
+                            "path": "styles.scss",
+                            "name": "styles.scss"
+                        }
+                    }
+                ]
+            },
+            "js": null,
+            "__fm": {
+                "js": null,
+                "sass": "src/partials/atoms/link/styles.scss",
+                "description": "an inline link",
+                "title": "atom/link"
+            },
+            "docs": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"markup\" class=\"docs-heading\" data-magellan-target=\"markup\">Markup<a class=\"docs-heading-icon\" href=\"#markup\"></a></h2><div class=\"docs-code\" data-docs-code><pre><code class=\"html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#\"</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{your classnames}\"</span>&gt;</span>some link label<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span></code></pre></div>\n\n<div class=\"docs-code-live\"><a href=\"#\" class=\"{your classnames}\">some link label</a></div>",
+            "fileName": "src/partials/atoms/link/readme.md",
+            "_adapterData": {
+                "sass": "src/partials/atoms/link/styles.scss"
+            },
+            "relatedFiles": [
+                "src/partials/atoms/link/styles.scss"
+            ]
+        },
+        {
+            "title": "atom/modal-close-button",
+            "description": "\"X\" button to close a modal window",
+            "sass": {},
+            "js": {
+                "package": [
+                    {
+                        "kind": "package",
+                        "longname": "package:undefined",
+                        "files": [
+                            "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/atoms/modal-close-button/module.js"
+                        ]
+                    }
+                ]
+            },
+            "__fm": {
+                "js": "src/partials/atoms/modal-close-button/module.js",
+                "sass": "src/partials/atoms/modal-close-button/styles.scss",
+                "description": "\"X\" button to close a modal window",
+                "title": "atom/modal-close-button"
+            },
+            "docs": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"markup\" class=\"docs-heading\" data-magellan-target=\"markup\">Markup<a class=\"docs-heading-icon\" href=\"#markup\"></a></h2><div class=\"docs-code\" data-docs-code><pre><code class=\"html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"javascript:return true;\"</span> <span class=\"hljs-attr\">aria-label</span>=<span class=\"hljs-string\">\"Close modal\"</span> <span class=\"hljs-attr\">data-close</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">aria-hidden</span>=<span class=\"hljs-string\">\"true\"</span>&gt;</span>&amp;times;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span></code></pre></div>\n\n<div class=\"docs-code-live\"><a class=\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\" href=\"javascript:return true;\" aria-label=\"Close modal\" data-close>\n  <span aria-hidden=\"true\">&times;</span>\n</a></div>",
+            "fileName": "src/partials/atoms/modal-close-button/readme.md",
+            "_adapterData": {
+                "sass": "src/partials/atoms/modal-close-button/styles.scss",
+                "js": "src/partials/atoms/modal-close-button/module.js"
+            },
+            "relatedFiles": [
+                "src/partials/atoms/modal-close-button/module.js"
+            ]
+        },
+        {
+            "title": "atom/text-headline",
+            "description": "an inline headline",
+            "sass": {},
+            "js": null,
+            "__fm": {
+                "js": null,
+                "sass": "src/partials/atoms/text-headline/styles.scss",
+                "description": "an inline headline",
+                "title": "atom/text-headline"
+            },
+            "docs": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"markup\" class=\"docs-heading\" data-magellan-target=\"markup\">Markup<a class=\"docs-heading-icon\" href=\"#markup\"></a></h2><div class=\"docs-code\" data-docs-code><pre><code class=\"html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">h1</span>&gt;</span>some awesome headline<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">h1</span>&gt;</span></code></pre></div>\n\n<div class=\"docs-code-live\"><h1>some awesome headline</h1></div>",
+            "fileName": "src/partials/atoms/text-headline/readme.md",
+            "_adapterData": {
+                "sass": "src/partials/atoms/text-headline/styles.scss"
+            },
+            "relatedFiles": [
+                "src/partials/atoms/text-headline/styles.scss"
+            ]
+        },
+        {
+            "title": "atom/text-paragraph",
+            "description": "an inline text paragraph",
+            "sass": {},
+            "js": null,
+            "__fm": {
+                "js": null,
+                "sass": "src/partials/atoms/text-paragraph/styles.scss",
+                "description": "an inline text paragraph",
+                "title": "atom/text-paragraph"
+            },
+            "docs": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"markup\" class=\"docs-heading\" data-magellan-target=\"markup\">Markup<a class=\"docs-heading-icon\" href=\"#markup\"></a></h2><div class=\"docs-code\" data-docs-code><pre><code class=\"html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum \n    inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda \n    error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span></code></pre></div>\n\n<div class=\"docs-code-live\"><p>\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum \n    inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda \n    error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.\n</p></div>",
+            "fileName": "src/partials/atoms/text-paragraph/readme.md",
+            "_adapterData": {
+                "sass": "src/partials/atoms/text-paragraph/styles.scss"
+            },
+            "relatedFiles": [
+                "src/partials/atoms/text-paragraph/styles.scss"
+            ]
+        },
+        {
+            "title": "molecule/article-teaser",
+            "description": "an article teaser module with \"more\" link",
+            "sass": {},
+            "js": {
+                "module": [
+                    {
+                        "comment": "/**\n * Dropdown module.\n * @module plfoundation.dropdown\n * @requires plfoundation.util.keyboard\n * @requires plfoundation.util.box\n * @requires plfoundation.util.triggers\n */",
+                        "meta": {
+                            "range": [
+                                386,
+                                553
+                            ],
+                            "filename": "module.js",
+                            "lineno": 13,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {}
+                        },
+                        "description": "Dropdown module.",
+                        "kind": "module",
+                        "name": "dropdown",
+                        "requires": [
+                            "module:plfoundation.util.keyboard",
+                            "module:plfoundation.util.box",
+                            "module:plfoundation.util.triggers"
+                        ],
+                        "memberof": "plfoundation",
+                        "longname": "plfoundation.module:dropdown",
+                        "scope": "static"
+                    }
+                ],
+                "class": [
+                    {
+                        "comment": "/**\n   * Creates a new instance of a dropdown.\n   * @class\n   * @param {jQuery} element - jQuery object to make into a dropdown.\n   *        Object should be of the dropdown panel, rather than its anchor.\n   * @param {Object} options - Overrides to the default plugin settings.\n   */",
+                        "meta": {
+                            "range": [
+                                875,
+                                1150
+                            ],
+                            "filename": "module.js",
+                            "lineno": 29,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100000027",
+                                "name": "Dropdown#_setup",
+                                "type": "MethodDefinition",
+                                "paramnames": [
+                                    "element",
+                                    "options"
+                                ]
+                            },
+                            "vars": {
+                                "": null
+                            }
+                        },
+                        "description": "Creates a new instance of a dropdown.",
+                        "kind": "class",
+                        "params": [
+                            {
+                                "type": {
+                                    "names": [
+                                        "jQuery"
+                                    ]
+                                },
+                                "description": "jQuery object to make into a dropdown.\n       Object should be of the dropdown panel, rather than its anchor.",
+                                "name": "element"
+                            },
+                            {
+                                "type": {
+                                    "names": [
+                                        "Object"
+                                    ]
+                                },
+                                "description": "Overrides to the default plugin settings.",
+                                "name": "options"
+                            }
+                        ],
+                        "name": "_setup",
+                        "longname": "plfoundation.module:dropdown~Dropdown#_setup",
+                        "memberof": "plfoundation.module:dropdown~Dropdown",
+                        "scope": "instance"
+                    }
+                ],
+                "function": [
+                    {
+                        "comment": "/**\n   * Helper function to determine current orientation of dropdown pane.\n   * @function\n   * @returns {String} position - string value of a position class.\n   */",
+                        "meta": {
+                            "range": [
+                                2305,
+                                2770
+                            ],
+                            "filename": "module.js",
+                            "lineno": 81,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100000222",
+                                "name": "Dropdown#getPositionClass",
+                                "type": "MethodDefinition",
+                                "paramnames": []
+                            },
+                            "vars": {
+                                "": null
+                            }
+                        },
+                        "description": "Helper function to determine current orientation of dropdown pane.",
+                        "kind": "function",
+                        "returns": [
+                            {
+                                "type": {
+                                    "names": [
+                                        "String"
+                                    ]
+                                },
+                                "description": "position - string value of a position class."
+                            }
+                        ],
+                        "name": "getPositionClass",
+                        "longname": "plfoundation.module:dropdown~Dropdown#getPositionClass",
+                        "memberof": "plfoundation.module:dropdown~Dropdown",
+                        "scope": "instance",
+                        "params": []
+                    },
+                    {
+                        "comment": "/**\n   * Opens the dropdown pane, and fires a bubbling event to close other dropdowns.\n   * @function\n   * @fires Dropdown#closeme\n   * @fires Dropdown#show\n   */",
+                        "meta": {
+                            "range": [
+                                9253,
+                                10170
+                            ],
+                            "filename": "module.js",
+                            "lineno": 267,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100001233",
+                                "name": "Dropdown#open",
+                                "type": "MethodDefinition",
+                                "paramnames": []
+                            },
+                            "vars": {
+                                "": null
+                            }
+                        },
+                        "description": "Opens the dropdown pane, and fires a bubbling event to close other dropdowns.",
+                        "kind": "function",
+                        "fires": [
+                            "Dropdown#event:closeme",
+                            "Dropdown#event:show"
+                        ],
+                        "name": "open",
+                        "longname": "plfoundation.module:dropdown~Dropdown#open",
+                        "memberof": "plfoundation.module:dropdown~Dropdown",
+                        "scope": "instance",
+                        "params": []
+                    },
+                    {
+                        "comment": "/**\n   * Closes the open dropdown pane.\n   * @function\n   * @fires Dropdown#hide\n   */",
+                        "meta": {
+                            "range": [
+                                10263,
+                                11129
+                            ],
+                            "filename": "module.js",
+                            "lineno": 306,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100001355",
+                                "name": "Dropdown#close",
+                                "type": "MethodDefinition",
+                                "paramnames": []
+                            },
+                            "vars": {
+                                "": null
+                            }
+                        },
+                        "description": "Closes the open dropdown pane.",
+                        "kind": "function",
+                        "fires": [
+                            "Dropdown#event:hide"
+                        ],
+                        "name": "close",
+                        "longname": "plfoundation.module:dropdown~Dropdown#close",
+                        "memberof": "plfoundation.module:dropdown~Dropdown",
+                        "scope": "instance",
+                        "params": []
+                    },
+                    {
+                        "comment": "/**\n   * Toggles the dropdown pane's visibility.\n   * @function\n   */",
+                        "meta": {
+                            "range": [
+                                11205,
+                                11363
+                            ],
+                            "filename": "module.js",
+                            "lineno": 342,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100001488",
+                                "name": "Dropdown#toggle",
+                                "type": "MethodDefinition",
+                                "paramnames": []
+                            },
+                            "vars": {
+                                "": null
+                            }
+                        },
+                        "description": "Toggles the dropdown pane's visibility.",
+                        "kind": "function",
+                        "name": "toggle",
+                        "longname": "plfoundation.module:dropdown~Dropdown#toggle",
+                        "memberof": "plfoundation.module:dropdown~Dropdown",
+                        "scope": "instance",
+                        "params": []
+                    },
+                    {
+                        "comment": "/**\n   * Destroys the dropdown.\n   * @function\n   */",
+                        "meta": {
+                            "range": [
+                                11422,
+                                11569
+                            ],
+                            "filename": "module.js",
+                            "lineno": 355,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100001521",
+                                "name": "Dropdown#_destroy",
+                                "type": "MethodDefinition",
+                                "paramnames": []
+                            },
+                            "vars": {
+                                "": null
+                            }
+                        },
+                        "description": "Destroys the dropdown.",
+                        "kind": "function",
+                        "name": "_destroy",
+                        "longname": "plfoundation.module:dropdown~Dropdown#_destroy",
+                        "memberof": "plfoundation.module:dropdown~Dropdown",
+                        "scope": "instance",
+                        "params": []
+                    }
+                ],
+                "event": [
+                    {
+                        "comment": "/**\n     * Fires to close other open dropdowns, typically when dropdown is opening\n     * @event Dropdown#closeme\n     */",
+                        "meta": {
+                            "range": [
+                                9291,
+                                9412
+                            ],
+                            "filename": "module.js",
+                            "lineno": 269,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {}
+                        },
+                        "description": "Fires to close other open dropdowns, typically when dropdown is opening",
+                        "kind": "event",
+                        "name": "closeme",
+                        "memberof": "Dropdown",
+                        "longname": "Dropdown#event:closeme",
+                        "scope": "instance"
+                    },
+                    {
+                        "comment": "/**\n     * Fires once the dropdown is visible.\n     * @event Dropdown#show\n     */",
+                        "meta": {
+                            "range": [
+                                10020,
+                                10102
+                            ],
+                            "filename": "module.js",
+                            "lineno": 294,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {}
+                        },
+                        "description": "Fires once the dropdown is visible.",
+                        "kind": "event",
+                        "name": "show",
+                        "memberof": "Dropdown",
+                        "longname": "Dropdown#event:show",
+                        "scope": "instance"
+                    },
+                    {
+                        "comment": "/**\n     * Fires once the dropdown is no longer visible.\n     * @event Dropdown#hide\n     */",
+                        "meta": {
+                            "range": [
+                                10884,
+                                10976
+                            ],
+                            "filename": "module.js",
+                            "lineno": 327,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {}
+                        },
+                        "description": "Fires once the dropdown is no longer visible.",
+                        "kind": "event",
+                        "name": "hide",
+                        "memberof": "Dropdown",
+                        "longname": "Dropdown#event:hide",
+                        "scope": "instance"
+                    }
+                ],
+                "member": [
+                    {
+                        "comment": "/**\n   * Class that designates bounding container of Dropdown (default: window)\n   * @option\n   * @type {?string}\n   * @default null\n   */",
+                        "meta": {
+                            "range": [
+                                11738,
+                                11755
+                            ],
+                            "filename": "module.js",
+                            "lineno": 370,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100001560",
+                                "name": "parentClass",
+                                "type": "Literal",
+                                "value": null
+                            }
+                        },
+                        "description": "Class that designates bounding container of Dropdown (default: window)",
+                        "tags": [
+                            {
+                                "originalTitle": "option",
+                                "title": "option",
+                                "text": ""
+                            }
+                        ],
+                        "type": {
+                            "names": [
+                                "string"
+                            ]
+                        },
+                        "nullable": true,
+                        "defaultvalue": "null",
+                        "name": "parentClass",
+                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.parentClass",
+                        "kind": "member",
+                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "scope": "static"
+                    },
+                    {
+                        "comment": "/**\n   * Amount of time to delay opening a submenu on hover event.\n   * @option\n   * @type {number}\n   * @default 250\n   */",
+                        "meta": {
+                            "range": [
+                                11885,
+                                11900
+                            ],
+                            "filename": "module.js",
+                            "lineno": 377,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100001562",
+                                "name": "hoverDelay",
+                                "type": "Literal",
+                                "value": 250
+                            }
+                        },
+                        "description": "Amount of time to delay opening a submenu on hover event.",
+                        "tags": [
+                            {
+                                "originalTitle": "option",
+                                "title": "option",
+                                "text": ""
+                            }
+                        ],
+                        "type": {
+                            "names": [
+                                "number"
+                            ]
+                        },
+                        "defaultvalue": "250",
+                        "name": "hoverDelay",
+                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.hoverDelay",
+                        "kind": "member",
+                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "scope": "static"
+                    },
+                    {
+                        "comment": "/**\n   * Allow submenus to open on hover events\n   * @option\n   * @type {boolean}\n   * @default false\n   */",
+                        "meta": {
+                            "range": [
+                                12014,
+                                12026
+                            ],
+                            "filename": "module.js",
+                            "lineno": 384,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100001564",
+                                "name": "hover",
+                                "type": "Literal",
+                                "value": false
+                            }
+                        },
+                        "description": "Allow submenus to open on hover events",
+                        "tags": [
+                            {
+                                "originalTitle": "option",
+                                "title": "option",
+                                "text": ""
+                            }
+                        ],
+                        "type": {
+                            "names": [
+                                "boolean"
+                            ]
+                        },
+                        "defaultvalue": "false",
+                        "name": "hover",
+                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.hover",
+                        "kind": "member",
+                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "scope": "static"
+                    },
+                    {
+                        "comment": "/**\n   * Don't close dropdown when hovering over dropdown pane\n   * @option\n   * @type {boolean}\n   * @default false\n   */",
+                        "meta": {
+                            "range": [
+                                12155,
+                                12171
+                            ],
+                            "filename": "module.js",
+                            "lineno": 391,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100001566",
+                                "name": "hoverPane",
+                                "type": "Literal",
+                                "value": false
+                            }
+                        },
+                        "description": "Don't close dropdown when hovering over dropdown pane",
+                        "tags": [
+                            {
+                                "originalTitle": "option",
+                                "title": "option",
+                                "text": ""
+                            }
+                        ],
+                        "type": {
+                            "names": [
+                                "boolean"
+                            ]
+                        },
+                        "defaultvalue": "false",
+                        "name": "hoverPane",
+                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.hoverPane",
+                        "kind": "member",
+                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "scope": "static"
+                    },
+                    {
+                        "comment": "/**\n   * Number of pixels between the dropdown pane and the triggering element on open.\n   * @option\n   * @type {number}\n   * @default 1\n   */",
+                        "meta": {
+                            "range": [
+                                12320,
+                                12330
+                            ],
+                            "filename": "module.js",
+                            "lineno": 398,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100001568",
+                                "name": "vOffset",
+                                "type": "Literal",
+                                "value": 1
+                            }
+                        },
+                        "description": "Number of pixels between the dropdown pane and the triggering element on open.",
+                        "tags": [
+                            {
+                                "originalTitle": "option",
+                                "title": "option",
+                                "text": ""
+                            }
+                        ],
+                        "type": {
+                            "names": [
+                                "number"
+                            ]
+                        },
+                        "defaultvalue": "1",
+                        "name": "vOffset",
+                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.vOffset",
+                        "kind": "member",
+                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "scope": "static"
+                    },
+                    {
+                        "comment": "/**\n   * Number of pixels between the dropdown pane and the triggering element on open.\n   * @option\n   * @type {number}\n   * @default 1\n   */",
+                        "meta": {
+                            "range": [
+                                12479,
+                                12489
+                            ],
+                            "filename": "module.js",
+                            "lineno": 405,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100001570",
+                                "name": "hOffset",
+                                "type": "Literal",
+                                "value": 1
+                            }
+                        },
+                        "description": "Number of pixels between the dropdown pane and the triggering element on open.",
+                        "tags": [
+                            {
+                                "originalTitle": "option",
+                                "title": "option",
+                                "text": ""
+                            }
+                        ],
+                        "type": {
+                            "names": [
+                                "number"
+                            ]
+                        },
+                        "defaultvalue": "1",
+                        "name": "hOffset",
+                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.hOffset",
+                        "kind": "member",
+                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "scope": "static"
+                    },
+                    {
+                        "comment": "/**\n   * Class applied to adjust open position. JS will test and fill this in.\n   * @option\n   * @type {string}\n   * @default ''\n   */",
+                        "meta": {
+                            "range": [
+                                12630,
+                                12647
+                            ],
+                            "filename": "module.js",
+                            "lineno": 412,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100001572",
+                                "name": "positionClass",
+                                "type": "Literal",
+                                "value": ""
+                            }
+                        },
+                        "description": "Class applied to adjust open position. JS will test and fill this in.",
+                        "tags": [
+                            {
+                                "originalTitle": "option",
+                                "title": "option",
+                                "text": ""
+                            }
+                        ],
+                        "type": {
+                            "names": [
+                                "string"
+                            ]
+                        },
+                        "defaultvalue": "''",
+                        "name": "positionClass",
+                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.positionClass",
+                        "kind": "member",
+                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "scope": "static"
+                    },
+                    {
+                        "comment": "/**\n   * Allow the plugin to trap focus to the dropdown pane if opened with keyboard commands.\n   * @option\n   * @type {boolean}\n   * @default false\n   */",
+                        "meta": {
+                            "range": [
+                                12808,
+                                12824
+                            ],
+                            "filename": "module.js",
+                            "lineno": 419,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100001574",
+                                "name": "trapFocus",
+                                "type": "Literal",
+                                "value": false
+                            }
+                        },
+                        "description": "Allow the plugin to trap focus to the dropdown pane if opened with keyboard commands.",
+                        "tags": [
+                            {
+                                "originalTitle": "option",
+                                "title": "option",
+                                "text": ""
+                            }
+                        ],
+                        "type": {
+                            "names": [
+                                "boolean"
+                            ]
+                        },
+                        "defaultvalue": "false",
+                        "name": "trapFocus",
+                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.trapFocus",
+                        "kind": "member",
+                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "scope": "static"
+                    },
+                    {
+                        "comment": "/**\n   * Allow the plugin to set focus to the first focusable element within the pane, regardless of method of opening.\n   * @option\n   * @type {boolean}\n   * @default false\n   */",
+                        "meta": {
+                            "range": [
+                                13010,
+                                13026
+                            ],
+                            "filename": "module.js",
+                            "lineno": 426,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100001576",
+                                "name": "autoFocus",
+                                "type": "Literal",
+                                "value": false
+                            }
+                        },
+                        "description": "Allow the plugin to set focus to the first focusable element within the pane, regardless of method of opening.",
+                        "tags": [
+                            {
+                                "originalTitle": "option",
+                                "title": "option",
+                                "text": ""
+                            }
+                        ],
+                        "type": {
+                            "names": [
+                                "boolean"
+                            ]
+                        },
+                        "defaultvalue": "false",
+                        "name": "autoFocus",
+                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.autoFocus",
+                        "kind": "member",
+                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "scope": "static"
+                    },
+                    {
+                        "comment": "/**\n   * Allows a click on the body to close the dropdown.\n   * @option\n   * @type {boolean}\n   * @default false\n   */",
+                        "meta": {
+                            "range": [
+                                13151,
+                                13170
+                            ],
+                            "filename": "module.js",
+                            "lineno": 433,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "code": {
+                                "id": "astnode100001578",
+                                "name": "closeOnClick",
+                                "type": "Literal",
+                                "value": false
+                            }
+                        },
+                        "description": "Allows a click on the body to close the dropdown.",
+                        "tags": [
+                            {
+                                "originalTitle": "option",
+                                "title": "option",
+                                "text": ""
+                            }
+                        ],
+                        "type": {
+                            "names": [
+                                "boolean"
+                            ]
+                        },
+                        "defaultvalue": "false",
+                        "name": "closeOnClick",
+                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.closeOnClick",
+                        "kind": "member",
+                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "scope": "static"
+                    }
+                ],
+                "package": [
+                    {
+                        "kind": "package",
+                        "longname": "package:undefined",
+                        "files": [
+                            "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser/module.js"
+                        ]
+                    }
+                ]
+            },
+            "__fm": {
+                "js": "src/partials/molecules/article-teaser/module.js",
+                "sass": "src/partials/molecules/article-teaser/styles.scss",
+                "description": "an article teaser module with \"more\" link",
+                "title": "molecule/article-teaser"
+            },
+            "docs": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"markup\" class=\"docs-heading\" data-magellan-target=\"markup\">Markup<a class=\"docs-heading-icon\" href=\"#markup\"></a></h2><div class=\"docs-code\" data-docs-code><pre><code class=\"html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">article</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{{class}}\"</span>&gt;</span>\n    {{patternlibrary atom=\"text-headline\" text=headline}}\n    {{patternlibrary atom=\"text-paragraph\" text=content}}\n    {{patternlibrary atom=\"link\" href=url label=\"more\" class=\"more\"}}\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">article</span>&gt;</span></code></pre></div>\n\n<div class=\"docs-code-live\"><article class=\"{{class}}\">\n    {{patternlibrary atom=\"text-headline\" text=headline}}\n    {{patternlibrary atom=\"text-paragraph\" text=content}}\n    {{patternlibrary atom=\"link\" href=url label=\"more\" class=\"more\"}}\n</article></div>",
+            "fileName": "src/partials/molecules/article-teaser/readme.md",
+            "_adapterData": {
+                "sass": "src/partials/molecules/article-teaser/styles.scss",
+                "js": "src/partials/molecules/article-teaser/module.js"
+            },
+            "relatedFiles": [
+                "src/partials/molecules/article-teaser/module.js"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+/* global styles */
+
+html.patternlibrary {
+    box-sizing: border-box;
+    font-size: $global-font-size;
+}
+
+// Set box-sizing globally to handle padding and border widths
+*.patternlibrary,
+*.patternlibrary::before,
+*.patternlibrary::after {
+    box-sizing: inherit;
+}
+
+// Default body styles
+.patternlibrary,
+body.patternlibrary {
+    margin: 0;
+    padding: 0;
+
+    background: $body-background;
+
+    font-family: $body-font-family;
+    font-weight: $global-weight-normal;
+    line-height: $global-lineheight;
+    color: $body-font-color;
+
+    @if ($body-antialiased) {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}

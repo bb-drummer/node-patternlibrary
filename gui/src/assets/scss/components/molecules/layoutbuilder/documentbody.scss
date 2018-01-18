@@ -1,0 +1,209 @@
+$element-padding: 0.1em;
+$element-padding-top-hover: 2em;
+$element-padding-top-focused: $element-padding-top-hover;
+$element-margin: 0.1em;
+
+$element-border-width: 1px;
+$element-border-color: lightgray;
+$element-border-color-hover: orange;
+$element-border-color-focused: blue;
+$element-border: $element-border-width dashed $element-border-color;
+$element-border-row: $element-border;
+$element-border-column: $element-border-width dotted $element-border-color;
+
+$element-inner-minheight: 4em;
+$element-hover-transition: padding-top 0.25s linear 0.5s;
+
+$element-inner-background-color: rgba(0, 0, 0, 0.05);
+$element-inner-background-color-focused: rgba(0, 0, 128, 0.05);
+$element-inner-background-color-hover: rgba(0, 128, 0, 0.05);
+
+$element-box-shadow-focused: 3px 3px 5px 0px rgba(0, 0, 255, 0.75);
+$element-box-shadow-focused-column: $element-box-shadow-focused;
+$element-box-shadow-focused-row: $element-box-shadow-focused;
+
+$documentbody-border: 1px solid gray;
+$documentbody-border-radius: 3px;
+$documentbody-background: none transparent;
+$documentbody-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
+$documentbody-padding: 1em;
+
+$documentbody-hint-displaytransition: all 5s ease-in 1s;
+$documentbody-hint-color: $white;
+$documentbody-hint-background-color: $black;
+$documentbody-hint-border-color: $white;
+$documentbody-hint-border-width: 0.25em;
+$documentbody-hint-border-radius: 1.5em;
+$documentbody-hint-border: $documentbody-hint-border-width solid $documentbody-hint-border-color;
+$documentbody-hint-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
+
+[data-layoutbody] {
+
+	margin-top: 1em;
+	margin-bottom: 1em;
+	border: $documentbody-border;
+	border-radius: $documentbody-border-radius;
+	background: $documentbody-background;
+	padding: $documentbody-padding;
+	
+	-webkit-box-shadow: $documentbody-box-shadow;
+	-moz-box-shadow: $documentbody-box-shadow;
+	box-shadow: $documentbody-box-shadow;
+	
+
+    [data-layoutrow],
+    [data-layoutcolumn],
+    [data-layoutpattern] {
+    
+        position: relative;
+        margin    : 0 0 $element-margin 0;
+        padding   : $element-padding $element-padding $element-padding $element-padding;
+        border    : $element-border-row;
+        min-height: $element-inner-minheight;
+  
+	    -webkit-transition: $element-hover-transition;
+	    -moz-transition   : $element-hover-transition;
+	    -ms-transition    : $element-hover-transition;
+	    -o-transition     : $element-hover-transition;
+	    transition        : $element-hover-transition;
+        
+        &.focused {
+            border-color      : $element-border-color-focused;
+			-webkit-box-shadow: $element-box-shadow-focused-row;
+			-moz-box-shadow   : $element-box-shadow-focused-row;
+			box-shadow        : $element-box-shadow-focused-row;
+			padding-top       : $element-padding-top-focused;
+        }
+        
+        &:hover {
+            border-color : $element-border-color-hover;
+	        cursor       : pointer;
+			padding-top  : $element-padding-top-hover;
+	        
+	        > [data-layoutelementtoolbar],
+	        > [data-layoutelementdragtrigger] {
+	            display  : block;
+	        }
+        }
+        
+        &.focused:hover {
+            cursor: default;
+	    }
+        
+    }
+    
+	[data-layoutelementtoolbar],
+	[data-layoutelementdragtrigger] {
+	    position: absolute;
+        top: -1em;
+	    bottom: auto;
+	    
+        padding: 0.0625em 0.25em 0.125em;
+        
+	    .menu-text {
+	        display: none;
+	    }
+	    
+	    .menu-separator {
+	        display: none;
+	    }
+	    
+	}
+	    
+	[data-layoutelementtoolbar] {
+	    right: 0px;
+	    left: auto;
+	}
+	    
+	[data-layoutelementdragtrigger] {
+	    left: 0px;
+	    right: auto;
+	}
+	    
+    :not(.focused) > [data-layoutelementtoolbar],
+    :not(.focused) > [data-layoutelementdragtrigger] {
+        display: none;
+    }
+	
+	+ .hint {
+	    z-index: 999999;
+	    display: none;
+	    
+	    position  : absolute;
+	    top       : 10px;
+	    left      : 0px;
+	    right     : 0px;
+	    bottom    : auto;
+	    min-height: 1em;
+	    
+		    
+		    -webkit-transition: $documentbody-hint-displaytransition;
+		    -moz-transition   : $documentbody-hint-displaytransition;
+		    -ms-transition    : $documentbody-hint-displaytransition;
+		    -o-transition     : $documentbody-hint-displaytransition;
+		    transition        : $documentbody-hint-displaytransition;
+  
+	    
+	    .message {
+	        position    : relative;
+	        display     : block;
+	        margin-left : auto;
+	        margin-right: auto;
+	        padding     : 0.5em;
+	        
+	        width       : 50%;
+	        @include breakpoint(small only) {
+	            width       : 99%;
+	        }
+	        @include breakpoint(medium only) {
+	            width       : 75%;
+	        }
+	        @include breakpoint(large only) {
+	            width       : 66%;
+	        }
+	        
+	        text-align      : center;
+	        color           : $documentbody-hint-color;
+	        
+	        background-color: $documentbody-hint-background-color;
+	        border          : $documentbody-hint-border;
+	        border-radius   : $documentbody-hint-border-radius;
+	
+			-webkit-box-shadow: $documentbody-hint-shadow;
+			-moz-box-shadow: $documentbody-hint-shadow;
+			box-shadow: $documentbody-hint-shadow;
+	        
+		    opacity: 0;
+		    
+		    -webkit-transition: $documentbody-hint-displaytransition;
+		    -moz-transition   : $documentbody-hint-displaytransition;
+		    -ms-transition    : $documentbody-hint-displaytransition;
+		    -o-transition     : $documentbody-hint-displaytransition;
+		    transition        : $documentbody-hint-displaytransition;
+	    }
+	}
+	
+	&.fullscreen {
+	    position     : absolute;
+	    top          : -1em;
+	    left         : 0px;
+	    height       : 100%;
+	    width        : 100%;
+	    bottom       : auto;
+	    right        : auto;
+	    background   : none white;
+	    border       : none;
+	    box-shadow   : none;
+	    margin-bottom: 0;
+	    z-index      : 99999;
+	    
+		+ .hint {
+		    display: block;
+		    
+		    .message {
+			    opacity: 0.8275;
+			}
+		}
+	}
+}
+

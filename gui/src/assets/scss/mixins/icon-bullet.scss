@@ -1,0 +1,40 @@
+
+@mixin iconBullet {
+
+	// bullet
+	
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-touch-callout: none;
+		
+    border: 0;
+    display: inline-block;
+	
+	&:before {
+		
+		//@include vendor('transition', 'all 0.2s ease-in');
+		border-radius: 100%;
+		border: solid 1px _palette(fg);
+		display: block;
+		font-size: _size(nav-icon);
+		height: 2.5em;
+		line-height: 2.5em;
+		position: relative;
+		text-align: center;
+		top: 0;
+		width: 2.5em;
+	}
+
+	&:hover:before {
+		background-color: _palette(nav-icon, hover-bg);
+		//color: _palette(nav-icon, hover-fg);
+	}
+	
+	&:active {
+		background: none;
+	}
+	&:active:before {
+		background-color: _palette(nav-icon, active-bg);
+		color: _palette(nav-icon, active-fg);
+	}
+	
+}

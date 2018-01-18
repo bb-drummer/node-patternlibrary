@@ -1,0 +1,15 @@
+@import "true";
+
+@import '../../../src/assets/scss/functions/text-box-height';
+
+@include test-module('TextBoxHeight') {
+
+  @include test('text-box-height (number-of-lines, font-size, paragraph-lineheight) [function]') {
+    $test: text-box-height(5, 16, 1.2);
+    $expect: rem-calc(96);
+
+    @include assert-equal($test, $expect,
+      'calculate height for truncated paragraph');
+  }
+
+}

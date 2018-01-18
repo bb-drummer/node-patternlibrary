@@ -1,0 +1,112 @@
+{
+    "atom/link": {
+        "pattern": {
+            "name": "atom/link",
+            "categories": [
+                "basic",
+                "typography"
+            ],
+            "uses": null
+        },
+        "params": {
+            "class": [
+                "*"
+            ],
+            "href": [
+                "*"
+            ],
+            "label": [
+                "*"
+            ]
+        },
+        "body": "<a class=\"{{class}}\" href=\"{{#if href}}{{href}}{{/if}}{{#unless href}}{{texthelper 'url'}}{{/unless}}\">{{#if label}}{{label}}{{/if}}{{#unless label}}{{texthelper 'word'}}{{/unless}}</a>"
+    },
+    "atom/modal-close-button": {
+        "pattern": {
+            "name": "atom/modal-close-button",
+            "categories": [
+                "button",
+                "modal"
+            ]
+        },
+        "body": "<a class=\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\" href=\"javascript:return true;\" aria-label=\"Close modal\" data-close>\n  <span aria-hidden=\"true\">&times;</span>\n</a>"
+    },
+    "atom/text-headline": {
+        "pattern": {
+            "name": "atom/text-headline",
+            "categories": [
+                "basic",
+                "typography"
+            ],
+            "uses": null
+        },
+        "params": {
+            "heading": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6"
+            ],
+            "class": [
+                "*"
+            ],
+            "text": [
+                "*"
+            ]
+        },
+        "defaults": {
+            "heading": "1"
+        },
+        "body": "{{#unless heading}}\n<h{{defaults.heading}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{defaults.heading}}>\n{{/unless}}\n{{#if heading}}\n<h{{heading}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{heading}}>\n{{/if}}\n"
+    },
+    "atom/text-paragraph": {
+        "pattern": {
+            "name": "atom/text-paragraph",
+            "categories": [
+                "basic",
+                "typography"
+            ],
+            "uses": null
+        },
+        "params": {
+            "class": [
+                "*"
+            ]
+        },
+        "body": "<p class=\"{{class}}\">{{texthelper 'normal'}}</p>"
+    },
+    "molecule/article-teaser": {
+        "pattern": {
+            "name": "molecule/article-teaser",
+            "categories": [
+                "typography",
+                "article"
+            ],
+            "uses": [
+                "atom/text-headline",
+                "atom/text-paragraph",
+                "atom/link"
+            ]
+        },
+        "params": {
+            "class": [
+                "*"
+            ],
+            "headline": [
+                "*"
+            ],
+            "content": [
+                "*"
+            ],
+            "url": [
+                "*"
+            ]
+        },
+        "defaults": {
+            "headline": "This is some article headline..."
+        },
+        "body": "<article class=\"{{class}}\">\n    {{patternlibrary atom=\"text-headline\" text=headline}}\n    {{patternlibrary atom=\"text-paragraph\" text=content}}\n    {{patternlibrary atom=\"link\" href=url label=\"more\" class=\"more\"}}\n</article>"
+    }
+}

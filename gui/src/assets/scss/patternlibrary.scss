@@ -1,0 +1,73 @@
+@charset 'utf-8';
+
+// (PLFoundation) base settings
+@import 'settings';
+ 
+// project settings
+@import 'site-app';
+
+// (plfoundation) mixins
+@import 'plfoundation';
+@import 'motion-ui';
+
+// (plfoundation) global styles
+@include plfoundation-global-styles;
+
+// project global styles
+@import '_global';
+
+// begin project namespace
+.patternlibrary,
+.plfoundation .patternlibrary {
+
+	@include plfoundation-global-styles;
+	@include plfoundation-grid;
+	@include plfoundation-flex-grid;
+	@include plfoundation-typography;
+	@include plfoundation-button;
+	@include plfoundation-forms;
+	// @include plfoundation-range-input;
+	@include plfoundation-accordion;
+	@include plfoundation-accordion-menu;
+	// @include plfoundation-badge;
+	// @include plfoundation-breadcrumbs;
+	// @include plfoundation-button-group;
+	// @include plfoundation-callout;
+	// @include plfoundation-close-button;
+	@include plfoundation-menu;
+	@include plfoundation-menu-icon;
+	@include plfoundation-drilldown-menu;
+	@include plfoundation-dropdown;
+	@include plfoundation-dropdown-menu;
+	// @include plfoundation-flex-video;
+	// @include plfoundation-label;
+	// @include plfoundation-media-object;
+	// @include plfoundation-off-canvas;
+	// @include plfoundation-orbit;
+	// @include plfoundation-pagination;
+	// @include plfoundation-progress-bar;
+	// // @include plfoundation-progress-element;
+	// // @include plfoundation-meter-element;
+	// @include plfoundation-slider;
+	// @include plfoundation-sticky;
+	// @include plfoundation-reveal;
+	// @include plfoundation-switch;
+	@include plfoundation-table;
+	@include plfoundation-tabs;
+	// @include plfoundation-thumbnail;
+	@include plfoundation-title-bar;
+	// @include plfoundation-tooltip;
+	@include plfoundation-top-bar;
+	@include plfoundation-visibility-classes;
+	@include plfoundation-float-classes;
+	@include plfoundation-flex-classes;
+	
+	// @include motion-ui-transitions;
+	// @include motion-ui-animations;
+	
+	@import '_mixins';
+	
+	@import '_components';
+
+}
+// end project namespace

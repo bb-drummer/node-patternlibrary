@@ -1,0 +1,38 @@
+$contentbox-background-color: rgba(0, 0, 0, 0.3);
+
+$contentbox-boxborder-color: rgba(127, 191, 255, 0.3) !default;
+$contentbox-boxborder: 1px solid !default;
+$contentbox-boxborderradius: 1em !default;
+$contentbox-boxshadow: 0px 0px 5px 3px $contentbox-boxborder-color !default; // h-offset, v-offset, radius, width
+
+
+@mixin contentBoxBorder {
+    border            : $contentbox-boxborder $contentbox-boxborder-color;
+	border-radius     : $contentbox-boxborderradius;
+	
+	-webkit-box-shadow: $contentbox-boxshadow;
+	-moz-box-shadow   : $contentbox-boxshadow;
+	box-shadow        : $contentbox-boxshadow;
+}
+
+
+@mixin contentBox {
+	background-color  : $contentbox-background-color;
+	
+    @include contentBoxBorder;
+    
+}
+
+@mixin contentBoxShadowOff {
+	-webkit-box-shadow: none;
+	-moz-box-shadow   : none;
+	box-shadow        : none;
+    
+}
+
+@mixin transparentPanel {
+    @include contentBoxShadowOff;
+    
+    background: none transparent;
+    border: none transparent;
+}

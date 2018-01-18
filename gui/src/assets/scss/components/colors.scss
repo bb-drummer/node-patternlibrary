@@ -1,0 +1,20 @@
+/* Default */
+
+
+/* Wide */
+@include breakpoint(xlarge) {
+}
+
+/* Normal */
+@include breakpoint(large) {
+}
+
+/* Mobile/Tablet */
+@include breakpoint(medium) {
+}
+
+/* Mobile/Phones (Portrait) */
+@include breakpoint(small) {
+
+}
+

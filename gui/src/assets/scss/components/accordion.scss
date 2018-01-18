@@ -1,0 +1,21 @@
+.accordion-item .accordion-title,
+.accordion-item .accordion-content {
+    font-size: $body-fontsize;
+    border-bottom: 0px;
+}
+
+.accordion-item .accordion-title {
+    border-top: 0px;
+}
+
+.accordion-item .accordion-content {
+    padding: 0px;
+    border: 0px;
+}
+
+.accordion-item:last-child .accordion-title,
+.accordion-item:last-child .accordion-content {
+    border-bottom: $accordion-content-border;
+    
+}
+

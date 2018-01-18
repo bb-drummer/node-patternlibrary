@@ -1,0 +1,17 @@
+//// calculate text-box height for a given number of lines
+////
+//// @param NUMBER $number-of-lines (mandatory)
+//// @param NUMBER $the-font-size (optional) default: $body-font-size
+//// @param NUMBER $the-lineheight (optional) default: $paragraph-lineheight
+//// @return NUMBER
+@function text-box-height($number-of-lines, $the-font-size: $body-font-size, $the-lineheight: $paragraph-lineheight){
+    
+    $UNITS: ‘px’ ‘cm’ ‘mm’ ‘ch’ ‘pica’ ‘in’ ‘em’ ‘rem’ ‘pt’ ‘pc’ ‘ex’ ‘vw’ ‘vh’ ‘vmin’ ‘vmax’;
+    $the-box-size: ($the-font-size * $the-lineheight * $number-of-lines);
+    @if index($UNITS, unit($the-lineheight)) {
+        $the-box-size: ($the-lineheight * $number-of-lines);
+    }
+    
+    @return rem-calc($the-box-size);
+}
+

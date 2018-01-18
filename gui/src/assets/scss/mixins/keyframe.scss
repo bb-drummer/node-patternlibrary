@@ -1,0 +1,30 @@
+/**
+    Example usage: 
+    
+	@include keyframes (slide-down) {
+	  0% { opacity: 1; }
+	  90% { opacity: 0; }
+	}
+	
+ */
+@mixin keyframes ($animation_name) {
+    @-webkit-keyframes $animation_name {
+        @content;
+    }
+
+    @-moz-keyframes $animation_name {
+        @content;
+    }
+
+    @-ms-keyframes $animation_name {
+        @content;
+    }
+
+    @-o-keyframes $animation_name {
+        @content;
+    }
+
+    @keyframes $animation_name {
+        @content;
+    }
+}

@@ -1,0 +1,283 @@
+[
+  {
+    "type": "component",
+    "name": "atom/modal-close-button",
+    "description": "\"X\" button to close a modal window",
+    "link": "src/partials/atoms/modal-close-button/readme.html",
+    "tags": []
+  },
+  {
+    "type": "component",
+    "name": "atom/link",
+    "description": "an inline link",
+    "link": "src/partials/atoms/link/readme.html",
+    "tags": []
+  },
+  {
+    "name": "$link-padding",
+    "type": "sass variable",
+    "description": "Padding inside links.",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "name": "$link-margin",
+    "type": "sass variable",
+    "description": "Margin around links.",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "name": "$link-fill",
+    "type": "sass variable",
+    "description": "Default fill for links. Can either be solid` or `hollow`.\n",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "name": "$link-background",
+    "type": "sass variable",
+    "description": "Default background color for links.",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "name": "$link-background-hover",
+    "type": "sass variable",
+    "description": "Background color on hover for links.",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "name": "$link-color",
+    "type": "sass variable",
+    "description": "Font color for links.",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "name": "$link-color-alt",
+    "type": "sass variable",
+    "description": "Alternative font color for links.",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "name": "$link-radius",
+    "type": "sass variable",
+    "description": "Border radius for links, defaulted to global-radius.",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "name": "$link-hollow-border-width",
+    "type": "sass variable",
+    "description": "Border width for hollow outline links",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "name": "$link-sizes",
+    "type": "sass variable",
+    "description": "Sizes for links.",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "name": "$link-palette",
+    "type": "sass variable",
+    "description": "Coloring classes. A map of classes to output in your CSS, like .secondary`, `.success`, and so on.\n",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "name": "$link-opacity-disabled",
+    "type": "sass variable",
+    "description": "opacity for a disabled link.",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "name": "$link-background-hover-lightness",
+    "type": "sass variable",
+    "description": "Background color lightness on hover for links.",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "name": "$link-hollow-hover-lightness",
+    "type": "sass variable",
+    "description": "Color lightness on hover for hollow links.",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "name": "$link-transition",
+    "type": "sass variable",
+    "description": "transitions for links.",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "name": "link-expand()",
+    "type": "sass mixin",
+    "description": "Expands a link to make it full-width.",
+    "link": "src/partials/atoms/link/readme.html#link-expand"
+  },
+  {
+    "name": "link-style()",
+    "type": "sass mixin",
+    "description": "Sets the visual style of a link.",
+    "link": "src/partials/atoms/link/readme.html#link-style"
+  },
+  {
+    "name": "link-hollow()",
+    "type": "sass mixin",
+    "description": "Removes background fill on hover and focus for hollow links.",
+    "link": "src/partials/atoms/link/readme.html#link-hollow"
+  },
+  {
+    "name": "link-disabled()",
+    "type": "sass mixin",
+    "description": "Adds disabled styles to a link by fading the element, reseting the cursor, and disabling pointer events.",
+    "link": "src/partials/atoms/link/readme.html#link-disabled"
+  },
+  {
+    "name": "link-dropdown()",
+    "type": "sass mixin",
+    "description": "Adds a dropdown arrow to a link.",
+    "link": "src/partials/atoms/link/readme.html#link-dropdown"
+  },
+  {
+    "name": "link()",
+    "type": "sass mixin",
+    "description": "Adds all styles for a link. For more granular control over styles, use the individual link mixins.",
+    "link": "src/partials/atoms/link/readme.html#link"
+  },
+  {
+    "name": "$link-font-family",
+    "type": "sass variable",
+    "description": "Font family for link elements.",
+    "link": "src/partials/atoms/link/readme.html#sass-variables"
+  },
+  {
+    "type": "component",
+    "name": "atom/text-headline",
+    "description": "an inline headline",
+    "link": "src/partials/atoms/text-headline/readme.html",
+    "tags": []
+  },
+  {
+    "type": "component",
+    "name": "atom/text-paragraph",
+    "description": "an inline text paragraph",
+    "link": "src/partials/atoms/text-paragraph/readme.html",
+    "tags": []
+  },
+  {
+    "type": "component",
+    "name": "molecule/article-teaser",
+    "description": "an article teaser module with \"more\" link",
+    "link": "src/partials/molecules/article-teaser/readme.html",
+    "tags": []
+  },
+  {
+    "type": "js class",
+    "name": "_setup()",
+    "description": "Creates a new instance of a dropdown.",
+    "link": "src/partials/molecules/article-teaser/readme.html#js-class"
+  },
+  {
+    "type": "js function",
+    "name": "Dropdown#getPositionClass()",
+    "description": "Helper function to determine current orientation of dropdown pane.",
+    "link": "src/partials/molecules/article-teaser/readme.html#undefined"
+  },
+  {
+    "type": "js function",
+    "name": "Dropdown#open()",
+    "description": "Opens the dropdown pane, and fires a bubbling event to close other dropdowns.",
+    "link": "src/partials/molecules/article-teaser/readme.html#undefined"
+  },
+  {
+    "type": "js function",
+    "name": "Dropdown#close()",
+    "description": "Closes the open dropdown pane.",
+    "link": "src/partials/molecules/article-teaser/readme.html#undefined"
+  },
+  {
+    "type": "js function",
+    "name": "Dropdown#toggle()",
+    "description": "Toggles the dropdown pane&#39;s visibility.",
+    "link": "src/partials/molecules/article-teaser/readme.html#undefined"
+  },
+  {
+    "type": "js function",
+    "name": "Dropdown#_destroy()",
+    "description": "Destroys the dropdown.",
+    "link": "src/partials/molecules/article-teaser/readme.html#undefined"
+  },
+  {
+    "type": "js event",
+    "name": "closeme",
+    "description": "Fires to close other open dropdowns, typically when dropdown is opening",
+    "link": "src/partials/molecules/article-teaser/readme.html#js-events"
+  },
+  {
+    "type": "js event",
+    "name": "show",
+    "description": "Fires once the dropdown is visible.",
+    "link": "src/partials/molecules/article-teaser/readme.html#js-events"
+  },
+  {
+    "type": "js event",
+    "name": "hide",
+    "description": "Fires once the dropdown is no longer visible.",
+    "link": "src/partials/molecules/article-teaser/readme.html#js-events"
+  },
+  {
+    "type": "js plugin option",
+    "name": "parentClass",
+    "description": "Class that designates bounding container of Dropdown (default: window)",
+    "link": "src/partials/molecules/article-teaser/readme.html#js-members"
+  },
+  {
+    "type": "js plugin option",
+    "name": "hoverDelay",
+    "description": "Amount of time to delay opening a submenu on hover event.",
+    "link": "src/partials/molecules/article-teaser/readme.html#js-members"
+  },
+  {
+    "type": "js plugin option",
+    "name": "hover",
+    "description": "Allow submenus to open on hover events",
+    "link": "src/partials/molecules/article-teaser/readme.html#js-members"
+  },
+  {
+    "type": "js plugin option",
+    "name": "hoverPane",
+    "description": "Don&#39;t close dropdown when hovering over dropdown pane",
+    "link": "src/partials/molecules/article-teaser/readme.html#js-members"
+  },
+  {
+    "type": "js plugin option",
+    "name": "vOffset",
+    "description": "Number of pixels between the dropdown pane and the triggering element on open.",
+    "link": "src/partials/molecules/article-teaser/readme.html#js-members"
+  },
+  {
+    "type": "js plugin option",
+    "name": "hOffset",
+    "description": "Number of pixels between the dropdown pane and the triggering element on open.",
+    "link": "src/partials/molecules/article-teaser/readme.html#js-members"
+  },
+  {
+    "type": "js plugin option",
+    "name": "positionClass",
+    "description": "Class applied to adjust open position. JS will test and fill this in.",
+    "link": "src/partials/molecules/article-teaser/readme.html#js-members"
+  },
+  {
+    "type": "js plugin option",
+    "name": "trapFocus",
+    "description": "Allow the plugin to trap focus to the dropdown pane if opened with keyboard commands.",
+    "link": "src/partials/molecules/article-teaser/readme.html#js-members"
+  },
+  {
+    "type": "js plugin option",
+    "name": "autoFocus",
+    "description": "Allow the plugin to set focus to the first focusable element within the pane, regardless of method of opening.",
+    "link": "src/partials/molecules/article-teaser/readme.html#js-members"
+  },
+  {
+    "type": "js plugin option",
+    "name": "closeOnClick",
+    "description": "Allows a click on the body to close the dropdown.",
+    "link": "src/partials/molecules/article-teaser/readme.html#js-members"
+  }
+]

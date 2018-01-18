@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lib/mocha.css" />
+    <link rel="stylesheet" href="../../bower_components/foundation-sites/dist/css/foundation.css">
+    <link rel="stylesheet" href="../../bower_components/motion-ui/dist/motion-ui.css">
+    <!-- link rel="stylesheet" href="../../dist/assets/css/app.css" -->
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script src="../../dist/assets/js/app.js"></script>
+    <script src="lib/mocha.js"></script>
+    <script src="lib/chai.js"></script>
+    <script src="lib/chai-jquery.js"></script>
+    <script src="lib/sinon.js"></script>
+    <script>
+      mocha.setup('bdd');
+      chai.should();
+    </script>
+    <script src="foundation-sites.js-tests.js"></script>
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>

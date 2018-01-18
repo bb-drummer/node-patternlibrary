@@ -1,0 +1,200 @@
+// Styles for the search bar and results list.
+
+.twitter-typeahead {
+    display: block !important;
+    position: relative;
+}
+
+.twitter-typeahead::before {
+    content: '\f002';
+    display: block;
+    position: absolute;
+    top: 0.2rem;
+    left: 0.9rem;
+    z-index: 1;
+    font-family: 'FontAwesome';
+    font-size: 1.125rem;
+    color: $dark-gray;
+}
+
+.top-bar .twitter-typeahead input {
+	width: 100%;
+    margin-right: 0rem;
+	max-width: 300px;
+
+    @include breakpoint(large up) {
+    	max-width: 300px;
+    }
+
+    @include breakpoint(medium down) {
+    	max-width: 165px;
+    }
+
+    @include breakpoint(small down) {
+    	max-width: none;
+    	width: 100%;
+    }
+}
+
+.docs-search-wrapper {
+    position: relative;
+//  padding-right: 139px !important;
+
+	@include breakpoint(small down) {
+		display: inline-block !important;
+        position: relative;
+	    width: 100%;
+	}
+	
+
+}
+
+
+
+.docs-search:not(.tt-input),
+.tt-input,
+.tt-hint {
+    right: 0;
+    padding-left: 3rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0rem;
+    box-shadow: none;
+//  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.15);
+//  border-width: 1px 0;
+    font-size: 1.25rem;
+    height: 2rem;
+    font-weight: 200;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    border-bottom: none;
+
+    &:hover {
+//      box-shadow: none;
+    }
+
+    &:focus {
+//      border-width: 1px 0;
+//      border: none;
+        border: 1px solid #e0e0e0;
+        border-top: none;
+        border-bottom: none;
+        box-shadow: none;
+    }
+
+    @include breakpoint(small down) {
+    	max-width: auto;
+    	width: 100%;
+        border: 0;
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+
+        &:focus {
+            border: 0;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+    }
+}
+
+.tt-menu {
+    background: white;
+    width: 100%;
+    border: 1px solid #ccc;
+    
+    &[role="listbox"] {
+    	position: absolute;
+    	top: 100%;
+    	left: auto !important;
+    	right: 0px !important;
+    	width: 600px;
+    	z-index: 100;
+    	
+
+	    @include breakpoint(small down) {
+	    	max-width: none;
+	    	width: 100%;
+	    }
+    
+    }
+}
+
+.tt-suggestion {
+    @include clearfix;
+    padding: 0.5rem;
+
+    &:hover,
+    &.tt-cursor {
+        background: $primary-color;
+        color: #fff;
+        cursor: pointer;
+
+        .meta {
+            color: #fff;
+        }
+    }
+
+    .name {
+        font-weight: bold;
+    }
+    
+    .meta {
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        color: $dark-gray;
+        margin-left: 0.5rem;
+    }
+
+    .desc {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    @include breakpoint(medium) {
+        padding: 1rem;
+
+        .name {
+            float: left;
+            width: 40%;
+        }
+
+        .desc {
+            float: left;
+            width: 60%;
+        }
+    }
+}
+
+.tt-empty {
+    padding: 1rem;
+
+    &:before {
+        content: ':(';
+        font-weight: bold;
+        font-size: 2rem;
+        color: #999;
+        margin-left: 1rem;
+        margin-right: 2rem;
+    }
+}
+
+
+
+.secondary-bar {
+//  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.3);
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+
+}
+
+
+.changelog-link {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+    text-align: right;
+    margin-left: 0.25rem;
+    color: $primary-color;
+}
+
+

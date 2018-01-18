@@ -9,6 +9,13 @@ npm-debug.log
 .buildpath
 .project
 .settings
+
+# FE
+bower_components
+dist
+
+
+# dev files
 *_save*
 *.save*
 .scanner*

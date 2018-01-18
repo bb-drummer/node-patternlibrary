@@ -1,0 +1,15 @@
+.top-bar {
+    padding: 4px;
+    font-size: $body-fontsize;
+
+	&:not(.filter) .menu i.fa {
+	    @include breakpoint(small down) {
+		    left: calc(50% - 12px);
+		    position: relative;
+		    width: 24px;
+		    text-align: center;
+		    display: block;
+		}
+	}
+	
+}
