@@ -7,12 +7,12 @@
     "test": "mocha --compilers js:babel-register",
     "dev": "gulp"
   },
-  "author": "Björn Bartels <development@bjoernbartels.earth>",
+  "author": "Björn Bartels <coding@bjoernbartels.earth>",
   "license": "Apache-2.0",
   "bin": {},
   "dependencies": {
     "assert-dir-equal": "^1",
-    "chalk": "^2",
+    "chalk": "^2.3.1",
     "cheerio": "^0.22",
     "coveralls": "^3",
     "curl": "^0.1",
@@ -30,14 +30,13 @@
     "jsonfile": "^4",
     "kebab-case": "^1",
     "marked": "^0.3.9",
+    "minimatch": "^3.0.2",
     "mkdirp": "^0.5",
     "mocha": "^4",
     "mocha-lcov-reporter": "^1",
-    "minimatch": "^3.0.2",
     "multiline": "^1",
     "nopt": "^4",
-    "panini": "^1",
-    "query-string": "^5",
+    "query-string": "^5.1.0",
     "querystring": "^0.2",
     "require-dir": "^0.3",
     "sassdoc": "^2",
@@ -57,10 +56,10 @@
     "browser-sync": "^2",
     "chai-jquery": "^2",
     "clipboard": "^1",
-    "corejs-typeahead": "^1",
+    "corejs-typeahead": "^1.1.1",
     "eslint-html-reporter": "^0",
     "foundation-sites": "^6",
-    "gulp": "gulpjs/gulp#4.0",
+    "gulp": "github:gulpjs/gulp#4.0",
     "gulp-autoprefixer": "^3",
     "gulp-babel": "^6",
     "gulp-clean-css": "^3",
@@ -78,7 +77,7 @@
     "gulp-sass": "^2",
     "gulp-sass-lint": "^1",
     "gulp-scss-lint": "^0.4",
-    "gulp-sourcemaps": "^1",
+    "gulp-sourcemaps": "^1.12.1",
     "gulp-strip-debug": "^1",
     "gulp-uglify": "^1",
     "gulp-uncss": "^1",
@@ -94,7 +93,7 @@
     "modernizr": "^3",
     "motion-ui": "^1",
     "opener": "^1",
-    "panini": "^1",
+    "panini": "^1.6.1",
     "rename-files": "^0.0.2",
     "replace-in-file": "^2",
     "require-dir": "^0.3",
@@ -107,7 +106,7 @@
     "webpack": "^2.7.0",
     "webpack-stream": "^3",
     "what-input": "^4",
-    "yargs": "^3"
+    "yargs": "^3.32.0"
   },
   "repository": {
     "type": "git",
@@ -115,7 +114,7 @@
   },
   "bugs": {
     "url": "https://gitlab.bjoernbartels.earth/js/patternlibrary/issues",
-    "email": "development@bjoernbartels.earth"
+    "email": "coding@bjoernbartels.earth"
   },
   "babel": {
     "presets": [

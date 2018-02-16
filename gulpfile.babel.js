@@ -13,6 +13,7 @@ import webpackStream from 'webpack-stream';
 import webpack2      from 'webpack';
 import named         from 'vinyl-named';
 
+import concat           from 'gulp-concat';
 import rename           from 'gulp-rename';
 import replace          from 'replace-in-file';
 import requireDir       from 'require-dir';
@@ -43,6 +44,11 @@ function copy() {
   return gulp.src(PATHS.assets)
     .pipe(gulp.dest(PATHS.dist + '/assets'));
 }
+
+function copyDevData() {
+	  return gulp.src('gui/src/data/*.*')
+	    .pipe(gulp.dest(PATHS.dist + '/pl'));
+	}
 
 // Copy page templates into finished HTML files
 function pages() {
@@ -107,6 +113,8 @@ let webpackConfig = {
     ]
   }
 }
+
+
 // Combine JavaScript into one file
 // In production, the file is minified
 function javascript() {
@@ -120,6 +128,15 @@ function javascript() {
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
     .pipe(gulp.dest(PATHS.dist + '/assets/js'));
 }
+
+//Combine JavaScript dependencies into one file
+function javascriptVendors() {
+  return gulp.src(PATHS.vendors)
+    .pipe(concat('vendor.js'))
+    .pipe(gulp.dest(PATHS.dist + '/assets/js'));
+}
+
+
 
 // Copy images to the "dist" folder
 // In production, the images are compressed
@@ -200,7 +217,7 @@ gulp.task('libnamespace',
 
 //Build the "dist" folder by running all of the below tasks
 gulp.task('build',
- gulp.series(clean, 'libnamespace', gulp.parallel(pages, sass, javascript, images, copy), styleGuide));
+ gulp.series(clean, 'libnamespace', gulp.parallel(pages, sass, javascript, javascriptVendors, images, copy, copyDevData), styleGuide));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
@@ -210,6 +227,7 @@ gulp.task('default',
 // Watch for changes to static assets, pages, Sass, and JavaScript
 function watch() {
   gulp.watch(PATHS.assets, copy);
+  gulp.watch('gui/data/*.json').on('all', gulp.series(copyDevData, browser.reload));
   gulp.watch('gui/src/pages/**/*.html').on('all', gulp.series(pages, browser.reload));
   gulp.watch('gui/src/{layouts,partials}/**/*.html').on('all', gulp.series(resetPages, pages, browser.reload));
   gulp.watch('gui/src/assets/scss/**/*.scss').on('all', sass);

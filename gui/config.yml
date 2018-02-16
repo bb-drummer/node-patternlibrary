@@ -27,10 +27,16 @@ PATHS:
   sass:
     - "node_modules/plfoundation-sites/scss"
     - "node_modules/motion-ui/src"
+  # JS vendors
+  vendors:
+    - "node_modules/jquery/dist/jquery.min.js"
+    - "node_modules/plfoundation-sites/dist/js/plfoundation.min.js"
+    - "node_modules/corejs-typeahead/dist/bloodhound.min.js"
+    - "node_modules/corejs-typeahead/dist/typeahead.jquery.min.js"
   # Paths to JavaScript entry points for webpack to bundle modules
   entries:
     - "gui/src/assets/js/patternlibrary.js"
-    - "gui/src/assets/vendor/vendor.js"
+    #- "gui/src/assets/vendor/vendor.js"
     
 # namespace settings
 LIBNAMESPACE:

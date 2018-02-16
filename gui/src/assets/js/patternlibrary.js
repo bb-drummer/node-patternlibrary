@@ -1,21 +1,28 @@
 
-//import Siteapp from 'siteapp';
-//import Siteapp from '../../../../bower_components/siteapp/dist/js/siteapp';
-import Siteapp from '../../../../bower_components/siteapp/js/entries/siteapp';
-//require('../../../../bower_components/siteapp/dist/js/siteapp');
+//import jQuery              from '../../../../node_modules/jquery/src/jquery';
+//import PLFoundation        from '../../../../node_modules/plfoundation-sites/dist/js/plfoundation';
 
-const PatterlibraryGUI = class PatterlibraryGUI extends Siteapp {
-	
-};
 
-var Patterlibrary = new PatterlibraryGUI({
-	namespace: 'patternlibrary'
-});
+//import Bloodhound          from '../../../../node_modules/corejs-typeahead/dist/bloodhound';
+//import loadjQueryPlugin    from '../../../../node_modules/corejs-typeahead/dist/typeahead.bundle';
+//require('../../../../node_modules/corejs-typeahead');
+//window.Bloodhound = require("../../../../node_modules/corejs-typeahead/dist/bloodhound");
+//require("../../../../node_modules/corejs-typeahead/dist/typeahead.jquery");
+
+import Patternlibrary      from './app/core';
+
+import Search              from './components/search';
+Patternlibrary.Ui.register(Search, 'Search');
+
+
 
 $(document).ready(function () {
-	Patterlibrary.addToGlobal();
-	//Patterlibrary.addToJquery();
-	Patterlibrary.run();
+
+	$(document).plfoundation();
+	//$(document).patternlibrary();
+	
+	Patternlibrary.run();
+	
 });
 
 //export default Patterlibrary;
