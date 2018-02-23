@@ -46,7 +46,8 @@
     "supercollider": "^1",
     "through2": "^2",
     "uglify-js": "^2.6.0",
-    "vinyl-fs": "^3"
+    "vinyl-fs": "^3",
+    "d3": "^4"
   },
   "devDependencies": {
     "babel-core": "^6",

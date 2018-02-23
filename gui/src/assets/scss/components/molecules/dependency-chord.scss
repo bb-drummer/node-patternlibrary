@@ -1,0 +1,73 @@
+
+$dependencyChordLabelFontSize        : 1em;
+$dependencyChordLabelFontWeight      : 150;
+$dependencyChordLabelFontWeightHover : 500;
+$dependencyChordLabelColor           : #222222;
+$dependencyChordLabelColorHover      : #000000;
+
+$dependencyChordNodeSourceColor      : #2ca02c;
+$dependencyChordNodeTargetColor      : #d62728;
+
+$dependencyChordLinkColor            : steelblue;
+$dependencyChordLinkWidth            : 2px;
+$dependencyChordLinkSourceColor      : #d62728;
+$dependencyChordLinkTargetColor      : #2ca02c;
+
+[data-patternlibrary-dependency-chord] {
+
+    overflow: auto;
+    
+    .canvas {
+        margin-left    : auto;
+        margin-right   : auto;
+        display        : block;
+    }
+	.node {
+	    //font           : 300 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	    font-weight    : $dependencyChordLabelFontWeight;
+	    font-size      : $dependencyChordLabelFontSize;
+	    fill           : $dependencyChordLabelColor;
+		cursor         : help;
+	
+		&:hover {
+		    fill           : $dependencyChordLabelColorHover;
+		}
+		
+		&:hover,
+		&--source,
+		&--target {
+		    font-weight    : $dependencyChordLabelFontWeightHover;
+		}
+		
+		&--source {
+		    fill           : $dependencyChordNodeSourceColor;
+		}
+		
+		&--target {
+		    fill           : $dependencyChordNodeTargetColor;
+		}
+	}
+	
+	.link {
+	    stroke         : $dependencyChordLinkColor;
+	    stroke-opacity : 0.4;
+	    fill           : none;
+	    pointer-events : none;
+	    
+		&--source,
+		&--target {
+		    stroke-opacity : 1;
+		    stroke-width   : $dependencyChordLinkWidth;
+		}
+		
+		&--source {
+		    stroke         : $dependencyChordLinkSourceColor;
+		}
+		
+		&--target {
+		    stroke         : $dependencyChordLinkTargetColor;
+		}
+	}
+	
+
+}

@@ -7,7 +7,8 @@
                     "basic",
                     "typography"
                 ],
-                "uses": null
+                "uses": null,
+                "type": "atom"
             },
             "params": {
                 "class": [
@@ -20,7 +21,11 @@
                     "*"
                 ]
             },
-            "body": "<a class=\"{{class}}\" href=\"{{#if href}}{{href}}{{/if}}{{#unless href}}{{texthelper 'url'}}{{/unless}}\">{{#if label}}{{label}}{{/if}}{{#unless label}}{{texthelper 'word'}}{{/unless}}</a>"
+            "body": "<a class=\"{{class}}\" href=\"{{#if href}}{{href}}{{/if}}{{#unless href}}{{texthelper 'url'}}{{/unless}}\">{{#if label}}{{label}}{{/if}}{{#unless label}}{{texthelper 'word'}}{{/unless}}</a>\n ",
+            "usage": {
+                "count": 1,
+                "consumers": {}
+            }
         },
         "atom/modal-close-button": {
             "pattern": {
@@ -28,7 +33,8 @@
                 "categories": [
                     "button",
                     "modal"
-                ]
+                ],
+                "type": "atom"
             },
             "body": "<a class=\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\" href=\"javascript:return true;\" aria-label=\"Close modal\" data-close>\n  <span aria-hidden=\"true\">&times;</span>\n</a>"
         },
@@ -39,10 +45,11 @@
                     "basic",
                     "typography"
                 ],
-                "uses": null
+                "uses": null,
+                "type": "atom"
             },
             "params": {
-                "heading": [
+                "headlevel": [
                     "1",
                     "2",
                     "3",
@@ -58,9 +65,13 @@
                 ]
             },
             "defaults": {
-                "heading": "1"
+                "headlevel": "1"
             },
-            "body": "{{#unless heading}}\n<h{{defaults.heading}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{defaults.heading}}>\n{{/unless}}\n{{#if heading}}\n<h{{heading}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{heading}}>\n{{/if}}\n"
+            "body": "{{#unless headlevel}}\n<h{{defaults.headlevel}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{defaults.headlevel}}>\n{{/unless}}\n{{#if headlevel}}\n<h{{headlevel}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{headlevel}}>\n{{/if}}\n",
+            "usage": {
+                "count": 1,
+                "consumers": {}
+            }
         },
         "atom/text-paragraph": {
             "pattern": {
@@ -69,27 +80,33 @@
                     "basic",
                     "typography"
                 ],
-                "uses": null
+                "uses": null,
+                "type": "atom"
             },
             "params": {
                 "class": [
                     "*"
                 ]
             },
-            "body": "<p class=\"{{class}}\">{{texthelper 'normal'}}</p>"
+            "body": "<p class=\"{{class}}\">{{texthelper 'normal'}}</p>",
+            "usage": {
+                "count": 1,
+                "consumers": {}
+            }
         },
-        "molecule/article-teaser": {
+        "molecule/article-excerpt-toggle": {
             "pattern": {
-                "name": "molecule/article-teaser",
+                "name": "molecule/article-excerpt-toggle",
                 "categories": [
                     "typography",
                     "article"
                 ],
                 "uses": [
                     "atom/text-headline",
-                    "atom/text-paragraph",
+                    "molecule/text-excerpt-toggle",
                     "atom/link"
-                ]
+                ],
+                "type": "molecule"
             },
             "params": {
                 "class": [
@@ -106,51 +123,477 @@
                 ]
             },
             "defaults": {
-                "headline": "This is some article headline..."
+                "headline": "This is some article headline...",
+                "url": "https://domain.tld/"
             },
-            "body": "<article class=\"{{class}}\">\n    {{patternlibrary atom=\"text-headline\" text=headline}}\n    {{patternlibrary atom=\"text-paragraph\" text=content}}\n    {{patternlibrary atom=\"link\" href=url label=\"more\" class=\"more\"}}\n</article>"
+            "body": "<article class=\"{{class}}\">\n    {{PL atom=\"text-headline\" text=headline}}\n    {{PL molecule=\"text-excerpt-toggle\" text=content}}\n    {{PL atom=\"link\" href=url label=\"read more\" class=\"more\"}}\n</article>"
+        },
+        "molecule/article-teaser": {
+            "pattern": {
+                "name": "molecule/article-teaser",
+                "categories": [
+                    "typography",
+                    "article"
+                ],
+                "uses": [
+                    "atom/text-headline",
+                    "atom/text-paragraph",
+                    "atom/link"
+                ],
+                "type": "molecule"
+            },
+            "params": {
+                "class": [
+                    "*"
+                ],
+                "headline": [
+                    "*"
+                ],
+                "content": [
+                    "*"
+                ],
+                "url": [
+                    "*"
+                ]
+            },
+            "defaults": {
+                "headline": "This is some article headline...",
+                "url": "https://domain.tld/"
+            },
+            "body": "<article class=\"{{class}}\">\n    {{PL atom=\"text-headline\" text=headline}}\n    {{PL atom=\"text-paragraph\" text=content}}\n    {{PL atom=\"link\" href=url label=\"more\" class=\"more\"}}\n</article>"
+        },
+        "molecule/text-excerpt-toggle": {
+            "pattern": {
+                "name": "molecule/text-excerpt-toggle",
+                "categories": [
+                    "basic",
+                    "typography"
+                ],
+                "uses": [
+                    "atom/text-paragraph",
+                    "atom/link"
+                ],
+                "type": "molecule"
+            },
+            "params": {
+                "class": [
+                    "*"
+                ]
+            },
+            "body": "<p class=\"{{class}}\" data-text-excerpt-toggle>{{texthelper 'long'}}</p>\n<a href=\"#more\">show more</a>\n<a href=\"#less\">show less</a>",
+            "usage": {
+                "count": 1,
+                "consumers": {}
+            }
         }
     },
     "categories": [
         {
-            "name": "basic",
-            "slug": "basic"
+            "name": "article",
+            "slug": "article",
+            "patterns": {
+                "molecule/article-excerpt-toggle": {
+                    "pattern": {
+                        "name": "molecule/article-excerpt-toggle",
+                        "categories": [
+                            "typography",
+                            "article"
+                        ],
+                        "uses": [
+                            "atom/text-headline",
+                            "molecule/text-excerpt-toggle",
+                            "atom/link"
+                        ],
+                        "type": "molecule"
+                    },
+                    "params": {
+                        "class": [
+                            "*"
+                        ],
+                        "headline": [
+                            "*"
+                        ],
+                        "content": [
+                            "*"
+                        ],
+                        "url": [
+                            "*"
+                        ]
+                    },
+                    "defaults": {
+                        "headline": "This is some article headline...",
+                        "url": "https://domain.tld/"
+                    },
+                    "body": "<article class=\"{{class}}\">\n    {{PL atom=\"text-headline\" text=headline}}\n    {{PL molecule=\"text-excerpt-toggle\" text=content}}\n    {{PL atom=\"link\" href=url label=\"read more\" class=\"more\"}}\n</article>"
+                },
+                "molecule/article-teaser": {
+                    "pattern": {
+                        "name": "molecule/article-teaser",
+                        "categories": [
+                            "typography",
+                            "article"
+                        ],
+                        "uses": [
+                            "atom/text-headline",
+                            "atom/text-paragraph",
+                            "atom/link"
+                        ],
+                        "type": "molecule"
+                    },
+                    "params": {
+                        "class": [
+                            "*"
+                        ],
+                        "headline": [
+                            "*"
+                        ],
+                        "content": [
+                            "*"
+                        ],
+                        "url": [
+                            "*"
+                        ]
+                    },
+                    "defaults": {
+                        "headline": "This is some article headline...",
+                        "url": "https://domain.tld/"
+                    },
+                    "body": "<article class=\"{{class}}\">\n    {{PL atom=\"text-headline\" text=headline}}\n    {{PL atom=\"text-paragraph\" text=content}}\n    {{PL atom=\"link\" href=url label=\"more\" class=\"more\"}}\n</article>"
+                }
+            },
+            "patternsCount": 2
         },
         {
-            "name": "typography",
-            "slug": "typography"
+            "name": "basic",
+            "slug": "basic",
+            "patterns": {
+                "atom/link": {
+                    "pattern": {
+                        "name": "atom/link",
+                        "categories": [
+                            "basic",
+                            "typography"
+                        ],
+                        "uses": null,
+                        "type": "atom"
+                    },
+                    "params": {
+                        "class": [
+                            "*"
+                        ],
+                        "href": [
+                            "*"
+                        ],
+                        "label": [
+                            "*"
+                        ]
+                    },
+                    "body": "<a class=\"{{class}}\" href=\"{{#if href}}{{href}}{{/if}}{{#unless href}}{{texthelper 'url'}}{{/unless}}\">{{#if label}}{{label}}{{/if}}{{#unless label}}{{texthelper 'word'}}{{/unless}}</a>\n ",
+                    "usage": {
+                        "count": 1,
+                        "consumers": {}
+                    }
+                },
+                "atom/text-headline": {
+                    "pattern": {
+                        "name": "atom/text-headline",
+                        "categories": [
+                            "basic",
+                            "typography"
+                        ],
+                        "uses": null,
+                        "type": "atom"
+                    },
+                    "params": {
+                        "headlevel": [
+                            "1",
+                            "2",
+                            "3",
+                            "4",
+                            "5",
+                            "6"
+                        ],
+                        "class": [
+                            "*"
+                        ],
+                        "text": [
+                            "*"
+                        ]
+                    },
+                    "defaults": {
+                        "headlevel": "1"
+                    },
+                    "body": "{{#unless headlevel}}\n<h{{defaults.headlevel}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{defaults.headlevel}}>\n{{/unless}}\n{{#if headlevel}}\n<h{{headlevel}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{headlevel}}>\n{{/if}}\n",
+                    "usage": {
+                        "count": 1,
+                        "consumers": {}
+                    }
+                },
+                "atom/text-paragraph": {
+                    "pattern": {
+                        "name": "atom/text-paragraph",
+                        "categories": [
+                            "basic",
+                            "typography"
+                        ],
+                        "uses": null,
+                        "type": "atom"
+                    },
+                    "params": {
+                        "class": [
+                            "*"
+                        ]
+                    },
+                    "body": "<p class=\"{{class}}\">{{texthelper 'normal'}}</p>",
+                    "usage": {
+                        "count": 1,
+                        "consumers": {}
+                    }
+                },
+                "molecule/text-excerpt-toggle": {
+                    "pattern": {
+                        "name": "molecule/text-excerpt-toggle",
+                        "categories": [
+                            "basic",
+                            "typography"
+                        ],
+                        "uses": [
+                            "atom/text-paragraph",
+                            "atom/link"
+                        ],
+                        "type": "molecule"
+                    },
+                    "params": {
+                        "class": [
+                            "*"
+                        ]
+                    },
+                    "body": "<p class=\"{{class}}\" data-text-excerpt-toggle>{{texthelper 'long'}}</p>\n<a href=\"#more\">show more</a>\n<a href=\"#less\">show less</a>",
+                    "usage": {
+                        "count": 1,
+                        "consumers": {}
+                    }
+                }
+            },
+            "patternsCount": 4
         },
         {
             "name": "button",
-            "slug": "button"
+            "slug": "button",
+            "patterns": {
+                "atom/modal-close-button": {
+                    "pattern": {
+                        "name": "atom/modal-close-button",
+                        "categories": [
+                            "button",
+                            "modal"
+                        ],
+                        "type": "atom"
+                    },
+                    "body": "<a class=\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\" href=\"javascript:return true;\" aria-label=\"Close modal\" data-close>\n  <span aria-hidden=\"true\">&times;</span>\n</a>"
+                }
+            },
+            "patternsCount": 1
         },
         {
             "name": "modal",
-            "slug": "modal"
-        },
-        {
-            "name": "basic",
-            "slug": "basic"
+            "slug": "modal",
+            "patterns": {
+                "atom/modal-close-button": {
+                    "pattern": {
+                        "name": "atom/modal-close-button",
+                        "categories": [
+                            "button",
+                            "modal"
+                        ],
+                        "type": "atom"
+                    },
+                    "body": "<a class=\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\" href=\"javascript:return true;\" aria-label=\"Close modal\" data-close>\n  <span aria-hidden=\"true\">&times;</span>\n</a>"
+                }
+            },
+            "patternsCount": 1
         },
         {
             "name": "typography",
-            "slug": "typography"
-        },
-        {
-            "name": "basic",
-            "slug": "basic"
-        },
-        {
-            "name": "typography",
-            "slug": "typography"
-        },
-        {
-            "name": "typography",
-            "slug": "typography"
-        },
-        {
-            "name": "article",
-            "slug": "article"
+            "slug": "typography",
+            "patterns": {
+                "atom/link": {
+                    "pattern": {
+                        "name": "atom/link",
+                        "categories": [
+                            "basic",
+                            "typography"
+                        ],
+                        "uses": null,
+                        "type": "atom"
+                    },
+                    "params": {
+                        "class": [
+                            "*"
+                        ],
+                        "href": [
+                            "*"
+                        ],
+                        "label": [
+                            "*"
+                        ]
+                    },
+                    "body": "<a class=\"{{class}}\" href=\"{{#if href}}{{href}}{{/if}}{{#unless href}}{{texthelper 'url'}}{{/unless}}\">{{#if label}}{{label}}{{/if}}{{#unless label}}{{texthelper 'word'}}{{/unless}}</a>\n ",
+                    "usage": {
+                        "count": 1,
+                        "consumers": {}
+                    }
+                },
+                "atom/text-headline": {
+                    "pattern": {
+                        "name": "atom/text-headline",
+                        "categories": [
+                            "basic",
+                            "typography"
+                        ],
+                        "uses": null,
+                        "type": "atom"
+                    },
+                    "params": {
+                        "headlevel": [
+                            "1",
+                            "2",
+                            "3",
+                            "4",
+                            "5",
+                            "6"
+                        ],
+                        "class": [
+                            "*"
+                        ],
+                        "text": [
+                            "*"
+                        ]
+                    },
+                    "defaults": {
+                        "headlevel": "1"
+                    },
+                    "body": "{{#unless headlevel}}\n<h{{defaults.headlevel}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{defaults.headlevel}}>\n{{/unless}}\n{{#if headlevel}}\n<h{{headlevel}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{headlevel}}>\n{{/if}}\n",
+                    "usage": {
+                        "count": 1,
+                        "consumers": {}
+                    }
+                },
+                "atom/text-paragraph": {
+                    "pattern": {
+                        "name": "atom/text-paragraph",
+                        "categories": [
+                            "basic",
+                            "typography"
+                        ],
+                        "uses": null,
+                        "type": "atom"
+                    },
+                    "params": {
+                        "class": [
+                            "*"
+                        ]
+                    },
+                    "body": "<p class=\"{{class}}\">{{texthelper 'normal'}}</p>",
+                    "usage": {
+                        "count": 1,
+                        "consumers": {}
+                    }
+                },
+                "molecule/article-excerpt-toggle": {
+                    "pattern": {
+                        "name": "molecule/article-excerpt-toggle",
+                        "categories": [
+                            "typography",
+                            "article"
+                        ],
+                        "uses": [
+                            "atom/text-headline",
+                            "molecule/text-excerpt-toggle",
+                            "atom/link"
+                        ],
+                        "type": "molecule"
+                    },
+                    "params": {
+                        "class": [
+                            "*"
+                        ],
+                        "headline": [
+                            "*"
+                        ],
+                        "content": [
+                            "*"
+                        ],
+                        "url": [
+                            "*"
+                        ]
+                    },
+                    "defaults": {
+                        "headline": "This is some article headline...",
+                        "url": "https://domain.tld/"
+                    },
+                    "body": "<article class=\"{{class}}\">\n    {{PL atom=\"text-headline\" text=headline}}\n    {{PL molecule=\"text-excerpt-toggle\" text=content}}\n    {{PL atom=\"link\" href=url label=\"read more\" class=\"more\"}}\n</article>"
+                },
+                "molecule/article-teaser": {
+                    "pattern": {
+                        "name": "molecule/article-teaser",
+                        "categories": [
+                            "typography",
+                            "article"
+                        ],
+                        "uses": [
+                            "atom/text-headline",
+                            "atom/text-paragraph",
+                            "atom/link"
+                        ],
+                        "type": "molecule"
+                    },
+                    "params": {
+                        "class": [
+                            "*"
+                        ],
+                        "headline": [
+                            "*"
+                        ],
+                        "content": [
+                            "*"
+                        ],
+                        "url": [
+                            "*"
+                        ]
+                    },
+                    "defaults": {
+                        "headline": "This is some article headline...",
+                        "url": "https://domain.tld/"
+                    },
+                    "body": "<article class=\"{{class}}\">\n    {{PL atom=\"text-headline\" text=headline}}\n    {{PL atom=\"text-paragraph\" text=content}}\n    {{PL atom=\"link\" href=url label=\"more\" class=\"more\"}}\n</article>"
+                },
+                "molecule/text-excerpt-toggle": {
+                    "pattern": {
+                        "name": "molecule/text-excerpt-toggle",
+                        "categories": [
+                            "basic",
+                            "typography"
+                        ],
+                        "uses": [
+                            "atom/text-paragraph",
+                            "atom/link"
+                        ],
+                        "type": "molecule"
+                    },
+                    "params": {
+                        "class": [
+                            "*"
+                        ]
+                    },
+                    "body": "<p class=\"{{class}}\" data-text-excerpt-toggle>{{texthelper 'long'}}</p>\n<a href=\"#more\">show more</a>\n<a href=\"#less\">show less</a>",
+                    "usage": {
+                        "count": 1,
+                        "consumers": {}
+                    }
+                }
+            },
+            "patternsCount": 6
         }
     ],
     "tree": [
@@ -520,7 +963,7 @@
                         "context": {
                             "type": "variable",
                             "name": "link-palette",
-                            "value": "$plfoundation-palette",
+                            "value": "$foundation-palette",
                             "scope": "default",
                             "line": {
                                 "start": 60,
@@ -974,18 +1417,76 @@
             "js": null,
             "__fm": {
                 "js": null,
-                "sass": "src/partials/atoms/link/styles.scss",
+                "sass": "styles.scss",
                 "description": "an inline link",
                 "title": "atom/link"
             },
-            "docs": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"markup\" class=\"docs-heading\" data-magellan-target=\"markup\">Markup<a class=\"docs-heading-icon\" href=\"#markup\"></a></h2><div class=\"docs-code\" data-docs-code><pre><code class=\"html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#\"</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{your classnames}\"</span>&gt;</span>some link label<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span></code></pre></div>\n\n<div class=\"docs-code-live\"><a href=\"#\" class=\"{your classnames}\">some link label</a></div>",
-            "fileName": "src/partials/atoms/link/readme.md",
+            "docs": "<p>Here you can either give a rather brief description of your pattern or provide extended usage information.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"a-markup-example\" class=\"docs-heading\" data-magellan-target=\"a-markup-example\">A Markup Example<a class=\"docs-heading-icon\" href=\"#a-markup-example\"></a></h2><div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#\"</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{your classnames}\"</span>&gt;</span>some link label<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n</code>\n</pre>\n</div>\n\n<div class=\"docs-code-live\"><a href=\"#\" class=\"{your classnames}\">some link label</a></div>",
+            "fileName": "src/patterns/atoms/link/readme.md",
             "_adapterData": {
-                "sass": "src/partials/atoms/link/styles.scss"
+                "sass": "styles.scss",
+                "source": "atoms/link/index.html",
+                "example": "atoms/link/index.html",
+                "specs": "atoms/link/index.html",
+                "changelog": "atoms/link/changelog.md",
+                "gitinfo": "atoms/link",
+                "tests": "atoms/link/test.js"
             },
-            "relatedFiles": [
-                "src/partials/atoms/link/styles.scss"
-            ]
+            "relatedFiles": [],
+            "source": {
+                "highlight": "<div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{{class}}\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"{{#if href}}{{href}}{{/if}}{{#unless href}}{{texthelper 'url'}}{{/unless}}\"</span>&gt;</span>{{#if label}}{{label}}{{/if}}{{#unless label}}{{texthelper 'word'}}{{/unless}}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n \n</code>\n</pre>\n</div>",
+                "escaped": "&lt;a class=&quot;{{class}}&quot; href=&quot;{{#if href}}{{href}}{{/if}}{{#unless href}}{{texthelper &#39;url&#39;}}{{/unless}}&quot;&gt;{{#if label}}{{label}}{{/if}}{{#unless label}}{{texthelper &#39;word&#39;}}{{/unless}}&lt;/a&gt;\n ",
+                "raw": "<a class=\"{{class}}\" href=\"{{#if href}}{{href}}{{/if}}{{#unless href}}{{texthelper 'url'}}{{/unless}}\">{{#if label}}{{label}}{{/if}}{{#unless label}}{{texthelper 'word'}}{{/unless}}</a>\n "
+            },
+            "example": {
+                "highlight": "<div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"https://www.example.com\"</span>&gt;</span>Loremipsum<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n \n</code>\n</pre>\n</div>",
+                "escaped": "&lt;a class=&quot;&quot; href=&quot;https://www.example.com&quot;&gt;Loremipsum&lt;/a&gt;\n ",
+                "raw": "<a class=\"\" href=\"https://www.example.com\">Loremipsum</a>\n "
+            },
+            "specs": {
+                "pattern": {
+                    "name": "atom/link",
+                    "categories": [
+                        "basic",
+                        "typography"
+                    ],
+                    "uses": null,
+                    "type": "atom"
+                },
+                "params": {
+                    "class": [
+                        "*"
+                    ],
+                    "href": [
+                        "*"
+                    ],
+                    "label": [
+                        "*"
+                    ]
+                }
+            },
+            "changelog": false,
+            "tests": false,
+            "gitinfo": {
+                "log": {
+                    "data": {
+                        "08/09/2017": [
+                            {
+                                "date": "08/09/2017",
+                                "timestamp": 1504895800,
+                                "author": "Björn Bartels",
+                                "email": "bartels@dragon-projects.net",
+                                "message": "rename partial path, fix path issues",
+                                "commit": "ae78f01",
+                                "hash": "ae78f01e1e8557bf3af5693d7acccf174ab4fe76",
+                                "body": null
+                            }
+                        ]
+                    },
+                    "list": "<h3 id=\"08-09-2017\" class=\"docs-heading\">08/09/2017<a class=\"docs-heading-icon\" href=\"#08-09-2017\"></a></h3><ul>\n<li>rename partial path, fix path issues (ae78f01, by <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a>, <a href=\"&#109;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#x62;&#97;&#x72;&#116;&#x65;&#x6c;&#115;&#64;&#100;&#x72;&#97;&#x67;&#x6f;&#x6e;&#x2d;&#112;&#114;&#x6f;&#x6a;&#101;&#99;&#x74;&#115;&#46;&#110;&#101;&#116;\">&#x62;&#97;&#x72;&#116;&#x65;&#x6c;&#115;&#64;&#100;&#x72;&#97;&#x67;&#x6f;&#x6e;&#x2d;&#112;&#114;&#x6f;&#x6a;&#101;&#99;&#x74;&#115;&#46;&#110;&#101;&#116;</a>)</li>\n</ul>\n",
+                    "full": "<h3 id=\"fri-8-sep-2017-20-36-40-0200\" class=\"docs-heading\">Fri, 8 Sep 2017 20:36:40 +0200<a class=\"docs-heading-icon\" href=\"#fri-8-sep-2017-20-36-40-0200\"></a></h3><ul>\n<li><p>Author: <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a> (<a href=\"&#109;&#x61;&#105;&#108;&#x74;&#x6f;&#x3a;&#98;&#x61;&#114;&#x74;&#x65;&#x6c;&#115;&#64;&#x64;&#114;&#x61;&#x67;&#x6f;&#x6e;&#x2d;&#112;&#x72;&#111;&#106;&#x65;&#99;&#116;&#115;&#46;&#110;&#x65;&#116;\">&#98;&#x61;&#114;&#x74;&#x65;&#x6c;&#115;&#64;&#x64;&#114;&#x61;&#x67;&#x6f;&#x6e;&#x2d;&#112;&#x72;&#111;&#106;&#x65;&#99;&#116;&#115;&#46;&#110;&#x65;&#116;</a>)</p>\n<p>Commit: ae78f01e1e8557bf3af5693d7acccf174ab4fe76</p>\n<p>Message: rename partial path, fix path issues</p>\n</li>\n</ul>\n"
+                }
+            }
         },
         {
             "title": "atom/modal-close-button",
@@ -997,26 +1498,72 @@
                         "kind": "package",
                         "longname": "package:undefined",
                         "files": [
-                            "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/atoms/modal-close-button/module.js"
+                            "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/atoms/modal-close-button/module.js"
                         ]
                     }
                 ]
             },
             "__fm": {
-                "js": "src/partials/atoms/modal-close-button/module.js",
-                "sass": "src/partials/atoms/modal-close-button/styles.scss",
+                "js": "module.js",
+                "sass": "styles.scss",
                 "description": "\"X\" button to close a modal window",
                 "title": "atom/modal-close-button"
             },
-            "docs": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"markup\" class=\"docs-heading\" data-magellan-target=\"markup\">Markup<a class=\"docs-heading-icon\" href=\"#markup\"></a></h2><div class=\"docs-code\" data-docs-code><pre><code class=\"html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"javascript:return true;\"</span> <span class=\"hljs-attr\">aria-label</span>=<span class=\"hljs-string\">\"Close modal\"</span> <span class=\"hljs-attr\">data-close</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">aria-hidden</span>=<span class=\"hljs-string\">\"true\"</span>&gt;</span>&amp;times;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span></code></pre></div>\n\n<div class=\"docs-code-live\"><a class=\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\" href=\"javascript:return true;\" aria-label=\"Close modal\" data-close>\n  <span aria-hidden=\"true\">&times;</span>\n</a></div>",
-            "fileName": "src/partials/atoms/modal-close-button/readme.md",
+            "docs": "<p>Here you can either give a rather brief description of your pattern or provide extended usage information.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"a-markup-example\" class=\"docs-heading\" data-magellan-target=\"a-markup-example\">A Markup Example<a class=\"docs-heading-icon\" href=\"#a-markup-example\"></a></h2><div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"javascript:return true;\"</span> <span class=\"hljs-attr\">aria-label</span>=<span class=\"hljs-string\">\"Close modal\"</span> <span class=\"hljs-attr\">data-close</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">aria-hidden</span>=<span class=\"hljs-string\">\"true\"</span>&gt;</span>&amp;times;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n</code>\n</pre>\n</div>\n\n<div class=\"docs-code-live\"><a class=\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\" href=\"javascript:return true;\" aria-label=\"Close modal\" data-close>\n  <span aria-hidden=\"true\">&times;</span>\n</a></div>",
+            "fileName": "src/patterns/atoms/modal-close-button/readme.md",
             "_adapterData": {
-                "sass": "src/partials/atoms/modal-close-button/styles.scss",
-                "js": "src/partials/atoms/modal-close-button/module.js"
+                "js": "module.js",
+                "sass": "styles.scss",
+                "source": "atoms/modal-close-button/index.html",
+                "example": "atoms/modal-close-button/index.html",
+                "specs": "atoms/modal-close-button/index.html",
+                "changelog": "atoms/modal-close-button/changelog.md",
+                "gitinfo": "atoms/modal-close-button",
+                "tests": "atoms/modal-close-button/test.js"
             },
-            "relatedFiles": [
-                "src/partials/atoms/modal-close-button/module.js"
-            ]
+            "relatedFiles": [],
+            "source": {
+                "highlight": "<div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"javascript:return true;\"</span> <span class=\"hljs-attr\">aria-label</span>=<span class=\"hljs-string\">\"Close modal\"</span> <span class=\"hljs-attr\">data-close</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">aria-hidden</span>=<span class=\"hljs-string\">\"true\"</span>&gt;</span>&amp;times;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n</code>\n</pre>\n</div>",
+                "escaped": "&lt;a class=&quot;btn btn-icon btn-cta-xhr cta-xhr-modal-close&quot; href=&quot;javascript:return true;&quot; aria-label=&quot;Close modal&quot; data-close&gt;\n  &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;\n&lt;/a&gt;",
+                "raw": "<a class=\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\" href=\"javascript:return true;\" aria-label=\"Close modal\" data-close>\n  <span aria-hidden=\"true\">&times;</span>\n</a>"
+            },
+            "example": {
+                "highlight": "<div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"javascript:return true;\"</span> <span class=\"hljs-attr\">aria-label</span>=<span class=\"hljs-string\">\"Close modal\"</span> <span class=\"hljs-attr\">data-close</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">span</span> <span class=\"hljs-attr\">aria-hidden</span>=<span class=\"hljs-string\">\"true\"</span>&gt;</span>&amp;times;<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">span</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n</code>\n</pre>\n</div>",
+                "escaped": "&lt;a class=&quot;btn btn-icon btn-cta-xhr cta-xhr-modal-close&quot; href=&quot;javascript:return true;&quot; aria-label=&quot;Close modal&quot; data-close&gt;\n  &lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;\n&lt;/a&gt;",
+                "raw": "<a class=\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\" href=\"javascript:return true;\" aria-label=\"Close modal\" data-close>\n  <span aria-hidden=\"true\">&times;</span>\n</a>"
+            },
+            "specs": {
+                "pattern": {
+                    "name": "atom/modal-close-button",
+                    "categories": [
+                        "button",
+                        "modal"
+                    ],
+                    "type": "atom"
+                }
+            },
+            "changelog": false,
+            "tests": false,
+            "gitinfo": {
+                "log": {
+                    "data": {
+                        "08/09/2017": [
+                            {
+                                "date": "08/09/2017",
+                                "timestamp": 1504895800,
+                                "author": "Björn Bartels",
+                                "email": "bartels@dragon-projects.net",
+                                "message": "rename partial path, fix path issues",
+                                "commit": "ae78f01",
+                                "hash": "ae78f01e1e8557bf3af5693d7acccf174ab4fe76",
+                                "body": null
+                            }
+                        ]
+                    },
+                    "list": "<h3 id=\"08-09-2017\" class=\"docs-heading\">08/09/2017<a class=\"docs-heading-icon\" href=\"#08-09-2017\"></a></h3><ul>\n<li>rename partial path, fix path issues (ae78f01, by <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a>, <a href=\"&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#58;&#x62;&#97;&#114;&#116;&#x65;&#x6c;&#x73;&#x40;&#100;&#114;&#x61;&#x67;&#111;&#x6e;&#45;&#112;&#x72;&#111;&#106;&#101;&#x63;&#x74;&#x73;&#x2e;&#110;&#101;&#x74;\">&#x62;&#97;&#114;&#116;&#x65;&#x6c;&#x73;&#x40;&#100;&#114;&#x61;&#x67;&#111;&#x6e;&#45;&#112;&#x72;&#111;&#106;&#101;&#x63;&#x74;&#x73;&#x2e;&#110;&#101;&#x74;</a>)</li>\n</ul>\n",
+                    "full": "<h3 id=\"fri-8-sep-2017-20-36-40-0200\" class=\"docs-heading\">Fri, 8 Sep 2017 20:36:40 +0200<a class=\"docs-heading-icon\" href=\"#fri-8-sep-2017-20-36-40-0200\"></a></h3><ul>\n<li><p>Author: <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a> (<a href=\"&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#x3a;&#98;&#97;&#114;&#x74;&#101;&#x6c;&#115;&#64;&#x64;&#x72;&#97;&#103;&#111;&#110;&#x2d;&#x70;&#x72;&#111;&#106;&#x65;&#99;&#x74;&#115;&#x2e;&#x6e;&#101;&#x74;\">&#98;&#97;&#114;&#x74;&#101;&#x6c;&#115;&#64;&#x64;&#x72;&#97;&#103;&#111;&#110;&#x2d;&#x70;&#x72;&#111;&#106;&#x65;&#99;&#x74;&#115;&#x2e;&#x6e;&#101;&#x74;</a>)</p>\n<p>Commit: ae78f01e1e8557bf3af5693d7acccf174ab4fe76</p>\n<p>Message: rename partial path, fix path issues</p>\n</li>\n</ul>\n"
+                }
+            }
         },
         {
             "title": "atom/text-headline",
@@ -1025,18 +1572,84 @@
             "js": null,
             "__fm": {
                 "js": null,
-                "sass": "src/partials/atoms/text-headline/styles.scss",
+                "sass": "styles.scss",
                 "description": "an inline headline",
                 "title": "atom/text-headline"
             },
-            "docs": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"markup\" class=\"docs-heading\" data-magellan-target=\"markup\">Markup<a class=\"docs-heading-icon\" href=\"#markup\"></a></h2><div class=\"docs-code\" data-docs-code><pre><code class=\"html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">h1</span>&gt;</span>some awesome headline<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">h1</span>&gt;</span></code></pre></div>\n\n<div class=\"docs-code-live\"><h1>some awesome headline</h1></div>",
-            "fileName": "src/partials/atoms/text-headline/readme.md",
+            "docs": "<p>Here you can either give a rather brief description of your pattern or provide extended usage information.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"a-markup-example\" class=\"docs-heading\" data-magellan-target=\"a-markup-example\">A Markup Example<a class=\"docs-heading-icon\" href=\"#a-markup-example\"></a></h2><div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">h1</span>&gt;</span>some awesome headline<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">h1</span>&gt;</span>\n</code>\n</pre>\n</div>\n\n<div class=\"docs-code-live\"><h1>some awesome headline</h1></div>",
+            "fileName": "src/patterns/atoms/text-headline/readme.md",
             "_adapterData": {
-                "sass": "src/partials/atoms/text-headline/styles.scss"
+                "sass": "styles.scss",
+                "source": "atoms/text-headline/index.html",
+                "example": "atoms/text-headline/index.html",
+                "specs": "atoms/text-headline/index.html",
+                "changelog": "atoms/text-headline/changelog.md",
+                "gitinfo": "atoms/text-headline",
+                "tests": "atoms/text-headline/test.js"
             },
-            "relatedFiles": [
-                "src/partials/atoms/text-headline/styles.scss"
-            ]
+            "relatedFiles": [],
+            "source": {
+                "highlight": "<div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n{{#unless headlevel}}\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">h{{defaults.headlevel}}</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{{class}}\"</span>&gt;</span>{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">h{{defaults.headlevel}}</span>&gt;</span>\n{{/unless}}\n{{#if headlevel}}\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">h{{headlevel}}</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{{class}}\"</span>&gt;</span>{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">h{{headlevel}}</span>&gt;</span>\n{{/if}}\n\n</code>\n</pre>\n</div>",
+                "escaped": "{{#unless headlevel}}\n&lt;h{{defaults.headlevel}} class=&quot;{{class}}&quot;&gt;{{#unless text}}{{texthelper &#39;words&#39;}}{{/unless}}{{#if text}}{{text}}{{/if}}&lt;/h{{defaults.headlevel}}&gt;\n{{/unless}}\n{{#if headlevel}}\n&lt;h{{headlevel}} class=&quot;{{class}}&quot;&gt;{{#unless text}}{{texthelper &#39;words&#39;}}{{/unless}}{{#if text}}{{text}}{{/if}}&lt;/h{{headlevel}}&gt;\n{{/if}}\n",
+                "raw": "{{#unless headlevel}}\n<h{{defaults.headlevel}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{defaults.headlevel}}>\n{{/unless}}\n{{#if headlevel}}\n<h{{headlevel}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{headlevel}}>\n{{/if}}\n"
+            },
+            "example": {
+                "highlight": "<div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">h1</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span>&gt;</span>Lorem ipsum dolor sit amet<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">h1</span>&gt;</span>\n\n</code>\n</pre>\n</div>",
+                "escaped": "&lt;h1 class=&quot;&quot;&gt;Lorem ipsum dolor sit amet&lt;/h1&gt;\n",
+                "raw": "<h1 class=\"\">Lorem ipsum dolor sit amet</h1>\n"
+            },
+            "specs": {
+                "pattern": {
+                    "name": "atom/text-headline",
+                    "categories": [
+                        "basic",
+                        "typography"
+                    ],
+                    "uses": null,
+                    "type": "atom"
+                },
+                "params": {
+                    "headlevel": [
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "6"
+                    ],
+                    "class": [
+                        "*"
+                    ],
+                    "text": [
+                        "*"
+                    ]
+                },
+                "defaults": {
+                    "headlevel": "1"
+                }
+            },
+            "changelog": false,
+            "tests": false,
+            "gitinfo": {
+                "log": {
+                    "data": {
+                        "08/09/2017": [
+                            {
+                                "date": "08/09/2017",
+                                "timestamp": 1504895800,
+                                "author": "Björn Bartels",
+                                "email": "bartels@dragon-projects.net",
+                                "message": "rename partial path, fix path issues",
+                                "commit": "ae78f01",
+                                "hash": "ae78f01e1e8557bf3af5693d7acccf174ab4fe76",
+                                "body": null
+                            }
+                        ]
+                    },
+                    "list": "<h3 id=\"08-09-2017\" class=\"docs-heading\">08/09/2017<a class=\"docs-heading-icon\" href=\"#08-09-2017\"></a></h3><ul>\n<li>rename partial path, fix path issues (ae78f01, by <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a>, <a href=\"&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;&#x62;&#x61;&#x72;&#x74;&#x65;&#108;&#115;&#64;&#100;&#x72;&#97;&#103;&#x6f;&#x6e;&#45;&#112;&#114;&#x6f;&#106;&#101;&#x63;&#x74;&#x73;&#x2e;&#110;&#x65;&#116;\">&#x62;&#x61;&#x72;&#x74;&#x65;&#108;&#115;&#64;&#100;&#x72;&#97;&#103;&#x6f;&#x6e;&#45;&#112;&#114;&#x6f;&#106;&#101;&#x63;&#x74;&#x73;&#x2e;&#110;&#x65;&#116;</a>)</li>\n</ul>\n",
+                    "full": "<h3 id=\"fri-8-sep-2017-20-36-40-0200\" class=\"docs-heading\">Fri, 8 Sep 2017 20:36:40 +0200<a class=\"docs-heading-icon\" href=\"#fri-8-sep-2017-20-36-40-0200\"></a></h3><ul>\n<li><p>Author: <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a> (<a href=\"&#x6d;&#97;&#105;&#108;&#x74;&#x6f;&#58;&#x62;&#x61;&#x72;&#x74;&#x65;&#x6c;&#115;&#x40;&#x64;&#x72;&#97;&#x67;&#x6f;&#110;&#45;&#x70;&#114;&#x6f;&#x6a;&#101;&#99;&#116;&#115;&#x2e;&#110;&#101;&#x74;\">&#x62;&#x61;&#x72;&#x74;&#x65;&#x6c;&#115;&#x40;&#x64;&#x72;&#97;&#x67;&#x6f;&#110;&#45;&#x70;&#114;&#x6f;&#x6a;&#101;&#99;&#116;&#115;&#x2e;&#110;&#101;&#x74;</a>)</p>\n<p>Commit: ae78f01e1e8557bf3af5693d7acccf174ab4fe76</p>\n<p>Message: rename partial path, fix path issues</p>\n</li>\n</ul>\n"
+                }
+            }
         },
         {
             "title": "atom/text-paragraph",
@@ -1045,64 +1658,301 @@
             "js": null,
             "__fm": {
                 "js": null,
-                "sass": "src/partials/atoms/text-paragraph/styles.scss",
+                "sass": "styles.scss",
                 "description": "an inline text paragraph",
                 "title": "atom/text-paragraph"
             },
-            "docs": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"markup\" class=\"docs-heading\" data-magellan-target=\"markup\">Markup<a class=\"docs-heading-icon\" href=\"#markup\"></a></h2><div class=\"docs-code\" data-docs-code><pre><code class=\"html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum \n    inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda \n    error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span></code></pre></div>\n\n<div class=\"docs-code-live\"><p>\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum \n    inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda \n    error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.\n</p></div>",
-            "fileName": "src/partials/atoms/text-paragraph/readme.md",
+            "docs": "<p>Here you can either give a rather brief description of your pattern or provide extended usage information.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"a-markup-example\" class=\"docs-heading\" data-magellan-target=\"a-markup-example\">A Markup Example<a class=\"docs-heading-icon\" href=\"#a-markup-example\"></a></h2><div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum \n    inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda \n    error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n</code>\n</pre>\n</div>\n\n<div class=\"docs-code-live\"><p>\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum \n    inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda \n    error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.\n</p></div>",
+            "fileName": "src/patterns/atoms/text-paragraph/readme.md",
             "_adapterData": {
-                "sass": "src/partials/atoms/text-paragraph/styles.scss"
+                "sass": "styles.scss",
+                "source": "atoms/text-paragraph/index.html",
+                "example": "atoms/text-paragraph/index.html",
+                "specs": "atoms/text-paragraph/index.html",
+                "changelog": "atoms/text-paragraph/changelog.md",
+                "gitinfo": "atoms/text-paragraph",
+                "tests": "atoms/text-paragraph/test.js"
             },
-            "relatedFiles": [
-                "src/partials/atoms/text-paragraph/styles.scss"
-            ]
+            "relatedFiles": [],
+            "source": {
+                "highlight": "<div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{{class}}\"</span>&gt;</span>{{texthelper 'normal'}}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n</code>\n</pre>\n</div>",
+                "escaped": "&lt;p class=&quot;{{class}}&quot;&gt;{{texthelper &#39;normal&#39;}}&lt;/p&gt;",
+                "raw": "<p class=\"{{class}}\">{{texthelper 'normal'}}</p>"
+            },
+            "example": {
+                "highlight": "<div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span>&gt;</span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet.<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n</code>\n</pre>\n</div>",
+                "escaped": "&lt;p class=&quot;&quot;&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet.&lt;/p&gt;",
+                "raw": "<p class=\"\">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet.</p>"
+            },
+            "specs": {
+                "pattern": {
+                    "name": "atom/text-paragraph",
+                    "categories": [
+                        "basic",
+                        "typography"
+                    ],
+                    "uses": null,
+                    "type": "atom"
+                },
+                "params": {
+                    "class": [
+                        "*"
+                    ]
+                }
+            },
+            "changelog": false,
+            "tests": false,
+            "gitinfo": {
+                "log": {
+                    "data": {
+                        "08/09/2017": [
+                            {
+                                "date": "08/09/2017",
+                                "timestamp": 1504895800,
+                                "author": "Björn Bartels",
+                                "email": "bartels@dragon-projects.net",
+                                "message": "rename partial path, fix path issues",
+                                "commit": "ae78f01",
+                                "hash": "ae78f01e1e8557bf3af5693d7acccf174ab4fe76",
+                                "body": null
+                            }
+                        ]
+                    },
+                    "list": "<h3 id=\"08-09-2017\" class=\"docs-heading\">08/09/2017<a class=\"docs-heading-icon\" href=\"#08-09-2017\"></a></h3><ul>\n<li>rename partial path, fix path issues (ae78f01, by <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a>, <a href=\"&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#58;&#x62;&#x61;&#x72;&#x74;&#101;&#x6c;&#x73;&#64;&#x64;&#x72;&#97;&#103;&#111;&#110;&#x2d;&#112;&#114;&#111;&#106;&#x65;&#99;&#x74;&#x73;&#46;&#x6e;&#101;&#x74;\">&#x62;&#x61;&#x72;&#x74;&#101;&#x6c;&#x73;&#64;&#x64;&#x72;&#97;&#103;&#111;&#110;&#x2d;&#112;&#114;&#111;&#106;&#x65;&#99;&#x74;&#x73;&#46;&#x6e;&#101;&#x74;</a>)</li>\n</ul>\n",
+                    "full": "<h3 id=\"fri-8-sep-2017-20-36-40-0200\" class=\"docs-heading\">Fri, 8 Sep 2017 20:36:40 +0200<a class=\"docs-heading-icon\" href=\"#fri-8-sep-2017-20-36-40-0200\"></a></h3><ul>\n<li><p>Author: <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a> (<a href=\"&#109;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#98;&#x61;&#x72;&#116;&#101;&#x6c;&#115;&#64;&#x64;&#x72;&#x61;&#103;&#x6f;&#x6e;&#x2d;&#112;&#114;&#x6f;&#106;&#101;&#x63;&#x74;&#x73;&#46;&#110;&#101;&#x74;\">&#98;&#x61;&#x72;&#116;&#101;&#x6c;&#115;&#64;&#x64;&#x72;&#x61;&#103;&#x6f;&#x6e;&#x2d;&#112;&#114;&#x6f;&#106;&#101;&#x63;&#x74;&#x73;&#46;&#110;&#101;&#x74;</a>)</p>\n<p>Commit: ae78f01e1e8557bf3af5693d7acccf174ab4fe76</p>\n<p>Message: rename partial path, fix path issues</p>\n</li>\n</ul>\n"
+                }
+            }
+        },
+        {
+            "title": "molecule/article-excerpt-toggle",
+            "description": "an article teaser module with \"more\" link,  text paragraph is toggling to excerpt or full length",
+            "sass": {},
+            "js": null,
+            "__fm": {
+                "js": null,
+                "sass": "styles.scss",
+                "description": "an article teaser module with \"more\" link,  text paragraph is toggling to excerpt or full length",
+                "title": "molecule/article-excerpt-toggle"
+            },
+            "docs": "<p>Here you can either give a rather brief description of your pattern or provide extended usage information.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"a-markup-example\" class=\"docs-heading\" data-magellan-target=\"a-markup-example\">A Markup Example<a class=\"docs-heading-icon\" href=\"#a-markup-example\"></a></h2><div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">article</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">h1</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span>&gt;</span>Lorem ipsum dolor sit amet<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">h1</span>&gt;</span>\n\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span> <span class=\"hljs-attr\">data-text-excerpt-toggle</span>&gt;</span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, \nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore \nmagna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea \nrebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. \nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor \ninvidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam \net justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est \nLorem ipsum dolor sit amet.<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#more\"</span>&gt;</span>show more<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#less\"</span>&gt;</span>show less<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"more\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"https://www.example.com\"</span>&gt;</span>read more<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n \n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">article</span>&gt;</span>\n</code>\n</pre>\n</div>\n\n<div class=\"docs-code-live\"><article class=\"\">\n    <h1 class=\"\">Lorem ipsum dolor sit amet</h1>\n\n    <p class=\"\" data-text-excerpt-toggle>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, \nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore \nmagna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea \nrebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. \nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor \ninvidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam \net justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est \nLorem ipsum dolor sit amet.</p>\n<a href=\"#more\">show more</a>\n<a href=\"#less\">show less</a>\n    <a class=\"more\" href=\"https://www.example.com\">read more</a>\n \n</article></div>",
+            "fileName": "src/patterns/molecules/article-excerpt-toggle/readme.md",
+            "_adapterData": {
+                "sass": "styles.scss",
+                "source": "molecules/article-excerpt-toggle/index.html",
+                "example": "molecules/article-excerpt-toggle/index.html",
+                "specs": "molecules/article-excerpt-toggle/index.html",
+                "changelog": "molecules/article-excerpt-toggle/changelog.md",
+                "gitinfo": "molecules/article-excerpt-toggle",
+                "tests": "molecules/article-excerpt-toggle/test.js"
+            },
+            "relatedFiles": [],
+            "source": {
+                "highlight": "<div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">article</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{{class}}\"</span>&gt;</span>\n    {{PL atom=\"text-headline\" text=headline}}\n    {{PL molecule=\"text-excerpt-toggle\" text=content}}\n    {{PL atom=\"link\" href=url label=\"read more\" class=\"more\"}}\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">article</span>&gt;</span>\n</code>\n</pre>\n</div>",
+                "escaped": "&lt;article class=&quot;{{class}}&quot;&gt;\n    {{PL atom=&quot;text-headline&quot; text=headline}}\n    {{PL molecule=&quot;text-excerpt-toggle&quot; text=content}}\n    {{PL atom=&quot;link&quot; href=url label=&quot;read more&quot; class=&quot;more&quot;}}\n&lt;/article&gt;",
+                "raw": "<article class=\"{{class}}\">\n    {{PL atom=\"text-headline\" text=headline}}\n    {{PL molecule=\"text-excerpt-toggle\" text=content}}\n    {{PL atom=\"link\" href=url label=\"read more\" class=\"more\"}}\n</article>"
+            },
+            "example": {
+                "highlight": "<div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">article</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">h1</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span>&gt;</span>This is some article headline...<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">h1</span>&gt;</span>\n\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span> <span class=\"hljs-attr\">data-text-excerpt-toggle</span>&gt;</span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, \nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore \nmagna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea \nrebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. \nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor \ninvidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam \net justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est \nLorem ipsum dolor sit amet.<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#more\"</span>&gt;</span>show more<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#less\"</span>&gt;</span>show less<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"more\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"https://domain.tld/\"</span>&gt;</span>read more<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n \n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">article</span>&gt;</span>\n</code>\n</pre>\n</div>",
+                "escaped": "&lt;article class=&quot;&quot;&gt;\n    &lt;h1 class=&quot;&quot;&gt;This is some article headline...&lt;/h1&gt;\n\n    &lt;p class=&quot;&quot; data-text-excerpt-toggle&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, \nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore \nmagna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea \nrebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. \nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor \ninvidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam \net justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est \nLorem ipsum dolor sit amet.&lt;/p&gt;\n&lt;a href=&quot;#more&quot;&gt;show more&lt;/a&gt;\n&lt;a href=&quot;#less&quot;&gt;show less&lt;/a&gt;\n    &lt;a class=&quot;more&quot; href=&quot;https://domain.tld/&quot;&gt;read more&lt;/a&gt;\n \n&lt;/article&gt;",
+                "raw": "<article class=\"\">\n    <h1 class=\"\">This is some article headline...</h1>\n\n    <p class=\"\" data-text-excerpt-toggle>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, \nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore \nmagna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea \nrebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. \nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor \ninvidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam \net justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est \nLorem ipsum dolor sit amet.</p>\n<a href=\"#more\">show more</a>\n<a href=\"#less\">show less</a>\n    <a class=\"more\" href=\"https://domain.tld/\">read more</a>\n \n</article>"
+            },
+            "specs": {
+                "pattern": {
+                    "name": "molecule/article-excerpt-toggle",
+                    "categories": [
+                        "typography",
+                        "article"
+                    ],
+                    "uses": [
+                        "atom/text-headline",
+                        "molecule/text-excerpt-toggle",
+                        "atom/link"
+                    ],
+                    "type": "molecule"
+                },
+                "params": {
+                    "class": [
+                        "*"
+                    ],
+                    "headline": [
+                        "*"
+                    ],
+                    "content": [
+                        "*"
+                    ],
+                    "url": [
+                        "*"
+                    ]
+                },
+                "defaults": {
+                    "headline": "This is some article headline...",
+                    "url": "https://domain.tld/"
+                }
+            },
+            "changelog": "<h3 id=\"09-2017\" class=\"docs-heading\">09/2017<a class=\"docs-heading-icon\" href=\"#09-2017\"></a></h3><ul>\n<li>initial release</li>\n</ul>\n",
+            "tests": false,
+            "gitinfo": {
+                "log": {
+                    "data": {
+                        "11/12/2017": [
+                            {
+                                "date": "11/12/2017",
+                                "timestamp": 1513003153,
+                                "author": "Björn Bartels",
+                                "email": "bartels@dragon-projects.net",
+                                "message": "update tmpl, clean-up",
+                                "commit": "a2c8541",
+                                "hash": "a2c8541a34570e6f1c19ee2ae73ad7028a9c248e",
+                                "body": null
+                            }
+                        ]
+                    },
+                    "list": "<h3 id=\"11-12-2017\" class=\"docs-heading\">11/12/2017<a class=\"docs-heading-icon\" href=\"#11-12-2017\"></a></h3><ul>\n<li>update tmpl, clean-up (a2c8541, by <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a>, <a href=\"&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#x62;&#97;&#x72;&#116;&#x65;&#x6c;&#x73;&#x40;&#x64;&#114;&#x61;&#103;&#x6f;&#x6e;&#45;&#x70;&#114;&#x6f;&#106;&#101;&#99;&#116;&#115;&#46;&#110;&#101;&#116;\">&#x62;&#97;&#x72;&#116;&#x65;&#x6c;&#x73;&#x40;&#x64;&#114;&#x61;&#103;&#x6f;&#x6e;&#45;&#x70;&#114;&#x6f;&#106;&#101;&#99;&#116;&#115;&#46;&#110;&#101;&#116;</a>)</li>\n</ul>\n",
+                    "full": "<h3 id=\"mon-11-dec-2017-15-39-13-0100\" class=\"docs-heading\">Mon, 11 Dec 2017 15:39:13 +0100<a class=\"docs-heading-icon\" href=\"#mon-11-dec-2017-15-39-13-0100\"></a></h3><ul>\n<li><p>Author: <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a> (<a href=\"&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#x62;&#97;&#x72;&#116;&#101;&#108;&#115;&#x40;&#x64;&#x72;&#x61;&#x67;&#111;&#x6e;&#45;&#112;&#x72;&#x6f;&#106;&#101;&#99;&#116;&#x73;&#x2e;&#110;&#101;&#x74;\">&#x62;&#97;&#x72;&#116;&#101;&#108;&#115;&#x40;&#x64;&#x72;&#x61;&#x67;&#111;&#x6e;&#45;&#112;&#x72;&#x6f;&#106;&#101;&#99;&#116;&#x73;&#x2e;&#110;&#101;&#x74;</a>)</p>\n<p>Commit: a2c8541a34570e6f1c19ee2ae73ad7028a9c248e</p>\n<p>Message: update tmpl, clean-up</p>\n</li>\n</ul>\n"
+                }
+            }
         },
         {
             "title": "molecule/article-teaser",
             "description": "an article teaser module with \"more\" link",
             "sass": {},
+            "js": null,
+            "__fm": {
+                "js": null,
+                "sass": "styles.scss",
+                "description": "an article teaser module with \"more\" link",
+                "title": "molecule/article-teaser"
+            },
+            "docs": "<p>Here you can either give a rather brief description of your pattern or provide extended usage information.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"a-markup-example\" class=\"docs-heading\" data-magellan-target=\"a-markup-example\">A Markup Example<a class=\"docs-heading-icon\" href=\"#a-markup-example\"></a></h2><div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">article</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">h1</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span>&gt;</span>Lorem ipsum dolor sit amet<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">h1</span>&gt;</span>\n\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span>&gt;</span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet.<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"more\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"https://www.example.com\"</span>&gt;</span>more<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n \n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">article</span>&gt;</span>\n</code>\n</pre>\n</div>\n\n<div class=\"docs-code-live\"><article class=\"\">\n    <h1 class=\"\">Lorem ipsum dolor sit amet</h1>\n\n    <p class=\"\">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\n    <a class=\"more\" href=\"https://www.example.com\">more</a>\n \n</article></div>",
+            "fileName": "src/patterns/molecules/article-teaser/readme.md",
+            "_adapterData": {
+                "sass": "styles.scss",
+                "source": "molecules/article-teaser/index.html",
+                "example": "molecules/article-teaser/index.html",
+                "specs": "molecules/article-teaser/index.html",
+                "changelog": "molecules/article-teaser/changelog.md",
+                "gitinfo": "molecules/article-teaser",
+                "tests": "molecules/article-teaser/test.js"
+            },
+            "relatedFiles": [],
+            "source": {
+                "highlight": "<div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">article</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{{class}}\"</span>&gt;</span>\n    {{PL atom=\"text-headline\" text=headline}}\n    {{PL atom=\"text-paragraph\" text=content}}\n    {{PL atom=\"link\" href=url label=\"more\" class=\"more\"}}\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">article</span>&gt;</span>\n</code>\n</pre>\n</div>",
+                "escaped": "&lt;article class=&quot;{{class}}&quot;&gt;\n    {{PL atom=&quot;text-headline&quot; text=headline}}\n    {{PL atom=&quot;text-paragraph&quot; text=content}}\n    {{PL atom=&quot;link&quot; href=url label=&quot;more&quot; class=&quot;more&quot;}}\n&lt;/article&gt;",
+                "raw": "<article class=\"{{class}}\">\n    {{PL atom=\"text-headline\" text=headline}}\n    {{PL atom=\"text-paragraph\" text=content}}\n    {{PL atom=\"link\" href=url label=\"more\" class=\"more\"}}\n</article>"
+            },
+            "example": {
+                "highlight": "<div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">article</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">h1</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span>&gt;</span>This is some article headline...<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">h1</span>&gt;</span>\n\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span>&gt;</span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet.<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"more\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"https://domain.tld/\"</span>&gt;</span>more<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n \n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">article</span>&gt;</span>\n</code>\n</pre>\n</div>",
+                "escaped": "&lt;article class=&quot;&quot;&gt;\n    &lt;h1 class=&quot;&quot;&gt;This is some article headline...&lt;/h1&gt;\n\n    &lt;p class=&quot;&quot;&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet.&lt;/p&gt;\n    &lt;a class=&quot;more&quot; href=&quot;https://domain.tld/&quot;&gt;more&lt;/a&gt;\n \n&lt;/article&gt;",
+                "raw": "<article class=\"\">\n    <h1 class=\"\">This is some article headline...</h1>\n\n    <p class=\"\">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet.</p>\n    <a class=\"more\" href=\"https://domain.tld/\">more</a>\n \n</article>"
+            },
+            "specs": {
+                "pattern": {
+                    "name": "molecule/article-teaser",
+                    "categories": [
+                        "typography",
+                        "article"
+                    ],
+                    "uses": [
+                        "atom/text-headline",
+                        "atom/text-paragraph",
+                        "atom/link"
+                    ],
+                    "type": "molecule"
+                },
+                "params": {
+                    "class": [
+                        "*"
+                    ],
+                    "headline": [
+                        "*"
+                    ],
+                    "content": [
+                        "*"
+                    ],
+                    "url": [
+                        "*"
+                    ]
+                },
+                "defaults": {
+                    "headline": "This is some article headline...",
+                    "url": "https://domain.tld/"
+                }
+            },
+            "changelog": "<h3 id=\"06-2017\" class=\"docs-heading\">06/2017<a class=\"docs-heading-icon\" href=\"#06-2017\"></a></h3><ul>\n<li>updates to example documentation files</li>\n</ul>\n<h3 id=\"05-2017\" class=\"docs-heading\">05/2017<a class=\"docs-heading-icon\" href=\"#05-2017\"></a></h3><ul>\n<li>add example documentation files</li>\n<li>initial release</li>\n</ul>\n",
+            "tests": false,
+            "gitinfo": {
+                "log": {
+                    "data": {
+                        "11/12/2017": [
+                            {
+                                "date": "11/12/2017",
+                                "timestamp": 1513003153,
+                                "author": "Björn Bartels",
+                                "email": "bartels@dragon-projects.net",
+                                "message": "update tmpl, clean-up",
+                                "commit": "a2c8541",
+                                "hash": "a2c8541a34570e6f1c19ee2ae73ad7028a9c248e",
+                                "body": null
+                            }
+                        ],
+                        "08/09/2017": [
+                            {
+                                "date": "08/09/2017",
+                                "timestamp": 1504895800,
+                                "author": "Björn Bartels",
+                                "email": "bartels@dragon-projects.net",
+                                "message": "rename partial path, fix path issues",
+                                "commit": "ae78f01",
+                                "hash": "ae78f01e1e8557bf3af5693d7acccf174ab4fe76",
+                                "body": null
+                            }
+                        ]
+                    },
+                    "list": "<h3 id=\"11-12-2017\" class=\"docs-heading\">11/12/2017<a class=\"docs-heading-icon\" href=\"#11-12-2017\"></a></h3><ul>\n<li>update tmpl, clean-up (a2c8541, by <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a>, <a href=\"&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#98;&#97;&#x72;&#x74;&#101;&#x6c;&#115;&#x40;&#x64;&#114;&#x61;&#103;&#111;&#x6e;&#x2d;&#112;&#114;&#x6f;&#x6a;&#101;&#99;&#116;&#115;&#46;&#x6e;&#x65;&#x74;\">&#98;&#97;&#x72;&#x74;&#101;&#x6c;&#115;&#x40;&#x64;&#114;&#x61;&#103;&#111;&#x6e;&#x2d;&#112;&#114;&#x6f;&#x6a;&#101;&#99;&#116;&#115;&#46;&#x6e;&#x65;&#x74;</a>)</li>\n</ul>\n<h3 id=\"08-09-2017\" class=\"docs-heading\">08/09/2017<a class=\"docs-heading-icon\" href=\"#08-09-2017\"></a></h3><ul>\n<li>rename partial path, fix path issues (ae78f01, by <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a>, <a href=\"&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#98;&#x61;&#114;&#x74;&#101;&#108;&#115;&#x40;&#100;&#114;&#97;&#103;&#111;&#x6e;&#x2d;&#x70;&#x72;&#x6f;&#x6a;&#101;&#99;&#116;&#x73;&#46;&#x6e;&#101;&#116;\">&#98;&#x61;&#114;&#x74;&#101;&#108;&#115;&#x40;&#100;&#114;&#97;&#103;&#111;&#x6e;&#x2d;&#x70;&#x72;&#x6f;&#x6a;&#101;&#99;&#116;&#x73;&#46;&#x6e;&#101;&#116;</a>)</li>\n</ul>\n",
+                    "full": "<h3 id=\"mon-11-dec-2017-15-39-13-0100\" class=\"docs-heading\">Mon, 11 Dec 2017 15:39:13 +0100<a class=\"docs-heading-icon\" href=\"#mon-11-dec-2017-15-39-13-0100\"></a></h3><ul>\n<li><p>Author: <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a> (<a href=\"&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x62;&#97;&#114;&#x74;&#x65;&#108;&#115;&#x40;&#x64;&#x72;&#x61;&#103;&#111;&#110;&#x2d;&#x70;&#x72;&#111;&#106;&#101;&#x63;&#116;&#x73;&#x2e;&#110;&#x65;&#x74;\">&#x62;&#97;&#114;&#x74;&#x65;&#108;&#115;&#x40;&#x64;&#x72;&#x61;&#103;&#111;&#110;&#x2d;&#x70;&#x72;&#111;&#106;&#101;&#x63;&#116;&#x73;&#x2e;&#110;&#x65;&#x74;</a>)</p>\n<p>Commit: a2c8541a34570e6f1c19ee2ae73ad7028a9c248e</p>\n<p>Message: update tmpl, clean-up</p>\n</li>\n</ul>\n<h3 id=\"fri-8-sep-2017-20-36-40-0200\" class=\"docs-heading\">Fri, 8 Sep 2017 20:36:40 +0200<a class=\"docs-heading-icon\" href=\"#fri-8-sep-2017-20-36-40-0200\"></a></h3><ul>\n<li><p>Author: <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a> (<a href=\"&#x6d;&#97;&#105;&#x6c;&#x74;&#111;&#58;&#98;&#x61;&#x72;&#x74;&#x65;&#x6c;&#x73;&#x40;&#100;&#114;&#x61;&#x67;&#111;&#x6e;&#x2d;&#x70;&#x72;&#x6f;&#106;&#101;&#x63;&#116;&#x73;&#46;&#110;&#101;&#x74;\">&#98;&#x61;&#x72;&#x74;&#x65;&#x6c;&#x73;&#x40;&#100;&#114;&#x61;&#x67;&#111;&#x6e;&#x2d;&#x70;&#x72;&#x6f;&#106;&#101;&#x63;&#116;&#x73;&#46;&#110;&#101;&#x74;</a>)</p>\n<p>Commit: ae78f01e1e8557bf3af5693d7acccf174ab4fe76</p>\n<p>Message: rename partial path, fix path issues</p>\n</li>\n</ul>\n"
+                }
+            }
+        },
+        {
+            "title": "molecule/text-excerpt-toggle",
+            "description": "an inline text paragraph, toggling to excerpt or full length",
+            "sass": {},
             "js": {
                 "module": [
                     {
-                        "comment": "/**\n * Dropdown module.\n * @module plfoundation.dropdown\n * @requires plfoundation.util.keyboard\n * @requires plfoundation.util.box\n * @requires plfoundation.util.triggers\n */",
+                        "comment": "/**\n * TextExcerptToggle module.\n * \n * @module Siteapp.TextExcerptToggle\n * \n */",
                         "meta": {
                             "range": [
-                                386,
-                                553
+                                40,
+                                121
                             ],
                             "filename": "module.js",
-                            "lineno": 13,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 5,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {}
                         },
-                        "description": "Dropdown module.",
+                        "description": "TextExcerptToggle module.",
                         "kind": "module",
-                        "name": "dropdown",
-                        "requires": [
-                            "module:plfoundation.util.keyboard",
-                            "module:plfoundation.util.box",
-                            "module:plfoundation.util.triggers"
-                        ],
-                        "memberof": "plfoundation",
-                        "longname": "plfoundation.module:dropdown",
+                        "name": "TextExcerptToggle",
+                        "memberof": "Siteapp",
+                        "longname": "Siteapp.module:TextExcerptToggle",
                         "scope": "static"
                     }
                 ],
                 "class": [
                     {
-                        "comment": "/**\n   * Creates a new instance of a dropdown.\n   * @class\n   * @param {jQuery} element - jQuery object to make into a dropdown.\n   *        Object should be of the dropdown panel, rather than its anchor.\n   * @param {Object} options - Overrides to the default plugin settings.\n   */",
+                        "comment": "/**\n     * Creates a new instance of a Siteapp.TextExcerptToggle.\n     * @class\n     * @param {jQuery} element - jQuery object to make into a Siteapp.TextExcerptToggle.\n     *        Object should be of the TextExcerptToggle panel, rather than its anchor.\n     * @param {Object} options - Overrides to the default plugin settings.\n     */",
                         "meta": {
                             "range": [
-                                875,
-                                1150
+                                498,
+                                687
                             ],
                             "filename": "module.js",
-                            "lineno": 29,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 21,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {
-                                "id": "astnode100000027",
-                                "name": "Dropdown#_setup",
+                                "id": "astnode100000010",
+                                "name": "TextExcerptToggle",
                                 "type": "MethodDefinition",
                                 "paramnames": [
                                     "element",
@@ -1113,7 +1963,7 @@
                                 "": null
                             }
                         },
-                        "description": "Creates a new instance of a dropdown.",
+                        "description": "Creates a new instance of a Siteapp.TextExcerptToggle.",
                         "kind": "class",
                         "params": [
                             {
@@ -1122,7 +1972,7 @@
                                         "jQuery"
                                     ]
                                 },
-                                "description": "jQuery object to make into a dropdown.\n       Object should be of the dropdown panel, rather than its anchor.",
+                                "description": "jQuery object to make into a Siteapp.TextExcerptToggle.\n       Object should be of the TextExcerptToggle panel, rather than its anchor.",
                                 "name": "element"
                             },
                             {
@@ -1135,26 +1985,26 @@
                                 "name": "options"
                             }
                         ],
-                        "name": "_setup",
-                        "longname": "plfoundation.module:dropdown~Dropdown#_setup",
-                        "memberof": "plfoundation.module:dropdown~Dropdown",
-                        "scope": "instance"
+                        "name": "TextExcerptToggle",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.TextExcerptToggle",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle",
+                        "scope": "static"
                     }
                 ],
                 "function": [
                     {
-                        "comment": "/**\n   * Helper function to determine current orientation of dropdown pane.\n   * @function\n   * @returns {String} position - string value of a position class.\n   */",
+                        "comment": "/**\n   * Helper function to determine current orientation of TextExcerptToggle pane.\n   * @function\n   * @returns {String} position - string value of a position class.\n   */",
                         "meta": {
                             "range": [
-                                2305,
-                                2770
+                                1905,
+                                2370
                             ],
                             "filename": "module.js",
-                            "lineno": 81,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 68,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {
-                                "id": "astnode100000222",
-                                "name": "Dropdown#getPositionClass",
+                                "id": "astnode100000192",
+                                "name": "TextExcerptToggle#getPositionClass",
                                 "type": "MethodDefinition",
                                 "paramnames": []
                             },
@@ -1162,7 +2012,7 @@
                                 "": null
                             }
                         },
-                        "description": "Helper function to determine current orientation of dropdown pane.",
+                        "description": "Helper function to determine current orientation of TextExcerptToggle pane.",
                         "kind": "function",
                         "returns": [
                             {
@@ -1175,24 +2025,24 @@
                             }
                         ],
                         "name": "getPositionClass",
-                        "longname": "plfoundation.module:dropdown~Dropdown#getPositionClass",
-                        "memberof": "plfoundation.module:dropdown~Dropdown",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle#getPositionClass",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle",
                         "scope": "instance",
                         "params": []
                     },
                     {
-                        "comment": "/**\n   * Opens the dropdown pane, and fires a bubbling event to close other dropdowns.\n   * @function\n   * @fires Dropdown#closeme\n   * @fires Dropdown#show\n   */",
+                        "comment": "/**\n   * Opens the TextExcerptToggle pane, and fires a bubbling event to close other TextExcerptToggle.\n   * @function\n   * @fires TextExcerptToggle#closeme\n   * @fires TextExcerptToggle#show\n   */",
                         "meta": {
                             "range": [
-                                9253,
-                                10170
+                                9031,
+                                10010
                             ],
                             "filename": "module.js",
-                            "lineno": 267,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 254,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {
-                                "id": "astnode100001233",
-                                "name": "Dropdown#open",
+                                "id": "astnode100001203",
+                                "name": "TextExcerptToggle#open",
                                 "type": "MethodDefinition",
                                 "paramnames": []
                             },
@@ -1200,31 +2050,31 @@
                                 "": null
                             }
                         },
-                        "description": "Opens the dropdown pane, and fires a bubbling event to close other dropdowns.",
+                        "description": "Opens the TextExcerptToggle pane, and fires a bubbling event to close other TextExcerptToggle.",
                         "kind": "function",
                         "fires": [
-                            "Dropdown#event:closeme",
-                            "Dropdown#event:show"
+                            "TextExcerptToggle#event:closeme",
+                            "TextExcerptToggle#event:show"
                         ],
                         "name": "open",
-                        "longname": "plfoundation.module:dropdown~Dropdown#open",
-                        "memberof": "plfoundation.module:dropdown~Dropdown",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle#open",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle",
                         "scope": "instance",
                         "params": []
                     },
                     {
-                        "comment": "/**\n   * Closes the open dropdown pane.\n   * @function\n   * @fires Dropdown#hide\n   */",
+                        "comment": "/**\n   * Closes the open TextExcerptToggle pane.\n   * @function\n   * @fires TextExcerptToggle#hide\n   */",
                         "meta": {
                             "range": [
-                                10263,
-                                11129
+                                10121,
+                                11014
                             ],
                             "filename": "module.js",
-                            "lineno": 306,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 293,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {
-                                "id": "astnode100001355",
-                                "name": "Dropdown#close",
+                                "id": "astnode100001325",
+                                "name": "TextExcerptToggle#close",
                                 "type": "MethodDefinition",
                                 "paramnames": []
                             },
@@ -1232,30 +2082,58 @@
                                 "": null
                             }
                         },
-                        "description": "Closes the open dropdown pane.",
+                        "description": "Closes the open TextExcerptToggle pane.",
                         "kind": "function",
                         "fires": [
-                            "Dropdown#event:hide"
+                            "TextExcerptToggle#event:hide"
                         ],
                         "name": "close",
-                        "longname": "plfoundation.module:dropdown~Dropdown#close",
-                        "memberof": "plfoundation.module:dropdown~Dropdown",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle#close",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle",
                         "scope": "instance",
                         "params": []
                     },
                     {
-                        "comment": "/**\n   * Toggles the dropdown pane's visibility.\n   * @function\n   */",
+                        "comment": "/**\n   * Toggles the TextExcerptToggle pane's visibility.\n   * @function\n   */",
                         "meta": {
                             "range": [
-                                11205,
-                                11363
+                                11099,
+                                11257
+                            ],
+                            "filename": "module.js",
+                            "lineno": 329,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
+                            "code": {
+                                "id": "astnode100001458",
+                                "name": "TextExcerptToggle#toggle",
+                                "type": "MethodDefinition",
+                                "paramnames": []
+                            },
+                            "vars": {
+                                "": null
+                            }
+                        },
+                        "description": "Toggles the TextExcerptToggle pane's visibility.",
+                        "kind": "function",
+                        "name": "toggle",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle#toggle",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle",
+                        "scope": "instance",
+                        "params": []
+                    },
+                    {
+                        "comment": "/**\n   * Destroys the TextExcerptToggle.\n   * @function\n   */",
+                        "meta": {
+                            "range": [
+                                11325,
+                                11490
                             ],
                             "filename": "module.js",
                             "lineno": 342,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {
-                                "id": "astnode100001488",
-                                "name": "Dropdown#toggle",
+                                "id": "astnode100001491",
+                                "name": "TextExcerptToggle#_destroy",
                                 "type": "MethodDefinition",
                                 "paramnames": []
                             },
@@ -1263,121 +2141,93 @@
                                 "": null
                             }
                         },
-                        "description": "Toggles the dropdown pane's visibility.",
-                        "kind": "function",
-                        "name": "toggle",
-                        "longname": "plfoundation.module:dropdown~Dropdown#toggle",
-                        "memberof": "plfoundation.module:dropdown~Dropdown",
-                        "scope": "instance",
-                        "params": []
-                    },
-                    {
-                        "comment": "/**\n   * Destroys the dropdown.\n   * @function\n   */",
-                        "meta": {
-                            "range": [
-                                11422,
-                                11569
-                            ],
-                            "filename": "module.js",
-                            "lineno": 355,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
-                            "code": {
-                                "id": "astnode100001521",
-                                "name": "Dropdown#_destroy",
-                                "type": "MethodDefinition",
-                                "paramnames": []
-                            },
-                            "vars": {
-                                "": null
-                            }
-                        },
-                        "description": "Destroys the dropdown.",
+                        "description": "Destroys the TextExcerptToggle.",
                         "kind": "function",
                         "name": "_destroy",
-                        "longname": "plfoundation.module:dropdown~Dropdown#_destroy",
-                        "memberof": "plfoundation.module:dropdown~Dropdown",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle#_destroy",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle",
                         "scope": "instance",
                         "params": []
                     }
                 ],
                 "event": [
                     {
-                        "comment": "/**\n     * Fires to close other open dropdowns, typically when dropdown is opening\n     * @event Dropdown#closeme\n     */",
+                        "comment": "/**\n     * Fires to close other open TextExcerptToggle, typically when TextExcerptToggle is opening\n     * @event TextExcerptToggle#closeme\n     */",
                         "meta": {
                             "range": [
-                                9291,
-                                9412
+                                9069,
+                                9216
                             ],
                             "filename": "module.js",
-                            "lineno": 269,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 256,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {}
                         },
-                        "description": "Fires to close other open dropdowns, typically when dropdown is opening",
+                        "description": "Fires to close other open TextExcerptToggle, typically when TextExcerptToggle is opening",
                         "kind": "event",
                         "name": "closeme",
-                        "memberof": "Dropdown",
-                        "longname": "Dropdown#event:closeme",
+                        "memberof": "TextExcerptToggle",
+                        "longname": "TextExcerptToggle#event:closeme",
                         "scope": "instance"
                     },
                     {
-                        "comment": "/**\n     * Fires once the dropdown is visible.\n     * @event Dropdown#show\n     */",
+                        "comment": "/**\n     * Fires once the TextExcerptToggle is visible.\n     * @event TextExcerptToggle#show\n     */",
                         "meta": {
                             "range": [
-                                10020,
-                                10102
+                                9833,
+                                9933
                             ],
                             "filename": "module.js",
-                            "lineno": 294,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 281,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {}
                         },
-                        "description": "Fires once the dropdown is visible.",
+                        "description": "Fires once the TextExcerptToggle is visible.",
                         "kind": "event",
                         "name": "show",
-                        "memberof": "Dropdown",
-                        "longname": "Dropdown#event:show",
+                        "memberof": "TextExcerptToggle",
+                        "longname": "TextExcerptToggle#event:show",
                         "scope": "instance"
                     },
                     {
-                        "comment": "/**\n     * Fires once the dropdown is no longer visible.\n     * @event Dropdown#hide\n     */",
+                        "comment": "/**\n     * Fires once the TextExcerptToggle is no longer visible.\n     * @event TextExcerptToggle#hide\n     */",
                         "meta": {
                             "range": [
-                                10884,
-                                10976
+                                10742,
+                                10852
                             ],
                             "filename": "module.js",
-                            "lineno": 327,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 314,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {}
                         },
-                        "description": "Fires once the dropdown is no longer visible.",
+                        "description": "Fires once the TextExcerptToggle is no longer visible.",
                         "kind": "event",
                         "name": "hide",
-                        "memberof": "Dropdown",
-                        "longname": "Dropdown#event:hide",
+                        "memberof": "TextExcerptToggle",
+                        "longname": "TextExcerptToggle#event:hide",
                         "scope": "instance"
                     }
                 ],
                 "member": [
                     {
-                        "comment": "/**\n   * Class that designates bounding container of Dropdown (default: window)\n   * @option\n   * @type {?string}\n   * @default null\n   */",
+                        "comment": "/**\n   * Class that designates bounding container of TextExcerptToggle (default: window)\n   * @option\n   * @type {?string}\n   * @default null\n   */",
                         "meta": {
                             "range": [
-                                11738,
-                                11755
+                                11677,
+                                11694
                             ],
                             "filename": "module.js",
-                            "lineno": 370,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 357,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {
-                                "id": "astnode100001560",
+                                "id": "astnode100001530",
                                 "name": "parentClass",
                                 "type": "Literal",
                                 "value": null
                             }
                         },
-                        "description": "Class that designates bounding container of Dropdown (default: window)",
+                        "description": "Class that designates bounding container of TextExcerptToggle (default: window)",
                         "tags": [
                             {
                                 "originalTitle": "option",
@@ -1393,23 +2243,23 @@
                         "nullable": true,
                         "defaultvalue": "null",
                         "name": "parentClass",
-                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.parentClass",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults.parentClass",
                         "kind": "member",
-                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults",
                         "scope": "static"
                     },
                     {
                         "comment": "/**\n   * Amount of time to delay opening a submenu on hover event.\n   * @option\n   * @type {number}\n   * @default 250\n   */",
                         "meta": {
                             "range": [
-                                11885,
-                                11900
+                                11824,
+                                11839
                             ],
                             "filename": "module.js",
-                            "lineno": 377,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 364,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {
-                                "id": "astnode100001562",
+                                "id": "astnode100001532",
                                 "name": "hoverDelay",
                                 "type": "Literal",
                                 "value": 250
@@ -1430,23 +2280,23 @@
                         },
                         "defaultvalue": "250",
                         "name": "hoverDelay",
-                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.hoverDelay",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults.hoverDelay",
                         "kind": "member",
-                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults",
                         "scope": "static"
                     },
                     {
                         "comment": "/**\n   * Allow submenus to open on hover events\n   * @option\n   * @type {boolean}\n   * @default false\n   */",
                         "meta": {
                             "range": [
-                                12014,
-                                12026
+                                11953,
+                                11965
                             ],
                             "filename": "module.js",
-                            "lineno": 384,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 371,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {
-                                "id": "astnode100001564",
+                                "id": "astnode100001534",
                                 "name": "hover",
                                 "type": "Literal",
                                 "value": false
@@ -1467,29 +2317,29 @@
                         },
                         "defaultvalue": "false",
                         "name": "hover",
-                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.hover",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults.hover",
                         "kind": "member",
-                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults",
                         "scope": "static"
                     },
                     {
-                        "comment": "/**\n   * Don't close dropdown when hovering over dropdown pane\n   * @option\n   * @type {boolean}\n   * @default false\n   */",
+                        "comment": "/**\n   * Don't close TextExcerptToggle when hovering over TextExcerptToggle pane\n   * @option\n   * @type {boolean}\n   * @default false\n   */",
                         "meta": {
                             "range": [
-                                12155,
-                                12171
+                                12112,
+                                12128
                             ],
                             "filename": "module.js",
-                            "lineno": 391,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 378,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {
-                                "id": "astnode100001566",
+                                "id": "astnode100001536",
                                 "name": "hoverPane",
                                 "type": "Literal",
                                 "value": false
                             }
                         },
-                        "description": "Don't close dropdown when hovering over dropdown pane",
+                        "description": "Don't close TextExcerptToggle when hovering over TextExcerptToggle pane",
                         "tags": [
                             {
                                 "originalTitle": "option",
@@ -1504,29 +2354,29 @@
                         },
                         "defaultvalue": "false",
                         "name": "hoverPane",
-                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.hoverPane",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults.hoverPane",
                         "kind": "member",
-                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults",
                         "scope": "static"
                     },
                     {
-                        "comment": "/**\n   * Number of pixels between the dropdown pane and the triggering element on open.\n   * @option\n   * @type {number}\n   * @default 1\n   */",
+                        "comment": "/**\n   * Number of pixels between the TextExcerptToggle pane and the triggering element on open.\n   * @option\n   * @type {number}\n   * @default 1\n   */",
                         "meta": {
                             "range": [
-                                12320,
-                                12330
+                                12286,
+                                12296
                             ],
                             "filename": "module.js",
-                            "lineno": 398,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 385,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {
-                                "id": "astnode100001568",
+                                "id": "astnode100001538",
                                 "name": "vOffset",
                                 "type": "Literal",
                                 "value": 1
                             }
                         },
-                        "description": "Number of pixels between the dropdown pane and the triggering element on open.",
+                        "description": "Number of pixels between the TextExcerptToggle pane and the triggering element on open.",
                         "tags": [
                             {
                                 "originalTitle": "option",
@@ -1541,29 +2391,29 @@
                         },
                         "defaultvalue": "1",
                         "name": "vOffset",
-                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.vOffset",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults.vOffset",
                         "kind": "member",
-                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults",
                         "scope": "static"
                     },
                     {
-                        "comment": "/**\n   * Number of pixels between the dropdown pane and the triggering element on open.\n   * @option\n   * @type {number}\n   * @default 1\n   */",
+                        "comment": "/**\n   * Number of pixels between the TextExcerptToggle pane and the triggering element on open.\n   * @option\n   * @type {number}\n   * @default 1\n   */",
                         "meta": {
                             "range": [
-                                12479,
-                                12489
+                                12454,
+                                12464
                             ],
                             "filename": "module.js",
-                            "lineno": 405,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 392,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {
-                                "id": "astnode100001570",
+                                "id": "astnode100001540",
                                 "name": "hOffset",
                                 "type": "Literal",
                                 "value": 1
                             }
                         },
-                        "description": "Number of pixels between the dropdown pane and the triggering element on open.",
+                        "description": "Number of pixels between the TextExcerptToggle pane and the triggering element on open.",
                         "tags": [
                             {
                                 "originalTitle": "option",
@@ -1578,23 +2428,23 @@
                         },
                         "defaultvalue": "1",
                         "name": "hOffset",
-                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.hOffset",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults.hOffset",
                         "kind": "member",
-                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults",
                         "scope": "static"
                     },
                     {
                         "comment": "/**\n   * Class applied to adjust open position. JS will test and fill this in.\n   * @option\n   * @type {string}\n   * @default ''\n   */",
                         "meta": {
                             "range": [
-                                12630,
-                                12647
+                                12605,
+                                12622
                             ],
                             "filename": "module.js",
-                            "lineno": 412,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 399,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {
-                                "id": "astnode100001572",
+                                "id": "astnode100001542",
                                 "name": "positionClass",
                                 "type": "Literal",
                                 "value": ""
@@ -1615,29 +2465,29 @@
                         },
                         "defaultvalue": "''",
                         "name": "positionClass",
-                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.positionClass",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults.positionClass",
                         "kind": "member",
-                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults",
                         "scope": "static"
                     },
                     {
-                        "comment": "/**\n   * Allow the plugin to trap focus to the dropdown pane if opened with keyboard commands.\n   * @option\n   * @type {boolean}\n   * @default false\n   */",
+                        "comment": "/**\n   * Allow the plugin to trap focus to the TextExcerptToggle pane if opened with keyboard commands.\n   * @option\n   * @type {boolean}\n   * @default false\n   */",
                         "meta": {
                             "range": [
-                                12808,
-                                12824
+                                12792,
+                                12808
                             ],
                             "filename": "module.js",
-                            "lineno": 419,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 406,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {
-                                "id": "astnode100001574",
+                                "id": "astnode100001544",
                                 "name": "trapFocus",
                                 "type": "Literal",
                                 "value": false
                             }
                         },
-                        "description": "Allow the plugin to trap focus to the dropdown pane if opened with keyboard commands.",
+                        "description": "Allow the plugin to trap focus to the TextExcerptToggle pane if opened with keyboard commands.",
                         "tags": [
                             {
                                 "originalTitle": "option",
@@ -1652,23 +2502,23 @@
                         },
                         "defaultvalue": "false",
                         "name": "trapFocus",
-                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.trapFocus",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults.trapFocus",
                         "kind": "member",
-                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults",
                         "scope": "static"
                     },
                     {
                         "comment": "/**\n   * Allow the plugin to set focus to the first focusable element within the pane, regardless of method of opening.\n   * @option\n   * @type {boolean}\n   * @default false\n   */",
                         "meta": {
                             "range": [
-                                13010,
-                                13026
+                                12994,
+                                13010
                             ],
                             "filename": "module.js",
-                            "lineno": 426,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 413,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {
-                                "id": "astnode100001576",
+                                "id": "astnode100001546",
                                 "name": "autoFocus",
                                 "type": "Literal",
                                 "value": false
@@ -1689,29 +2539,29 @@
                         },
                         "defaultvalue": "false",
                         "name": "autoFocus",
-                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.autoFocus",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults.autoFocus",
                         "kind": "member",
-                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults",
                         "scope": "static"
                     },
                     {
-                        "comment": "/**\n   * Allows a click on the body to close the dropdown.\n   * @option\n   * @type {boolean}\n   * @default false\n   */",
+                        "comment": "/**\n   * Allows a click on the body to close the TextExcerptToggle.\n   * @option\n   * @type {boolean}\n   * @default false\n   */",
                         "meta": {
                             "range": [
-                                13151,
-                                13170
+                                13144,
+                                13163
                             ],
                             "filename": "module.js",
-                            "lineno": 433,
-                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser",
+                            "lineno": 420,
+                            "path": "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle",
                             "code": {
-                                "id": "astnode100001578",
+                                "id": "astnode100001548",
                                 "name": "closeOnClick",
                                 "type": "Literal",
                                 "value": false
                             }
                         },
-                        "description": "Allows a click on the body to close the dropdown.",
+                        "description": "Allows a click on the body to close the TextExcerptToggle.",
                         "tags": [
                             {
                                 "originalTitle": "option",
@@ -1726,9 +2576,9 @@
                         },
                         "defaultvalue": "false",
                         "name": "closeOnClick",
-                        "longname": "plfoundation.module:dropdown~Dropdown.defaults.closeOnClick",
+                        "longname": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults.closeOnClick",
                         "kind": "member",
-                        "memberof": "plfoundation.module:dropdown~Dropdown.defaults",
+                        "memberof": "Siteapp.module:TextExcerptToggle~TextExcerptToggle.defaults",
                         "scope": "static"
                     }
                 ],
@@ -1737,26 +2587,81 @@
                         "kind": "package",
                         "longname": "package:undefined",
                         "files": [
-                            "/Volumes/BB.DATA.MOBILE.01/repostories/themes/plfoundation-theme-base/src/partials/molecules/article-teaser/module.js"
+                            "/Volumes/BB.DATA.MOBILE.01/repostories/themes/node-patternlibrary-demo/src/patterns/molecules/text-excerpt-toggle/module.js"
                         ]
                     }
                 ]
             },
             "__fm": {
-                "js": "src/partials/molecules/article-teaser/module.js",
-                "sass": "src/partials/molecules/article-teaser/styles.scss",
-                "description": "an article teaser module with \"more\" link",
-                "title": "molecule/article-teaser"
+                "js": "module.js",
+                "sass": "styles.scss",
+                "description": "an inline text paragraph, toggling to excerpt or full length",
+                "title": "molecule/text-excerpt-toggle"
             },
-            "docs": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"markup\" class=\"docs-heading\" data-magellan-target=\"markup\">Markup<a class=\"docs-heading-icon\" href=\"#markup\"></a></h2><div class=\"docs-code\" data-docs-code><pre><code class=\"html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">article</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{{class}}\"</span>&gt;</span>\n    {{patternlibrary atom=\"text-headline\" text=headline}}\n    {{patternlibrary atom=\"text-paragraph\" text=content}}\n    {{patternlibrary atom=\"link\" href=url label=\"more\" class=\"more\"}}\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">article</span>&gt;</span></code></pre></div>\n\n<div class=\"docs-code-live\"><article class=\"{{class}}\">\n    {{patternlibrary atom=\"text-headline\" text=headline}}\n    {{patternlibrary atom=\"text-paragraph\" text=content}}\n    {{patternlibrary atom=\"link\" href=url label=\"more\" class=\"more\"}}\n</article></div>",
-            "fileName": "src/partials/molecules/article-teaser/readme.md",
+            "docs": "<p>Here you can either give a rather brief description of your pattern or provide extended usage information.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"a-markup-example\" class=\"docs-heading\" data-magellan-target=\"a-markup-example\">A Markup Example<a class=\"docs-heading-icon\" href=\"#a-markup-example\"></a></h2><div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span> <span class=\"hljs-attr\">data-text-excerpt-toggle</span>&gt;</span>\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum \n    inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda \n    error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum \n    inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda \n    error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum \n    inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda \n    error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum \n    inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda \n    error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#more\"</span>&gt;</span>show more<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#less\"</span>&gt;</span>show less<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n</code>\n</pre>\n</div>\n\n<div class=\"docs-code-live\"><p data-text-excerpt-toggle>\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum \n    inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda \n    error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum \n    inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda \n    error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum \n    inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda \n    error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.\n    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum \n    inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda \n    error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.\n</p>\n<a href=\"#more\">show more</a>\n<a href=\"#less\">show less</a></div>",
+            "fileName": "src/patterns/molecules/text-excerpt-toggle/readme.md",
             "_adapterData": {
-                "sass": "src/partials/molecules/article-teaser/styles.scss",
-                "js": "src/partials/molecules/article-teaser/module.js"
+                "js": "module.js",
+                "sass": "styles.scss",
+                "source": "molecules/text-excerpt-toggle/index.html",
+                "example": "molecules/text-excerpt-toggle/index.html",
+                "specs": "molecules/text-excerpt-toggle/index.html",
+                "changelog": "molecules/text-excerpt-toggle/changelog.md",
+                "gitinfo": "molecules/text-excerpt-toggle",
+                "tests": "molecules/text-excerpt-toggle/test.js"
             },
-            "relatedFiles": [
-                "src/partials/molecules/article-teaser/module.js"
-            ]
+            "relatedFiles": [],
+            "source": {
+                "highlight": "<div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{{class}}\"</span> <span class=\"hljs-attr\">data-text-excerpt-toggle</span>&gt;</span>{{texthelper 'long'}}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#more\"</span>&gt;</span>show more<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#less\"</span>&gt;</span>show less<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n</code>\n</pre>\n</div>",
+                "escaped": "&lt;p class=&quot;{{class}}&quot; data-text-excerpt-toggle&gt;{{texthelper &#39;long&#39;}}&lt;/p&gt;\n&lt;a href=&quot;#more&quot;&gt;show more&lt;/a&gt;\n&lt;a href=&quot;#less&quot;&gt;show less&lt;/a&gt;",
+                "raw": "<p class=\"{{class}}\" data-text-excerpt-toggle>{{texthelper 'long'}}</p>\n<a href=\"#more\">show more</a>\n<a href=\"#less\">show less</a>"
+            },
+            "example": {
+                "highlight": "<div class=\"docs-code\" data-docs-code>\n<pre>\n<code class=\"html\">\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"\"</span> <span class=\"hljs-attr\">data-text-excerpt-toggle</span>&gt;</span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, \nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore \nmagna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea \nrebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. \nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor \ninvidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam \net justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est \nLorem ipsum dolor sit amet.<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#more\"</span>&gt;</span>show more<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#less\"</span>&gt;</span>show less<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n</code>\n</pre>\n</div>",
+                "escaped": "&lt;p class=&quot;&quot; data-text-excerpt-toggle&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, \nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore \nmagna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea \nrebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. \nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor \ninvidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam \net justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est \nLorem ipsum dolor sit amet.&lt;/p&gt;\n&lt;a href=&quot;#more&quot;&gt;show more&lt;/a&gt;\n&lt;a href=&quot;#less&quot;&gt;show less&lt;/a&gt;",
+                "raw": "<p class=\"\" data-text-excerpt-toggle>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod \ntempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At \nvero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, \nno sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, \nconsetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore \nmagna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea \nrebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. \nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor \ninvidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam \net justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est \nLorem ipsum dolor sit amet.</p>\n<a href=\"#more\">show more</a>\n<a href=\"#less\">show less</a>"
+            },
+            "specs": {
+                "pattern": {
+                    "name": "molecule/text-excerpt-toggle",
+                    "categories": [
+                        "basic",
+                        "typography"
+                    ],
+                    "uses": [
+                        "atom/text-paragraph",
+                        "atom/link"
+                    ],
+                    "type": "molecule"
+                },
+                "params": {
+                    "class": [
+                        "*"
+                    ]
+                }
+            },
+            "changelog": "<h3 id=\"09-2017\" class=\"docs-heading\">09/2017<a class=\"docs-heading-icon\" href=\"#09-2017\"></a></h3><ul>\n<li>initial release</li>\n</ul>\n",
+            "tests": false,
+            "gitinfo": {
+                "log": {
+                    "data": {
+                        "11/12/2017": [
+                            {
+                                "date": "11/12/2017",
+                                "timestamp": 1513003153,
+                                "author": "Björn Bartels",
+                                "email": "bartels@dragon-projects.net",
+                                "message": "update tmpl, clean-up",
+                                "commit": "a2c8541",
+                                "hash": "a2c8541a34570e6f1c19ee2ae73ad7028a9c248e",
+                                "body": null
+                            }
+                        ]
+                    },
+                    "list": "<h3 id=\"11-12-2017\" class=\"docs-heading\">11/12/2017<a class=\"docs-heading-icon\" href=\"#11-12-2017\"></a></h3><ul>\n<li>update tmpl, clean-up (a2c8541, by <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a>, <a href=\"&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#x62;&#x61;&#x72;&#116;&#x65;&#108;&#115;&#64;&#x64;&#114;&#x61;&#103;&#111;&#x6e;&#45;&#112;&#114;&#111;&#x6a;&#x65;&#x63;&#116;&#x73;&#46;&#x6e;&#x65;&#116;\">&#x62;&#x61;&#x72;&#116;&#x65;&#108;&#115;&#64;&#x64;&#114;&#x61;&#103;&#111;&#x6e;&#45;&#112;&#114;&#111;&#x6a;&#x65;&#x63;&#116;&#x73;&#46;&#x6e;&#x65;&#116;</a>)</li>\n</ul>\n",
+                    "full": "<h3 id=\"mon-11-dec-2017-15-39-13-0100\" class=\"docs-heading\">Mon, 11 Dec 2017 15:39:13 +0100<a class=\"docs-heading-icon\" href=\"#mon-11-dec-2017-15-39-13-0100\"></a></h3><ul>\n<li><p>Author: <a href=\"mailto:bartels@dragon-projects.net\">Björn Bartels</a> (<a href=\"&#109;&#97;&#105;&#108;&#x74;&#111;&#58;&#98;&#97;&#114;&#x74;&#101;&#x6c;&#115;&#x40;&#x64;&#x72;&#97;&#x67;&#111;&#x6e;&#x2d;&#112;&#114;&#x6f;&#x6a;&#x65;&#x63;&#x74;&#x73;&#x2e;&#110;&#101;&#116;\">&#98;&#97;&#114;&#x74;&#101;&#x6c;&#115;&#x40;&#x64;&#x72;&#97;&#x67;&#111;&#x6e;&#x2d;&#112;&#114;&#x6f;&#x6a;&#x65;&#x63;&#x74;&#x73;&#x2e;&#110;&#101;&#116;</a>)</p>\n<p>Commit: a2c8541a34570e6f1c19ee2ae73ad7028a9c248e</p>\n<p>Message: update tmpl, clean-up</p>\n</li>\n</ul>\n"
+                }
+            }
         }
     ]
 }

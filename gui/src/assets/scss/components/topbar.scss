@@ -3,12 +3,24 @@
     font-size: $body-fontsize;
 
 	&:not(.filter) .menu i.fa {
+	
 	    @include breakpoint(small down) {
 		    left: calc(50% - 12px);
 		    position: relative;
 		    width: 24px;
 		    text-align: center;
 		    display: block;
+		}
+		
+	}
+	
+}
+
+.title-bar {
+
+	.menu .menu-text {
+	    @include breakpoint(small down) {
+		    padding: 0.33rem 1rem;
 		}
 	}
 	

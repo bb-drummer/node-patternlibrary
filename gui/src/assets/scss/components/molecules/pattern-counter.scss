@@ -1,0 +1,18 @@
+
+.callout.patterncounter {
+
+    padding : 0.1rem 0.33rem;
+    height  : 4rem;
+    
+    color   : rgba(0,0,0,0.66);
+    
+    text-transform: capitalize;
+    font-size     : 1.25em;
+    font-weight   : bold;
+    
+    
+    @include breakpoint(medium down) {
+        font-size     : 1em;
+    }
+	    
+}

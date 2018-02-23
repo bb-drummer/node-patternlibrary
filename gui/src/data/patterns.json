@@ -6,7 +6,8 @@
                 "basic",
                 "typography"
             ],
-            "uses": null
+            "uses": null,
+            "type": "atom"
         },
         "params": {
             "class": [
@@ -19,7 +20,11 @@
                 "*"
             ]
         },
-        "body": "<a class=\"{{class}}\" href=\"{{#if href}}{{href}}{{/if}}{{#unless href}}{{texthelper 'url'}}{{/unless}}\">{{#if label}}{{label}}{{/if}}{{#unless label}}{{texthelper 'word'}}{{/unless}}</a>"
+        "body": "<a class=\"{{class}}\" href=\"{{#if href}}{{href}}{{/if}}{{#unless href}}{{texthelper 'url'}}{{/unless}}\">{{#if label}}{{label}}{{/if}}{{#unless label}}{{texthelper 'word'}}{{/unless}}</a>\n ",
+        "usage": {
+            "count": 1,
+            "consumers": {}
+        }
     },
     "atom/modal-close-button": {
         "pattern": {
@@ -27,7 +32,8 @@
             "categories": [
                 "button",
                 "modal"
-            ]
+            ],
+            "type": "atom"
         },
         "body": "<a class=\"btn btn-icon btn-cta-xhr cta-xhr-modal-close\" href=\"javascript:return true;\" aria-label=\"Close modal\" data-close>\n  <span aria-hidden=\"true\">&times;</span>\n</a>"
     },
@@ -38,10 +44,11 @@
                 "basic",
                 "typography"
             ],
-            "uses": null
+            "uses": null,
+            "type": "atom"
         },
         "params": {
-            "heading": [
+            "headlevel": [
                 "1",
                 "2",
                 "3",
@@ -57,9 +64,13 @@
             ]
         },
         "defaults": {
-            "heading": "1"
+            "headlevel": "1"
         },
-        "body": "{{#unless heading}}\n<h{{defaults.heading}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{defaults.heading}}>\n{{/unless}}\n{{#if heading}}\n<h{{heading}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{heading}}>\n{{/if}}\n"
+        "body": "{{#unless headlevel}}\n<h{{defaults.headlevel}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{defaults.headlevel}}>\n{{/unless}}\n{{#if headlevel}}\n<h{{headlevel}} class=\"{{class}}\">{{#unless text}}{{texthelper 'words'}}{{/unless}}{{#if text}}{{text}}{{/if}}</h{{headlevel}}>\n{{/if}}\n",
+        "usage": {
+            "count": 1,
+            "consumers": {}
+        }
     },
     "atom/text-paragraph": {
         "pattern": {
@@ -68,27 +79,33 @@
                 "basic",
                 "typography"
             ],
-            "uses": null
+            "uses": null,
+            "type": "atom"
         },
         "params": {
             "class": [
                 "*"
             ]
         },
-        "body": "<p class=\"{{class}}\">{{texthelper 'normal'}}</p>"
+        "body": "<p class=\"{{class}}\">{{texthelper 'normal'}}</p>",
+        "usage": {
+            "count": 1,
+            "consumers": {}
+        }
     },
-    "molecule/article-teaser": {
+    "molecule/article-excerpt-toggle": {
         "pattern": {
-            "name": "molecule/article-teaser",
+            "name": "molecule/article-excerpt-toggle",
             "categories": [
                 "typography",
                 "article"
             ],
             "uses": [
                 "atom/text-headline",
-                "atom/text-paragraph",
+                "molecule/text-excerpt-toggle",
                 "atom/link"
-            ]
+            ],
+            "type": "molecule"
         },
         "params": {
             "class": [
@@ -105,8 +122,67 @@
             ]
         },
         "defaults": {
-            "headline": "This is some article headline..."
+            "headline": "This is some article headline...",
+            "url": "https://domain.tld/"
         },
-        "body": "<article class=\"{{class}}\">\n    {{patternlibrary atom=\"text-headline\" text=headline}}\n    {{patternlibrary atom=\"text-paragraph\" text=content}}\n    {{patternlibrary atom=\"link\" href=url label=\"more\" class=\"more\"}}\n</article>"
+        "body": "<article class=\"{{class}}\">\n    {{PL atom=\"text-headline\" text=headline}}\n    {{PL molecule=\"text-excerpt-toggle\" text=content}}\n    {{PL atom=\"link\" href=url label=\"read more\" class=\"more\"}}\n</article>"
+    },
+    "molecule/article-teaser": {
+        "pattern": {
+            "name": "molecule/article-teaser",
+            "categories": [
+                "typography",
+                "article"
+            ],
+            "uses": [
+                "atom/text-headline",
+                "atom/text-paragraph",
+                "atom/link"
+            ],
+            "type": "molecule"
+        },
+        "params": {
+            "class": [
+                "*"
+            ],
+            "headline": [
+                "*"
+            ],
+            "content": [
+                "*"
+            ],
+            "url": [
+                "*"
+            ]
+        },
+        "defaults": {
+            "headline": "This is some article headline...",
+            "url": "https://domain.tld/"
+        },
+        "body": "<article class=\"{{class}}\">\n    {{PL atom=\"text-headline\" text=headline}}\n    {{PL atom=\"text-paragraph\" text=content}}\n    {{PL atom=\"link\" href=url label=\"more\" class=\"more\"}}\n</article>"
+    },
+    "molecule/text-excerpt-toggle": {
+        "pattern": {
+            "name": "molecule/text-excerpt-toggle",
+            "categories": [
+                "basic",
+                "typography"
+            ],
+            "uses": [
+                "atom/text-paragraph",
+                "atom/link"
+            ],
+            "type": "molecule"
+        },
+        "params": {
+            "class": [
+                "*"
+            ]
+        },
+        "body": "<p class=\"{{class}}\" data-text-excerpt-toggle>{{texthelper 'long'}}</p>\n<a href=\"#more\">show more</a>\n<a href=\"#less\">show less</a>",
+        "usage": {
+            "count": 1,
+            "consumers": {}
+        }
     }
 }
