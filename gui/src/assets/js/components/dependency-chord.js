@@ -18,7 +18,7 @@ import * as d3 from 'd3';
 //require('../vendor/d3.layout');
 
 const DependencyChord_Defaults = { 
-    width      : 640,
+    width      : 420,
     
     linkTension: 0.66,
     
@@ -313,9 +313,10 @@ const DependencyChord = class DependencyChord extends PatternlibraryCore.Module 
      * @var {d3.Selection}
      */
     get canvas  () {
-        var $canvas = this.container.select('svg');
+        var $canvas = this.container.select('svg.canvas');
         if ($canvas.empty()) {
             $canvas = this.container.append("svg")
+                .attr("class", 'canvas')
                 .attr("width", this.width)
                 .attr("height", this.height)
               .append("g")
@@ -348,6 +349,16 @@ const DependencyChord = class DependencyChord extends PatternlibraryCore.Module 
     };
     
     /**
+     * Destroys the events assigned to (canvas) elements.
+     * 
+     * @function
+     * @access private
+     */
+    _detachEvents () {
+        this.$element.find('*').off('.patternlibrary');
+    };
+    
+    /**
      * Destroys the Component.
      * 
      * @function
@@ -355,7 +366,7 @@ const DependencyChord = class DependencyChord extends PatternlibraryCore.Module 
      */
     _destroy () {
         // ... clean up stuff
-        this.$element.find('*').off('.patternlibrary');
+    	this._detachEvents();
         patternlibrary.Ui.unregister(this);
     };
   
