@@ -1,0 +1,12 @@
+---
+pattern:
+  name: 'atom/icon/pattern'
+  categories: ['basics','gfx' ]
+  uses:
+---
+{{#if pattern.type}}
+    {{#ifCond value=pattern.type comp="atom" mode="eq"}}<i class="fa fa-square-o"></i>{{/ifCond}}
+    {{#ifCond value=pattern.type comp="molecule" mode="eq"}}<i class="fa fa-cube"></i>{{/ifCond}}
+    {{#ifCond value=pattern.type comp="organism" mode="eq"}}<i class="fa fa-cubes"></i>{{/ifCond}}
+    {{#ifCond value=pattern.type comp="template" mode="eq"}}<i class="fa fa-file-picture-o"></i>{{/ifCond}}
+{{/if}}

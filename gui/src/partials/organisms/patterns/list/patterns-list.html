@@ -1,0 +1,19 @@
+---
+pattern:
+  name: 'organism/patterns/list'
+  categories: ['patterns']
+  uses: ['molecule/patterns/list-filter', 'molecule/patterns/list-content']
+params:
+---
+<!-- #PL:PATTERNLIST -->
+<section class="panel patternlist">
+    <div class="small-12 row columns">
+		{{> patterns-list-filter}}
+	</div>
+	 
+    <div class="small-12 row columns">
+		{{> patterns-list-content}}
+	</div>
+	
+</section>
+<!-- /PL:PATTERNLIST -->

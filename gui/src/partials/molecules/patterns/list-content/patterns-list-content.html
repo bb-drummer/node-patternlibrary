@@ -1,0 +1,27 @@
+---
+pattern:
+  name: 'molecule/patterns/list-content'
+  categories: ['lists' ]
+  uses: ['atom/link', 'atom/icon/pattern', 'atom/text/pattern-categories']
+params:
+---
+<div class="row panel-body">
+    <div class="row columns large-12">
+		<ul class="accordion">
+            {{#if patternlist}}
+            	{{#each patternlist}}
+				    <li class="accordion-item row columns">
+				    	<!-- Accordion tab title {{../root}}/patterns/{{pattern.name}} -->
+				    	<a href="{{patternlink pattern.name}}" class="accordion-title row columns">
+					        <div class="columns medium-6 small-12">Name: <strong>{{pattern.name}}</strong> {{> "icon-pattern"}}</div>
+					        <div class="columns medium-6 hide-for-small show-for-medium categories">Categories:
+					        <strong>{{> "text-pattern-categories"}}</strong>
+                            </div>
+					    </a>
+				    </li>
+				{{/each}}
+		    {{/if}}
+		    
+		</ul>
+    </div>
+</div>

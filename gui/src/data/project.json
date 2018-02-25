@@ -1,8 +1,9 @@
 {
-    "name": "Patternlibrary",
+    "name": "Patternlibrary GUI",
     "version": "0.0.1",
     "author": {
         "name": "[bjoernbartels.earth]",
+        "email": "coding@bjoernbartels.earth",
         "url": "https://bjoernbartels.earth"
     }
 }

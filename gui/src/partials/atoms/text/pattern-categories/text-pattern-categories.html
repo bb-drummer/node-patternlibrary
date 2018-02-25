@@ -1,0 +1,8 @@
+---
+pattern:
+  name: 'atom/text/pattern-categories'
+  categories: ['basics', 'texts' ]
+  uses:
+params:
+---
+{{#if pattern.categories}}{{#each pattern.categories as |category|}}<span class="name">{{category}}</span>{{#unless @last}}, {{/unless}}{{/each}}{{/if}}

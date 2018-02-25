@@ -18,9 +18,9 @@ import * as d3 from 'd3';
 //require('../vendor/d3.layout');
 
 const DependencyChord_Defaults = { 
-    width      : 420,
+    width      : 480,
     
-    linkTension: 0.66,
+    linkTension: 0.85,
     
     height     : null, // 420,
     diameter   : null, // 420, // d = w * 2 / 3
@@ -76,6 +76,12 @@ const DependencyChord = class DependencyChord extends PatternlibraryCore.Module 
                 if ( typeof classes[key] != 'undefined' ) {
                     patterns.push(classes[key]);
                 }
+            }
+            if (patterns.length < 1) {
+            	console.warn('Patternlibrary: loading result contained no patterns.');
+            	$chord.$element.append('<!-- loading result contained no patterns -->');
+            	$chord._destroy();
+            	return;
             }
     
             var root = $chord.packageHierarchy(patterns);
@@ -271,7 +277,7 @@ const DependencyChord = class DependencyChord extends PatternlibraryCore.Module 
      */
     get line () {
         var line = d3.radialLine()
-            .curve(d3.curveBundle.beta(0.66))
+            .curve(d3.curveBundle.beta(this.options.linkTension))
             .radius(function(d) { return d.y; })
             .angle(function(d) { return d.x / 180 * Math.PI; });
         return line;
@@ -367,7 +373,7 @@ const DependencyChord = class DependencyChord extends PatternlibraryCore.Module 
     _destroy () {
         // ... clean up stuff
     	this._detachEvents();
-        patternlibrary.Ui.unregister(this);
+        patternlibrary.Ui.destroy(this);
     };
   
 };

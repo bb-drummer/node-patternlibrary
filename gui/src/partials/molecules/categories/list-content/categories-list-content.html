@@ -1,0 +1,26 @@
+---
+pattern:
+  name: 'molecule/categories/list-content'
+  categories: ['lists' ]
+  uses: ['atom/link', 'atom/icon/category']
+params:
+---
+<div class="row panel-body">
+    <div class="row columns large-12">
+        <ul class="accordion" data-patternlibrary-accordion data-multi-expand="true" data-allow-all-closed="true" data-deep-link="true" data-update-history>
+            {{#if categorylist}}
+                {{#each categorylist as |cat|}}
+                    <li class="accordion-item row columns" data-accordion-item>
+                        <a href="{{root}}{{categorylink cat.slug}}" class="accordion-title row columns">
+                            <div class="columns medium-6 small-12">Name: <strong>{{cat.name}}</strong> {{> "icon-category"}}</div>
+                            <div class="columns medium-6 hide-for-small show-for-medium categories">Patterns: <strong>{{cat.patternsCount}}</strong></div>
+                        </a>
+                        <!-- Accordion tab content: empty, but kept here to make (Foundation's) accordion work for now -->
+                        <div class="accordion-content" data-tab-content>
+                        </div>
+                    </li>
+                {{/each}}
+            {{/if}}
+        </ul>
+    </div>
+</div>

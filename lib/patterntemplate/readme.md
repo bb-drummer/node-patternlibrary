@@ -1,0 +1,6 @@
+---
+title: {PATTERN_TYPE}/{PATTERN_NAME}
+description: {PATTERN_DESCRIPTION}
+sass: {PATTERN_STYLES}
+js: {PATTERN_SCRIPTS}
+---

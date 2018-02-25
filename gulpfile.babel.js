@@ -4,6 +4,7 @@ import plugins       from 'gulp-load-plugins';
 import yargs         from 'yargs';
 import browser       from 'browser-sync';
 import gulp          from 'gulp';
+import path          from 'path';
 import panini        from 'panini';
 import rimraf        from 'rimraf';
 import sherpa        from 'style-sherpa';
@@ -52,15 +53,32 @@ function copyDevData() {
 
 // Copy page templates into finished HTML files
 function pages() {
-  return gulp.src('gui/src/pages/**/*.{html,hbs,handlebars}')
-    .pipe(panini({
-      root: 'gui/src/pages/',
-      layouts: 'gui/src/layouts/',
-      partials: 'gui/src/partials/',
-      data: 'gui/src/data/',
-      helpers: 'gui/src/helpers/'
-    }))
-    .pipe(gulp.dest(PATHS.dist));
+  if ($PL && $PL.Panini) {
+	  $PL.Panini.refresh();
+	  return gulp.src([
+		  'gui/src/pages/**/*.{html,hbs,handlebars}',
+		  '!gui/src/pages/pl/**/*.{html,hbs,handlebars}'
+		  
+	  ])
+	    .pipe($PL.Panini.render())
+	    .pipe(gulp.dest(PATHS.dist))
+	  ;
+  } else {
+	  return gulp.src([
+		  'gui/src/pages/**/*.{html,hbs,handlebars}',
+		  '!gui/src/pages/pl/{dashboard,patterndocs}.html',
+		  '!gui/src/pages/pl/{patterns,atoms,molecules,organisms,categories}/**/*.{html,hbs,handlebars}'
+		  
+	  ])
+	    .pipe(panini({
+	      root    : 'gui/src/pages/',
+	      layouts : 'gui/src/layouts/',
+	      partials: 'gui/src/partials/',
+	      data    : 'gui/src/data/',
+	      helpers : 'gui/src/helpers/'
+	    }))
+	    .pipe(gulp.dest(PATHS.dist));
+  }
 }
 
 // Load updated HTML templates and partials into Panini
@@ -215,9 +233,125 @@ gulp.task('libnamespace',
 );
 
 
-//Build the "dist" folder by running all of the below tasks
+/** @var Patternlibrary */
+var $PL = null;
+
+/** @var string */
+var patternlibraryBaseURL = '/pl';
+
+/** @var string */
+var patternlibraryDestination = path.join(PATHS.dist, patternlibraryBaseURL);
+
+// copy patternlibrary assets
+gulp.task('copy:patternlibrary-assets', function () {
+	return gulp.src(PATHS.patternlibrary_guiassets + '/**/*')
+        .pipe(gulp.dest(PATHS.dist + PATHS.patternlibrary_assetspath));
+});
+
+// copy patternlibrary pages to dist folder
+gulp.task('copy:patternlibrary-pages', function () {
+	return gulp.src([
+		PATHS.patternlibrary_gui + '/src/pages/patternlibrary.html'
+	])
+    .pipe(gulp.dest('src/pages/pl'));
+});
+
+//copy patternlibrary files
+gulp.task('copy:patternlibrary',
+	gulp.series(
+	    //'clean:patternlibrary-assets',
+        gulp.parallel(
+            'copy:patternlibrary-assets' /*,
+            'copy:patternlibrary-pages' */
+        )
+    )
+);
+
+// clear patternlibrary dist folder
+gulp.task('clean:patternlibrary-dist', function (done) {
+    rimraf(PATHS.dist + '/pl/', done);
+});
+
+// clear patternlibrary assets folder
+gulp.task('clean:patternlibrary-assets', function (done) {
+  rimraf(PATHS.dist + PATHS.patternlibrary_assetspath, done);
+});
+
+// refresh patternlibrary dist files and data
+gulp.task('patternlibrary:refresh', function (done) {
+	$PL.refresh();
+    done();
+});
+
+// preparations, clear dist-dir, 
+gulp.task('patternlibrary:prepare',
+	gulp.series(
+		'clean:patternlibrary-dist' /*,
+        'copy:patternlibrary' */
+    )
+);
+
+//initialize Patternlibrary task
+gulp.task('patternlibrary:init', function (done) {
+	
+	// initialize Patternlibrary
+	//if (null == $PL) {
+	/** @class Patternlibrary */
+	var Patternlibrary = require('.');
+	    $PL = null; 
+		$PL = Patternlibrary({
+	        verbose  : true,
+	        dest     : patternlibraryDestination,
+	        basepath : patternlibraryBaseURL,
+	        /*partials : 'src/patterns/' */
+	        root     : 'gui/src/pages/',
+	        layouts  : 'gui/src/layouts/',
+	        partials : 'gui/src/partials/',
+	        data     : 'gui/src/data/',
+	        helpers  : 'gui/src/helpers/'
+	    });
+	//}
+    
+	// finish task
+    done();
+    
+});
+
+// run Patternlibrary generation
+gulp.task('patternlibrary:run', function (done) {
+	
+	// generate Patternlibrary pages
+	if ($PL != null) {
+	    // ...go, go $PL ! 
+		$PL
+		   .run()
+		   //.log("PL:", $PL)
+		;
+	}
+
+	// finish task
+    done();
+    
+});
+
+//run Patternlibrary generation
+gulp.task('patternlibrary:re-run', gulp.series(
+		'patternlibrary:init', 
+		'patternlibrary:run'
+));
+
+// main 'patternlibrary' task
+gulp.task('patternlibrary',
+	gulp.series(
+		'patternlibrary:prepare',
+ 	    'patternlibrary:init',
+ 	    'patternlibrary:run'
+    )
+);
+
+// Build the "dist" folder by running all of the below tasks
 gulp.task('build',
- gulp.series(clean, 'libnamespace', gulp.parallel(pages, sass, javascript, javascriptVendors, images, copy, copyDevData), styleGuide));
+ gulp.series(clean, 'libnamespace', gulp.parallel(gulp.series(pages, 'patternlibrary'), sass, javascript, javascriptVendors, images, copy, copyDevData), styleGuide));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
@@ -228,8 +362,8 @@ gulp.task('default',
 function watch() {
   gulp.watch(PATHS.assets, copy);
   gulp.watch('gui/data/*.json').on('all', gulp.series(copyDevData, browser.reload));
-  gulp.watch('gui/src/pages/**/*.html').on('all', gulp.series(pages, browser.reload));
-  gulp.watch('gui/src/{layouts,partials}/**/*.html').on('all', gulp.series(resetPages, pages, browser.reload));
+  gulp.watch('gui/src/pages/**/*.html').on('all', gulp.series(gulp.series(pages, 'patternlibrary:re-run'), browser.reload));
+  gulp.watch('gui/src/{layouts,partials}/**/*.{html,md}').on('all', gulp.series(resetPages, gulp.series(pages, 'patternlibrary:re-run'), browser.reload));
   gulp.watch('gui/src/assets/scss/**/*.scss').on('all', sass);
   gulp.watch('gui/src/assets/*/**/*.js').on('all', gulp.series(javascript, browser.reload));
   gulp.watch('gui/src/assets/img/**/*').on('all', gulp.series(images, browser.reload));
