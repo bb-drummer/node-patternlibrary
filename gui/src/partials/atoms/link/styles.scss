@@ -1,0 +1,379 @@
+// Foundation for Sites by ZURB
+// foundation.zurb.com
+// Licensed under MIT Open Source
+
+////
+/// @group link
+////
+
+/// Font family for link elements.
+/// @type Font
+$link-font-family: inherit !default;
+
+/// Padding inside links.
+/// @type List
+$link-padding: 0.85em 1em !default;
+
+/// Margin around links.
+/// @type List
+$link-margin: 0 0 $global-margin 0 !default;
+
+/// Default fill for links. Can either be `solid` or `hollow`.
+/// @type Keyword
+$link-fill: solid !default;
+
+/// Default background color for links.
+/// @type Color
+$link-background: $primary-color !default;
+
+/// Background color on hover for links.
+/// @type Color
+$link-background-hover: scale-color($link-background, $lightness: -15%) !default;
+
+/// Font color for links.
+/// @type List
+$link-color: $white !default;
+
+/// Alternative font color for links.
+/// @type List
+$link-color-alt: $black !default;
+
+/// Border radius for links, defaulted to global-radius.
+/// @type Number
+$link-radius: $global-radius !default;
+
+/// Border width for hollow outline links
+/// @type Number
+$link-hollow-border-width: 1px !default;
+
+/// Sizes for links.
+/// @type Map
+$link-sizes: (
+  tiny: 0.6rem,
+  small: 0.75rem,
+  default: 0.9rem,
+  large: 1.25rem,
+) !default;
+
+/// Coloring classes. A map of classes to output in your CSS, like `.secondary`, `.success`, and so on.
+/// @type Map
+$link-palette: $foundation-palette !default;
+
+/// opacity for a disabled link.
+/// @type List
+$link-opacity-disabled: 0.25 !default;
+
+/// Background color lightness on hover for links.
+/// @type Number
+$link-background-hover-lightness: -20% !default;
+
+/// Color lightness on hover for hollow links.
+/// @type Number
+$link-hollow-hover-lightness: -50% !default;
+
+// Internal: flip from margin-right to margin-left for defaults
+@if $global-text-direction == 'rtl' {
+  $link-margin: 0 0 $global-margin $global-margin !default;
+}
+
+/// transitions for links.
+/// @type List
+$link-transition: background-color 0.25s ease-out, color 0.25s ease-out !default;
+
+// TODO: Document link-base() mixin
+@mixin link-base {
+  @include disable-mouse-outline;
+  display: inline-block;
+  vertical-align: middle;
+  margin: $link-margin;
+  font-family: $link-font-family;
+
+  @if (type-of($link-padding) == 'map') {
+    @each $size, $padding in $link-padding {
+      @include breakpoint($size) {
+        padding: $padding;
+      }
+    }
+  }
+  @else {
+    padding: $link-padding;
+  }
+
+  -webkit-appearance: none;
+  border: 1px solid transparent;
+  border-radius: $link-radius;
+  transition: $link-transition;
+
+  font-size: map-get($link-sizes, default);
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+}
+
+/// Expands a link to make it full-width.
+/// @param {Boolean} $expand [true] - Set to `true` to enable the expand behavior. Set to `false` to reverse this behavior.
+@mixin link-expand($expand: true) {
+  @if $expand {
+    display: block;
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+  }
+  @else {
+    display: inline-block;
+    width: auto;
+    margin: $link-margin;
+  }
+}
+
+/// Sets the visual style of a link.
+/// @param {Color} $background [$link-background] - Background color of the link.
+/// @param {Color} $background-hover [$link-background-hover] - Background color of the link on hover. Set to `auto` to have the mixin automatically generate a hover color.
+/// @param {Color} $color [$link-color] - Text color of the link. Set to `auto` to automatically generate a color based on the background color.
+@mixin link-style(
+  $background: $link-background,
+  $background-hover: $link-background-hover,
+  $color: $link-color,
+  $background-hover-lightness: $link-background-hover-lightness
+) {
+  @if $color == auto {
+    $color: color-pick-contrast($background, ($link-color, $link-color-alt));
+  }
+
+  @if $background-hover == auto {
+    $background-hover: scale-color($background, $lightness: $background-hover-lightness);
+  }
+
+  background-color: $background;
+  color: $color;
+
+  &:hover, &:focus {
+    background-color: $background-hover;
+    color: $color;
+  }
+}
+
+/// Removes background fill on hover and focus for hollow links.
+@mixin link-hollow {
+  &,
+  &:hover, &:focus {
+    background-color: transparent;
+  }
+
+  &.disabled,
+  &[disabled] {
+    &,
+    &:hover, &:focus {
+      background-color: transparent;
+    }
+  }
+}
+
+@mixin link-hollow-style(
+  $color: $link-background,
+  $hover-lightness: $link-hollow-hover-lightness,
+  $border-width: $link-hollow-border-width
+) {
+  $color-hover: scale-color($color, $lightness: $hover-lightness);
+
+  border: $border-width solid $color;
+  color: $color;
+
+  &:hover, &:focus {
+    border-color: $color-hover;
+    color: $color-hover;
+    &.disabled,
+    &[disabled] {
+      border: $border-width solid $color;
+      color: $color;
+    }
+  }
+}
+
+/// Adds disabled styles to a link by fading the element, reseting the cursor, and disabling pointer events.
+/// @param [Color] $background [$link-background] - Background color of the disabled link.
+/// @param [Color] $color [$link-color] - Text color of the disabled link. Set to `auto` to have the mixin automatically generate a color based on the background color.
+@mixin link-disabled(
+  $background: $link-background,
+  $color: $link-color
+) {
+  @if $color == auto {
+    $color: color-pick-contrast($background, ($link-color, $link-color-alt));
+  }
+
+  opacity: $link-opacity-disabled;
+  cursor: not-allowed;
+
+  &, &:hover, &:focus {
+    background-color: $background;
+    color: $color;
+  }
+}
+
+/// Adds a dropdown arrow to a link.
+/// @param {Number} $size [0.4em] - Size of the arrow. We recommend using an `em` value so the triangle scales when used inside different sizes of links.
+/// @param {Color} $color [white] - Color of the arrow.
+/// @param {Number} $offset [$link-padding] - Distance between the arrow and the text of the link. Defaults to whatever the right padding of a link is.
+@mixin link-dropdown(
+  $size: 0.4em,
+  $color: $white,
+  $offset: get-side($link-padding, right)
+) {
+  &::after {
+    @include css-triangle($size, $color, down);
+    position: relative;
+    top: 0.4em; // Aligns the arrow with the text of the link
+
+    display: inline-block;
+    float: #{$global-right};
+    margin-#{$global-left}: $offset;
+  }
+}
+
+/// Adds all styles for a link. For more granular control over styles, use the individual link mixins.
+/// @param {Boolean} $expand [false] - Set to `true` to make the link full-width.
+/// @param {Color} $background [$link-background] - Background color of the link.
+/// @param {Color} $background-hover [$link-background-hover] - Background color of the link on hover. Set to `auto` to have the mixin automatically generate a hover color.
+/// @param {Color} $color [$link-color] - Text color of the link. Set to `auto` to automatically generate a color based on the background color.
+/// @param {Keyword} $style [solid] - Set to `hollow` to create a hollow link. The color defined in `$background` will be used as the primary color of the link.
+@mixin link(
+  $expand: false,
+  $background: $link-background,
+  $background-hover: $link-background-hover,
+  $color: $link-color,
+  $style: $link-fill
+) {
+  @include link-base;
+
+  @if $style == solid {
+    @include link-style($background, $background-hover, $color);
+  }
+  @else if $style == hollow {
+    @include link-hollow;
+    @include link-hollow-style($background);
+  }
+
+  @if $expand {
+    @include link-expand;
+  }
+}
+
+@mixin foundation-link {
+  .link {
+    @include link;
+
+    // Sizes
+    @each $size, $value in map-remove($link-sizes, default) {
+      &.#{$size} {
+        font-size: $value;
+      }
+    }
+
+    &.expanded { @include link-expand; }
+
+    // Colors
+    @each $name, $color in $link-palette {
+      @if $link-fill != hollow {
+        &.#{$name} {
+          @include link-style($color, auto, auto);
+        }
+      }
+      @else {
+        &.#{$name} {
+          @include link-hollow-style($color);
+        }
+
+        &.#{$name}.dropdown::after {
+          border-top-color: $color;
+        }
+      }
+    }
+
+    // Disabled style
+    &.disabled,
+    &[disabled] {
+      @include link-disabled;
+
+      @each $name, $color in $link-palette {
+        &.#{$name} {
+          @include link-disabled($color, auto);
+        }
+      }
+    }
+
+    // Hollow style
+    @if $link-fill != hollow {
+      &.hollow {
+        @include link-hollow;
+        @include link-hollow-style;
+
+        @each $name, $color in $link-palette {
+          &.#{$name} {
+            @include link-hollow-style($color);
+          }
+        }
+      }
+    }
+
+    // Clear style
+    @if $link-fill != clear {
+      &.clear {
+        @include link-hollow;
+        @include link-hollow-style;
+
+        &, &:hover, &:focus {
+          &, &.disabled, &[disabled] {
+            border-color: transparent;
+          }
+        }
+
+        @each $name, $color in $link-palette {
+          &.#{$name} {
+            @include link-hollow-style($color);
+
+            &, &:hover,
+            &:focus {
+              &,
+              &.disabled,
+              &[disabled] {
+                border-color: transparent;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Dropdown arrow
+    &.dropdown {
+      @include link-dropdown;
+
+      @if $link-fill == hollow {
+        &::after {
+          border-top-color: $link-background;
+        }
+      }
+
+      &.hollow {
+        &::after {
+          border-top-color: $link-background;
+        }
+
+        @each $name, $color in $link-palette {
+          &.#{$name} {
+            &::after {
+              border-top-color: $color;
+            }
+          }
+        }
+      }
+    }
+
+    // Button with dropdown arrow only
+    &.arrow-only::after {
+      top: -0.1em;
+      float: none;
+      margin-#{$global-left}: 0;
+    }
+  }
+}
