@@ -269,7 +269,7 @@ gulp.task('copy:patternlibrary',
 
 // clear patternlibrary dist folder
 gulp.task('clean:patternlibrary-dist', function (done) {
-    rimraf(PATHS.dist + '/pl/', done);
+    rimraf(path.join(PATHS.dist, patternlibraryBaseURL), done);
 });
 
 // clear patternlibrary assets folder
@@ -301,7 +301,7 @@ gulp.task('patternlibrary:init', function (done) {
 	    $PL = null; 
 		$PL = Patternlibrary({
 	        verbose  : true,
-	        dest     : patternlibraryDestination,
+	        dest     : PATHS.dist,
 	        basepath : patternlibraryBaseURL,
 	        /*partials : 'src/patterns/' */
 	        root     : 'gui/src/pages/',
@@ -323,7 +323,7 @@ gulp.task('patternlibrary:run', function (done) {
 	// generate Patternlibrary pages
 	if ($PL != null) {
 	    // ...go, go $PL ! 
-		$PL
+		return $PL
 		   .run()
 		   //.log("PL:", $PL)
 		;
@@ -351,19 +351,19 @@ gulp.task('patternlibrary',
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
- gulp.series(clean, 'libnamespace', gulp.parallel(gulp.series(pages, 'patternlibrary'), sass, javascript, javascriptVendors, images, copy, copyDevData), styleGuide));
+ gulp.series(clean, 'libnamespace', gulp.parallel(gulp.series(/*pages,*/ 'patternlibrary'), sass, javascript, javascriptVendors, images, copy/*, copyDevData*/), styleGuide));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
-  gulp.series('build', server, watch));
+  gulp.series('build')); //, server, watch));
 
 
 // Watch for changes to static assets, pages, Sass, and JavaScript
 function watch() {
   gulp.watch(PATHS.assets, copy);
   gulp.watch('gui/data/*.json').on('all', gulp.series(copyDevData, browser.reload));
-  gulp.watch('gui/src/pages/**/*.html').on('all', gulp.series(gulp.series(pages, 'patternlibrary:re-run'), browser.reload));
-  gulp.watch('gui/src/{layouts,partials}/**/*.{html,md}').on('all', gulp.series(resetPages, gulp.series(pages, 'patternlibrary:re-run'), browser.reload));
+  gulp.watch('gui/src/pages/**/*.html').on('all', gulp.series(gulp.series(/*pages,*/ 'patternlibrary:re-run'), browser.reload));
+  gulp.watch('gui/src/{layouts,partials}/**/*.{html,md}').on('all', gulp.series(resetPages, gulp.series(/*pages,*/ 'patternlibrary:re-run'), browser.reload));
   gulp.watch('gui/src/assets/scss/**/*.scss').on('all', sass);
   gulp.watch('gui/src/assets/*/**/*.js').on('all', gulp.series(javascript, browser.reload));
   gulp.watch('gui/src/assets/img/**/*').on('all', gulp.series(images, browser.reload));

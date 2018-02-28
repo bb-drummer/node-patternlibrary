@@ -1,9 +1,9 @@
 ---
 title: 'atom/link'
-description: an inline link
+description: 'an inline link'
 source: 'atom-link.html'
-sass: 
-js:
+sass: styles.scss
+js: module.js
 ---
 
 Here you can either give a rather brief description of your pattern or provide extended usage information.

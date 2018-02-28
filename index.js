@@ -27,7 +27,7 @@ module.exports = function(options) {
     return the_patternlibrary;
 };
 
-
+module.exports.Patternlibrary = Patternlibrary;
 
 
 /**
