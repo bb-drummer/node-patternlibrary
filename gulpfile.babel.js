@@ -355,7 +355,7 @@ gulp.task('build',
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
-  gulp.series('build')); //, server, watch));
+  gulp.series('build', server, watch)); // )); // 
 
 
 // Watch for changes to static assets, pages, Sass, and JavaScript
