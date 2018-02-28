@@ -38,7 +38,7 @@ describe('Patternlibrary', () => {
     //done();
     
     src(FIXTURES + 'basic/pages/*')
-      .pipe(p.getFileStream().stream())
+      .pipe(p.run())
       .pipe(dest(FIXTURES + 'basic/build'))
       .on('finish', () => {
 
