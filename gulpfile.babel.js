@@ -298,12 +298,10 @@ gulp.task('patternlibrary:init', function (done) {
 	//if (null == $PL) {
 	/** @class Patternlibrary */
 	var Patternlibrary = require('.');
-	    $PL = null; 
-		$PL = Patternlibrary({
+	    $PL = new Patternlibrary.Patternlibrary({
 	        verbose  : true,
 	        dest     : PATHS.dist,
 	        basepath : patternlibraryBaseURL,
-	        /*partials : 'src/patterns/' */
 	        root     : 'gui/src/pages/',
 	        layouts  : 'gui/src/layouts/',
 	        partials : 'gui/src/partials/',
@@ -323,7 +321,8 @@ gulp.task('patternlibrary:run', function (done) {
 	// generate Patternlibrary pages
 	if ($PL != null) {
 	    // ...go, go $PL ! 
-		return $PL
+		//return 
+		$PL
 		   .run()
 		   //.log("PL:", $PL)
 		;
@@ -351,7 +350,7 @@ gulp.task('patternlibrary',
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
- gulp.series(clean, 'libnamespace', gulp.parallel(gulp.series(/*pages,*/ 'patternlibrary'), sass, javascript, javascriptVendors, images, copy/*, copyDevData*/), styleGuide));
+ gulp.series(clean, 'libnamespace', gulp.parallel(gulp.series(/*pages,*/ 'patternlibrary'), sass, javascript, javascriptVendors, images, copy/*, copyDevData*/)));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',

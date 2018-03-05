@@ -1,0 +1,11 @@
+{
+    "patterns": {},
+    "categories": [],
+    "breakfast": {
+        "items": [
+            "eggs",
+            "bacon",
+            "toast"
+        ]
+    }
+}

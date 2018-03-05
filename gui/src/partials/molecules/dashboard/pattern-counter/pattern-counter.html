@@ -1,3 +1,5 @@
 <div class="callout primary patterncounter">
-	<span>{{title}}: <strong>{{count}}</strong></span>
+	{{#ifCond value=type comp="category" mode="eq"}}{{> "icon-category"}}{{/ifCond}}
+	{{#ifCond value=type comp="category" mode="neq"}}{{> "icon-pattern" type=type}}{{/ifCond}}
+	<p class="float-right"><strong class="float-right">{{count}}</strong><br />{{title}}</p>
 </div>

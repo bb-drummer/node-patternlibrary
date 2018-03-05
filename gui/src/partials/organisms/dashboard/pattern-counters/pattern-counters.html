@@ -2,22 +2,22 @@
 <section class="panel patterncounters">
     
     <div class="small-6 medium-4 large-2 column">
-		{{> pattern-counter title="atoms" count=atomsCount}}
+		{{> pattern-counter title="atoms" count=stats.atomscount type='atom'}}
 	</div>
     <div class="small-6 medium-4 large-2 column">
-		{{> pattern-counter title="molecules" count=moleculesCount}}
+		{{> pattern-counter title="molecules" count=stats.moleculescount type='molecule'}}
 	</div>
     <div class="small-6 medium-4 large-2 column">
-		{{> pattern-counter title="organisms" count=organismsCount}}
+		{{> pattern-counter title="organisms" count=stats.organismscount type='organism'}}
 	</div>
     <div class="small-6 medium-4 large-2 column">
-		{{> pattern-counter title="categories" count=categoriesCount}}
+		{{> pattern-counter title="categories" count=stats.categoriescount type='category'}}
 	</div>
     <div class="small-6 medium-4 large-2 column">
-		{{> pattern-counter title="templates" count=templatesCount}}
+		{{> pattern-counter title="templates" count=stats.templatescount type='template'}}
 	</div>
     <div class="small-6 medium-4 large-2 column">
-		{{> pattern-counter title="pages" count=pagesCount}}
+		{{> pattern-counter title="pages" count=stats.pagescount type='page'}}
 	</div>
 	
 </section>

@@ -1,15 +1,14 @@
-
 <!-- Footer -->
-	<footer id="footer" class="row columns">
-		<div class="small-12 medium-6 column text-left">
-			<span class="patterns"  ><a href="/pl/">Patterns</a>
-			<span class="typography">| <a href="/pl/pages/typography.html">Typography</a>
-			<span class="plfoundation">| <a href="/pl/pages/kitchensink.html">Kitchen Sink</a>
-			<span class="styleguide">| <a href="/pl/pages/styleguide.html">Styleguide</a>
-			<span class="plfoundation">| <a href="/pl/pages/htmlelements.html">Elements</a>
-		</div>
-		<div class="small-12 medium-6 column text-right">
-			<span class="copyright" >{{> text-project-title}}</a>
-			<span class="copyright" >| &copy; <a href="{{project.author.url}}" target="_blank">{{project.author.name}}</a>
-		</div>
-	</footer>
+<footer id="footer" class="row columns">
+	<div class="small-12 medium-6 column text-left">
+		<span class="patterns"  ><a href="{{baseroot}}">Patterns</a></span>
+		<span class="typography">| <a href="{{baseroot}}pages/typography.html">Typography</a></span>
+		<span class="plfoundation">| <a href="{{baseroot}}pages/kitchensink.html">Kitchen Sink</a></span>
+		<span class="styleguide">| <a href="{{baseroot}}pages/styleguide.html">Styleguide</a></span>
+		<span class="plfoundation">| <a href="{{baseroot}}pages/htmlelements.html">Elements</a></span>
+	</div>
+	<div class="small-12 medium-6 column text-right">
+		<span class="copyright" >{{> text-project-title}}</a></span>
+		<span class="copyright" >| &copy; <a href="{{project.author.url}}" target="_blank">{{project.author.name}}</a></span>
+	</div>
+</footer>

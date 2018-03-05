@@ -17,26 +17,26 @@ params:
 		    <div class="top-bar-left">
 				<ul class="dropdown menu" data-dropdown-menu>
 				  <li class="menu-text hide-for-small show-for-medium">Patterns:</li>
-				  <li class="hide-for-small show-for-medium"><a href="{{root}}/patterns/atoms"><i class="fa fa-square-o"></i> <span>Atoms</span></a></li>
-				  <li class="hide-for-small show-for-medium"><a href="{{root}}/patterns/molecules"><i class="fa fa-cube"></i> <span>Molecules</span></a></li>
-				  <li class="hide-for-small show-for-medium"><a href="{{root}}/patterns/organisms"><i class="fa fa-cubes"></i> <span>Organisms</span></a></li>
-				  <li class="hide-for-small show-for-medium"><a href="{{root}}/patterns/templates"><i class="fa fa-file-picture-o"></i> <span>Templates</span></a></li>
+				  <li class="hide-for-small show-for-medium"><a href="{{patternsroot}}atoms"><i class="fa fa-square-o"></i> <span>Atoms</span></a></li>
+				  <li class="hide-for-small show-for-medium"><a href="{{patternsroot}}molecules"><i class="fa fa-cube"></i> <span>Molecules</span></a></li>
+				  <li class="hide-for-small show-for-medium"><a href="{{patternsroot}}organisms"><i class="fa fa-cubes"></i> <span>Organisms</span></a></li>
+				  <li class="hide-for-small show-for-medium"><a href="{{patternsroot}}templates"><i class="fa fa-file-picture-o"></i> <span>Templates</span></a></li>
 			      <li class="show-for-small hide-for-medium">
 			          <a href="#"><i class="fa fa-list"></i> <span>Patterns</span></a> 
 			          <ul class="menu vertical">
-						  <li><a href="{{root}}/patterns/atoms"><i class="fa fa-square-o"></i> <span>Atoms</span></a></li>
-						  <li><a href="{{root}}/patterns/molecules"><i class="fa fa-cube"></i> <span>Molecules</span></a></li>
-						  <li><a href="{{root}}/patterns/organisms"><i class="fa fa-cubes"></i> <span>Organisms</span></a></li>
-						  <li><a href="{{root}}/patterns/templates"><i class="fa fa-file-picture-o"></i> <span>Templates</span></a></li>
+						  <li><a href="{{patternsroot}}atoms"><i class="fa fa-square-o"></i> <span>Atoms</span></a></li>
+						  <li><a href="{{patternsroot}}molecules"><i class="fa fa-cube"></i> <span>Molecules</span></a></li>
+						  <li><a href="{{patternsroot}}organisms"><i class="fa fa-cubes"></i> <span>Organisms</span></a></li>
+						  <li><a href="{{patternsroot}}templates"><i class="fa fa-file-picture-o"></i> <span>Templates</span></a></li>
 				      </ul>
 			      </li>
 			      <li>
-			        <a href="{{root}}/categories"><i class="fa fa-list"></i> <span>Categories</span></a> 
+			        <a href="{{categoriesroot}}"><i class="fa fa-list"></i> <span>Categories</span></a> 
 			        <ul class="menu vertical">
 			          
 			          {{#if categories}}
 			              {{#each categories as |cat|}}
-			                  <li><a href="{{../root}}/categories/{{cat.slug}}">{{> "icon-category" single="true"}} {{cat.name}}</a><!-- {{root}}/categories/{{slug}} --></li>
+			                  <li><a href="{{../categoriesroot}}{{cat.slug}}">{{> "icon-category" single="true"}} {{cat.name}}</a><!-- {{root}}/categories/{{slug}} --></li>
 			              {{/each}}
 			          {{/if}} 
 			        </ul>

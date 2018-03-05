@@ -19,7 +19,7 @@
 				                <li><strong>Categories:</strong>
 							        {{#if specs.pattern.categories}}
 							            {{#each specs.pattern.categories as |cat|}}
-							                <a href="{{../root}}/categories/{{cat}}">{{cat}}</a>{{#unless @last}}, {{/unless}}<!-- {{categorylink cat}} -->
+							                <a href="{{../categoriesroot}}{{cat}}">{{cat}}</a>{{#unless @last}}, {{/unless}}<!-- {{categorylink cat}} -->
 							            {{/each}}
 							        {{/if}}    
 							        {{#unless specs.pattern.categories}}
@@ -74,7 +74,7 @@
 
 	{{#heading 2}}Pattern Source:{{/heading}}
 	
-{{source.highlight}}
+{{sourcecode.highlight}}
 	
 </section>
 	
