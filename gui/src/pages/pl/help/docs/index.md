@@ -4,30 +4,12 @@ layout: patternlibrary
 
 # (Node-)**Patternlibrary**
 
-[![npm version](https://badge.fury.io/js/node-patternlibrary.svg)](https://badge.fury.io/js/node-patternlibrary)
+[![npm version](https://badge.fury.io/js/node-patternlibrary.svg)](https://badge.fury.io/js/node-patternlibrary "npm version")
+[![dependencies status](https://david-dm.org/bb-drummer/node-patternlibrary.svg)](https://david-dm.org/bb-drummer/node-patternlibrary "dependencies status")
+[![Scrutinizer-CI code quality score](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/?branch=master "Scrutinizer-CI code quality score")
+[![Scrutinizer-CI build status](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/badges/build.png?b=master)](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/build-status/master "Scrutinizer-CI build status")
+[![Travis-CI build status](https://travis-ci.org/bb-drummer/node-patternlibrary.svg?branch=master)](https://travis-ci.org/bb-drummer/node-patternlibrary "Travis-CI build status")
 
-[![dependencies status](https://david-dm.org/bb-drummer/node-patternlibrary.svg)](https://david-dm.org/bb-drummer/node-patternlibrary)
-
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/badges/build.png?b=master)](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/build-status/master)
-
-[![Build Status](https://travis-ci.org/bb-drummer/node-patternlibrary.svg?branch=master)](https://travis-ci.org/bb-drummer/node-patternlibrary)
-
-
-Table of content:
-
-[[TOC]]
-
----
-
-### Work-In-Progress disclaimer
-
-This project is now still a work in progress!
-Some of its features and options are or may be a subject to change!
-
-DO NOT USE IN PRODUCTION ENVIRONMENTS !
-
-When using this software, absolutely no warranties of any sort are granted. Please see the license file for more information.
 
 ---
 
@@ -41,6 +23,15 @@ It compiles a series of HTML **patterns** (a.k.a. _partials_) structured in an *
 Documentation pages for each pattern are created according to the specific pattern meta-data supplied. Those pages are combined under a GUI to view in your browser.
 
 The main template engine behind this is *handlebars* ([-> homepage](http://handlebarsjs.com)) which itself is extended by *Zurb Foundation*'s *Panini* ([-> GitHub](https://github.com/zurb/panini)). The style and script source files are parsed by *Zurb Foundation*'s *Supercollider* ([-> GitHub](https://github.com/zurb/supercollider)) utilizing *SassDoc* ([-> homepage](http://sassdoc.com/)) and *JSDoc* ([-> homepage](http://usejsdoc.org)).
+
+
+---
+
+
+[[TOC]]
+
+
+---
 
 
 ## Documentation
@@ -82,17 +73,18 @@ For detailed explanations of each of the parts that made up **Patternlibrary**, 
 
 ## Installation
 
-For now, just add 
-```js
-"patternlibrary": "git+https://gitlab.bjoernbartels.earth/js/patternlibrary.git"
-```
-to your `package.json` file.
+Add the package to your project in the `dependencies` section in your `package.json` file
 
-Once the stable release has arrived, install via npm
+```js
+    "patternlibrary": "git+https://gitlab.bjoernbartels.earth/js/patternlibrary.git"
+```
+
+or install via npm
 
 ```bash
-$> npm install patternlibrary --save-dev
+npm install patternlibrary --save
 ```
+
 
 
 ## Gulp usage
@@ -174,6 +166,7 @@ gulp.watch(['./src/partials/**/*'], ['patternlibrary:refresh']);
 ```
 
 
+
 ## Standalone module usage
 
 **Patternlibrary** is also usable as a standalone node module to integrate into your project. 
@@ -195,6 +188,23 @@ $PL.run();
 ```
 
 See the [API documentation page](api_docs.md) for a full overview of available methods.
+
+
+## Example, self-documenting demo setup
+
+The **Patternlibrary** package contains a self-documenting demo setup.
+
+Just run
+```bash
+npm run demo
+```
+in the package's root folder and browse to `http://localhost:8000`.
+
+
+A live demo of the self-documenting setup can also be found [here](https://demo.patternlibrary.bjoernbartels.earth/).
+
+
+[An example front-end/theme project](https://gitlab.bjoernbartels.earth/themes/node-patternlibrary-demo) can be found in our [GitLab](https://gitlab.bjoernbartels.earth/themes/node-patternlibrary-demo) or at GitHub.
 
 
 
@@ -221,9 +231,9 @@ Example: patternlibrary --partials=src/partials --dist=dist/pl/ ...
 
 If you like to contribute to/experiment with **Patternlibrary**, checkout the repo...
 ```bash
-$> git clone https://gitlab.bjoernbartels.earth/js/patternlibrary node-patternlibrary
-$> cd node-patternlibrary
-$> npm install
+git clone https://gitlab.bjoernbartels.earth/js/patternlibrary node-patternlibrary
+cd node-patternlibrary
+npm install
 ```
 ...just add the local repo to your `package.json` file...
 ```js
@@ -231,14 +241,17 @@ $> npm install
 ```
 ...and link the repo to your project via npm
 ```bash
-$> cd projectname
-    
-$> npm link ../path/to/node-patternlibrary 
+cd projectname
+npm link ../path/to/node-patternlibrary 
 ```
 
 ## Testing
 
-Simply, use `npm test` to run **Patternlibrary** tests.
+Simply, use 
+```bash
+npm test
+```
+to run **Patternlibrary** tests.
 
 
 
@@ -291,12 +304,6 @@ This basic set of options is similar to the one set for the 'Panini' module used
   _optional_, default: `src/data`
 
 
-- - - - - - - - - - - - - - - - - - - - - - - -
-
-
-### Special options
-
-
 - #### `verbose`
 
   **Type:** `Boolean`
@@ -305,19 +312,26 @@ This basic set of options is similar to the one set for the 'Panini' module used
   _optional_, default: false
   
 
+- - - - - - - - - - - - - - - - - - - - - - - -
+
+
+### Special options
+
+
 - #### `patterns`
 
   **Type:** `Object`
 
   Set the pattern specific source-paths.   
   _optional_, default: 
+  
   ```js
-{
-    atoms     : 'atoms/',
-    molecules : 'molecules/',
-    organisms : 'organisms/',
-    templates : 'tempates/'
-}
+  {
+      atoms     : 'atoms/',
+      molecules : 'molecules/',
+      organisms : 'organisms/',
+      templates : 'tempates/'
+  }
   ```
 
 
@@ -327,16 +341,17 @@ This basic set of options is similar to the one set for the 'Panini' module used
 
   Set the pattern specific file-name patterns.   
   _optional_, default: 
+  
   ```js
-{
-    'main'       : '{index,pattern}.{html,hbs,handlebars}',
-    'readme'     : '{readme,info}.{md,markdown}',
-    'markup'     : '{example,examples}.{md,markdown}',
-    'javascript' : '{index,module}.js',
-    'scss'       : '{style,styles,pattern}.{scss,sass,css}',
-    'tests'      : '{test,tests,visual,visualtest,visualtests}.js',
-    'changelog'  : 'changelog.{md,markdown}'
-}
+  {
+      'main'       : '{index,pattern}.{html,hbs,handlebars}',
+      'readme'     : '{readme,info}.{md,markdown}',
+      'markup'     : '{example,examples}.{md,markdown}',
+      'javascript' : '{index,module}.js',
+      'scss'       : '{style,styles,pattern}.{scss,sass,css}',
+      'tests'      : '{test,tests,visual,visualtest,visualtests}.js',
+      'changelog'  : 'changelog.{md,markdown}'
+  }
   ```
 
 
@@ -354,27 +369,27 @@ This basic set of options is similar to the one set for the 'Panini' module used
   
   Set template files and template options
   ```js
-    {
-        // Patternlibrary helpers path
-        'helpers'          : 'helpers/',
-        
-        // Patternlibrary layout file
-        'layout'           : 'patternlibrary',
+  {
+      // Patternlibrary helpers path
+      'helpers'          : 'helpers/',
+      
+      // Patternlibrary layout file
+      'layout'           : 'patternlibrary',
           
         
-        // Patternlibrary partials templates
-        //
+      // Patternlibrary partials templates
+      //
 
-        // Patternlibrary main page template
-        'page'             : 'patternlibrary',
+      // Patternlibrary main page template
+      'page'             : 'patternlibrary',
         
-        // main index page template
-        'mainindex'        : 'templates/index.html',
+      // main index page template
+      'mainindex'        : 'templates/index.html',
         
-        // pattern list template
-        'patternlist'      : 'templates/patternlist.html',
-        // pattern display template
-        'patterndisplay'   : 'templates/patterndisplay.html', 
+      // pattern list template
+      'patternlist'      : 'templates/patternlist.html',
+      // pattern display template
+     'patterndisplay'   : 'templates/patterndisplay.html', 
  
         // pattern main index page template
         'patternindex'     : 'templates/pattern-index.html', 
@@ -404,33 +419,12 @@ This basic set of options is similar to the one set for the 'Panini' module used
 - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-### Plug-in options
+### Middleware options
 
 
-- #### `plugins`
+- #### `middleware`
 
   **Type:** `Object`
-
-  - `docparser`
-
-      **Type:** `Object`
-
-      Set special 'DocParser' options
-      _optional_
-
-  - `docrenderer`
-
-      **Type:** `Object`
-
-      Set special 'DocRenderer' options
-      _optional_
-
-  - `filestream`
-
-      **Type:** `Object`
-
-      Set special 'filestream' options
-      _optional_
 
   - `middleware`
 
@@ -456,23 +450,11 @@ Some really critical options are overruled by hard-coded settings.
 
   Set 'handlebars' options.
 
-- #### `panini`
+- #### `markdown`
 
   **Type:** `Object`
 
-  Set 'panini' options.
-
-- #### `supercollider`
-
-  **Type:** `Object`
-
-  Set 'supercollider' options.
-
-- #### `marked`
-
-  **Type:** `Object`
-
-  Set 'marked' options.
+  Set 'markdown-it' options.
 
 - #### `sassdoc`
 
@@ -987,4 +969,18 @@ The generic syntax for the helper is
  (internal)
 
 ...
+
+
+---
+
+### Work-In-Progress disclaimer
+
+This project is now going from some kind of *Proof Of Concept* to real implementation.
+Most of its features and behavour is fixed so far.
+
+DO NOT USE IN PRODUCTION ENVIRONMENTS YET!
+
+When using this software, absolutely no warranties of any sort are granted. Please see the license file for more information.
+
+---
 

@@ -361,7 +361,7 @@ gulp.task('default',
 function watch() {
   gulp.watch(PATHS.assets, copy);
   gulp.watch('gui/data/*.json').on('all', gulp.series(copyDevData, browser.reload));
-  gulp.watch('gui/src/pages/**/*.html').on('all', gulp.series(gulp.series(/*pages,*/ 'patternlibrary:re-run'), browser.reload));
+  gulp.watch('gui/src/pages/**/*.{html,md}').on('all', gulp.series(gulp.series(/*pages,*/ 'patternlibrary:re-run'), browser.reload));
   gulp.watch('gui/src/{layouts,partials}/**/*.{html,md}').on('all', gulp.series(resetPages, gulp.series(/*pages,*/ 'patternlibrary:re-run'), browser.reload));
   gulp.watch('gui/src/assets/scss/**/*.scss').on('all', sass);
   gulp.watch('gui/src/assets/*/**/*.js').on('all', gulp.series(javascript, browser.reload));

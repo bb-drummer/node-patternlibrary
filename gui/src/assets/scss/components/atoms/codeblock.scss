@@ -1,0 +1,14 @@
+
+
+pre code {
+
+	&:empty {
+	    display: none;
+	}
+	
+	pre code {
+		border : 0 none;
+		padding: 0;
+	}
+
+}
