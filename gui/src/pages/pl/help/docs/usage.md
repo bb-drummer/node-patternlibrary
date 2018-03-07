@@ -1,20 +1,40 @@
+---
+layout: patternlibrary
+---
+
+# Patternlibrary - Usage
+
+
+
+
+[[TOC]]
+
+
+
+
+---
+
+
+
+
 ## Installation
 
+Add the package to your project in the `dependencies` section in your `package.json` file
 
-Just add and install via npm
+```js
+    "node-patternlibrary": "^0.0.3"
+```
+
+or install via npm
 
 ```bash
-$> npm install node-patternlibrary --save
+npm install node-patternlibrary --save
 ```
 
-You can also manually add 
-```js
-  "node-patternlibrary": "^0.0.1"
-```
-to your `package.json` file and run 
-```js
-$> npm update
-```
+
+
+---
+
 
 
 ## Gulp usage
@@ -32,17 +52,12 @@ var $PL = null;
 // initialize Patternlibrary task
 gulp.task('patternlibrary:init', function (done) {
     
-    // initialize Patternlibrary
+    // initialize Patternlibrary (minimum setup)
     if (null == $PL) {
         $PL = Patternlibrary({
-            verbose  : true,
-            dest     : 'dist/pl/',
-            basepath : '/pl',
-            partials : 'src/patterns/',
-            helpers  : 'src/helpers/',
-            layouts  : 'src/layouts/',
-            root     : 'src/pages/',
-            data     : 'src/data/'
+            dest     : 'dist',
+            root     : 'src/pages/'
+            partials : 'src/partials/'
         });
     }
     
@@ -96,8 +111,13 @@ Whenever these files change, call the `Patternlibrary.refresh()` method to get i
 You can easily do this inside a call to `gulp.watch()`:
 
 ```js
-gulp.watch(['./src/partials/**/*'], ['patternlibrary:refresh']);
+gulp.watch(['./src/{root,partials}/**/*'], ['patternlibrary:refresh']);
 ```
+
+
+
+---
+
 
 
 ## Standalone module usage
@@ -110,14 +130,10 @@ var Patternlibrary = require('node-patternlibrary');
 // initialize Patternlibrary
 /** @var Patternlibrary */
 var $PL = Patternlibrary({
-    verbose  : true,
-    dest     : 'dist/pl/',
+    dest     : 'dist',
     basepath : '/pl',
-    partials : 'src/partials/',
-    helpers  : 'src/helpers/',
-    layouts  : 'src/layouts/',
-    root     : 'src/pages/',
-    data     : 'src/data/'
+    root     : 'src/pages/'
+    partials : 'src/partials/'
 });
 
 // run Patternlibrary generation
@@ -125,6 +141,32 @@ $PL.run();
 ```
 
 See the [API documentation page](api_docs.md) for a full overview of available methods.
+
+
+
+---
+
+
+
+## Example, self-documenting demo setup
+
+The **Patternlibrary** package contains a self-documenting demo setup.
+
+Just run
+```bash
+npm run demo
+```
+in the package's root folder and browse to `http://localhost:8000`.
+
+
+A live demo of the self-documenting setup can also be found [here](https://demo.patternlibrary.bjoernbartels.earth/).
+
+
+[An example front-end/theme project](https://gitlab.bjoernbartels.earth/themes/node-patternlibrary-demo) can be found in our [GitLab](https://gitlab.bjoernbartels.earth/themes/node-patternlibrary-demo).
+
+
+
+---
 
 
 
@@ -147,38 +189,46 @@ Example: patternlibrary --partials=src/partials --dist=dist/pl/ ...
 
 
 
+---
 
-## Development
+
+
+## Local Development
 
 If you like to contribute to/experiment with **Patternlibrary**, checkout the repo...
 ```bash
-$> git clone https://gitlab.bjoernbartels.earth/js/patternlibrary node-patternlibrary
-$> cd node-patternlibrary
-$> npm install
+git clone https://gitlab.bjoernbartels.earth/js/patternlibrary node-patternlibrary
+cd node-patternlibrary
+npm install
 ```
-
 ...just add the local repo to your `package.json` file...
 ```js
-  "node-patternlibrary": "file:../path/to/node-patternlibrary"
+    "node-patternlibrary": "file:../path/to/node-patternlibrary"
 ```
-
 ...and link the repo to your project via npm
 ```bash
-$> cd projectname
-    
-$> npm link ../path/to/node-patternlibrary 
+cd projectname
+npm link ../path/to/node-patternlibrary 
 ```
 
-### Bleeding edge
-
-If you like to try the to the minute up-to-date progress you can add one of the source repositories directly to your `package.json` file.
-
--  from our [GitLab](https://gitlab.bjoernbartels.earth/js/patternlibrary):
-   `"node-patternlibrary": "git+https://gitlab.bjoernbartels.earth/js/patternlibrary.git"`
--  from [GitHub](https://github.com/bb-drummer/node-patternlibrary):
-   `"node-patternlibrary": "git+https://github.com/bb-drummer/node-patternlibrary.git"`
 
 
-### Testing
+---
 
-In your local repository, simply use `npm test` to run **Patternlibrary** tests.
+
+
+## Testing
+
+Simply, use 
+```bash
+npm test
+```
+to run **Patternlibrary** tests.
+
+
+
+---
+
+
+
+

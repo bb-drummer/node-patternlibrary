@@ -1,84 +1,69 @@
-# (Node-)**Patternlibrary**
+# **Patternlibrary**
 
-[![npm version](https://badge.fury.io/js/node-patternlibrary.svg)](https://badge.fury.io/js/node-patternlibrary)
 
-[![dependencies status](https://david-dm.org/bb-drummer/node-patternlibrary.svg)](https://david-dm.org/bb-drummer/node-patternlibrary)
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/badges/build.png?b=master)](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/build-status/master)
+[![npm version](https://badge.fury.io/js/node-patternlibrary.svg)](https://badge.fury.io/js/node-patternlibrary "npm version")
+[![dependencies status](https://david-dm.org/bb-drummer/node-patternlibrary.svg)](https://david-dm.org/bb-drummer/node-patternlibrary "dependencies status")
+[![Scrutinizer-CI code quality score](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/?branch=master "Scrutinizer-CI code quality score")
+[![Scrutinizer-CI build status](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/badges/build.png?b=master)](https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/build-status/master "Scrutinizer-CI build status")
+[![Travis-CI build status](https://travis-ci.org/bb-drummer/node-patternlibrary.svg?branch=master)](https://travis-ci.org/bb-drummer/node-patternlibrary "Travis-CI build status")
 
-[![Build Status](https://travis-ci.org/bb-drummer/node-patternlibrary.svg?branch=master)](https://travis-ci.org/bb-drummer/node-patternlibrary)
 
-### Work-In-Progress disclaimer
-
-This project is now still a work in progress!
-Some of its features and options are or may be a subject to change!
-
-DO NOT USE IN PRODUCTION ENVIRONMENTS !
-
-When using this software, absolutely no warranties of any sort are granted. Please see the license file for more information.
 
 ---
 
-[[TOC]]
-
----
-
-## About
 
 
-**Patternlibrary** (a.k.a. _node-patternlibrary_) is a static site and pattern documentaion generator for use with Node, Gulp or Grunt. 
+## Welcome to the self-documenting demo
 
-It compiles a series of HTML **patterns** (a.k.a. _partials_) structured in an **atomic desing pattern**. These patterns can also include other HTML **patterns**/**partials**, external Handlebars **helpers**, or external **data** as JSON or YAML. 
+
+
+**Patternlibrary** (@ npm: _node-patternlibrary_) is a static site and pattern/component documentation generator for use with Node, Gulp or Grunt. 
+
+It compiles a series of HTML **patterns**, or _partials_, or _components_, structured in an **atomic desing pattern**. These patterns can also include other **patterns**, external Handlebars **helpers**, or external **data** as JSON or YAML. 
 
 Documentation pages for each pattern are created according to the specific pattern meta-data supplied. Those pages are combined under a GUI to view in your browser.
 
-The template engine used is *handlebars* ([-> homepage](http://handlebarsjs.com)) which itself is extended by *Zurb Foundation*'s *Panini* ([-> GitHub](https://github.com/zurb/panini)). The style and script source files are parsed by *Zurb Foundation*'s *Supercollider* ([-> GitHub](https://github.com/zurb/supercollider)) utilizing *SassDoc* ([-> homepage](http://sassdoc.com/)) and *JSDoc* ([-> homepage](http://usejsdoc.org)).
+The GUI provides an overview dashboard, lists to browse patterns and categories and (kind of) interactive pattern documentation.
+
+The template engine used is [*Handlebars*](http://handlebarsjs.com) and rendering _markdown_ is accomplished with [*MarkdownIt*](https://github.com/markdown-it/markdown-it). Parsing the style and script source files is utilizing ([*SassDoc*](http://sassdoc.com/)) and ([*JSDoc*](http://usejsdoc.org)).
+
 
 
 ## Documentation
 
 
-For detailed explanations of each of the parts that made up **Patternlibrary**, please see the following pages:
 
-- [Installation and (basic) usage](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/usage_docs.md)
-
-- [Options](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/options_docs.md)
-
-- [Generating pattern documentation](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/patternspecs_docs.md)
-
-  To generate the pattern-specific documentation pages, some requirements must be satisfied for each pattern:
-
-  - the [Pattern specifications](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/patternspecs_docs.md)
-  
-  and...
-  
-  - a [`readme.md` file](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/patternspecs_docs.md)
-  
-  
-  Optionally, you can also apply...
-  
-  - [SASS reference documentation](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/sassdoc_docs.md),
-  
-  - [JavaScript reference documentation](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/jsdoc_docs.md),
-  
-  - a [`changelog.md` file](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/changelog_docs.md) and
-  
-  - [Test files and testing](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/testing_docs.md)
-  
-- [GUI usage](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/gui_docs.md)
-  
-- [API documentation and advanced usage](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/api_docs.md)
-  
-- [Gulp/Grunt middleware usage](https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/middleware_docs.md)
+For detailed explanations on how to use **Patternlibrary**, please see the browse the [help pages](./pl/help/docs/).
 
 
 
 ## Example project
 
+
+
 [An example front-end/theme project](https://gitlab.bjoernbartels.earth//themes/node-patternlibrary-demo) can be found in our [GitLab](https://gitlab.bjoernbartels.earth//themes/node-patternlibrary-demo).
 
+
+
 ---
+
+
+
+### Work-In-Progress disclaimer
+
+This project is now going from some kind of *Proof Of Concept* to real implementation.
+Most of its features and behavour is fixed so far.
+
+DO NOT USE IN PRODUCTION ENVIRONMENTS YET!
+
+When using this software, absolutely no warranties of any sort are granted. Please see the license file for more information.
+
+
+
+---
+
+
 
 Copyright (c) 2017, [bjoernbartels.earth]
 
@@ -89,3 +74,9 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Please, see the license file for more information.
+
+
+---
+
+
+

@@ -2,6 +2,93 @@
 layout: patternlibrary
 ---
 
+# Patternlibrary - Options and configuration
+
+
+
+[[TOC]]
+
+
+
+
+---
+
+
+
+## Configuration
+
+
+on instanciation :
+
+```js
+const PL = new Patternlibrary(options);
+```
+
+
+with `config` method: 
+
+```js
+const PL = new Patternlibrary();
+
+// ...
+
+PL.config(options);
+```
+
+
+on initialisation : 
+
+```js
+const PL = new Patternlibrary();
+
+// ...
+
+PL.run(options);
+```
+
+
+section in `package.json` file: 
+
+```js
+{
+  "name": "my-package",
+  "version": "1.2.3",
+
+  // ...
+  
+  "patternlibrary": {
+  
+    "root"    : "src/pages",
+    "partials": "src/components",
+    
+    // ...
+
+  }
+
+}
+
+```
+
+
+a separate `.patternlibrary.rc` file in your project root: 
+
+```js
+{
+  "root"    : "src/pages",
+  "partials": "src/components",
+
+  // ...
+
+}
+
+```
+
+
+
+---
+
+
+
 ## Options
 
 For a reference of all options applied, you can also take a look at the `lib/config/defaults.js` file inside **Patternlibrary**'s source/module folder.
@@ -51,12 +138,6 @@ This basic set of options is similar to the one set for the 'Panini' module used
   _optional_, default: `src/data`
 
 
-- - - - - - - - - - - - - - - - - - - - - - - -
-
-
-### Special options
-
-
 - #### `verbose`
 
   **Type:** `Boolean`
@@ -65,19 +146,26 @@ This basic set of options is similar to the one set for the 'Panini' module used
   _optional_, default: false
   
 
+- - - - - - - - - - - - - - - - - - - - - - - -
+
+
+### Special options
+
+
 - #### `patterns`
 
   **Type:** `Object`
 
-  Set the pattern specific sub-paths relative to the `partials` path.  
+  Set the pattern specific source-paths.   
   _optional_, default: 
+  
   ```js
-{
-    atoms     : 'atoms/',
-    molecules : 'molecules/',
-    organisms : 'organisms/',
-    templates : 'tempates/'
-}
+  {
+      atoms     : 'atoms/',
+      molecules : 'molecules/',
+      organisms : 'organisms/',
+      templates : 'tempates/'
+  }
   ```
 
 
@@ -87,16 +175,17 @@ This basic set of options is similar to the one set for the 'Panini' module used
 
   Set the pattern specific file-name patterns.   
   _optional_, default: 
+  
   ```js
-{
-    'main'       : '{index,pattern}.{html,hbs,handlebars}',
-    'readme'     : '{readme,info}.{md,markdown}',
-    'markup'     : '{example,examples}.{md,markdown}',
-    'javascript' : '{index,module}.js',
-    'scss'       : '{style,styles,pattern}.{scss,sass,css}',
-    'tests'      : '{test,tests,visual,visualtest,visualtests}.js',
-    'changelog'  : 'changelog.{md,markdown}'
-}
+  {
+      'main'       : '{index,pattern}.{html,hbs,handlebars}',
+      'readme'     : '{readme,info}.{md,markdown}',
+      'markup'     : '{example,examples}.{md,markdown}',
+      'javascript' : '{index,module}.js',
+      'scss'       : '{style,styles,pattern}.{scss,sass,css}',
+      'tests'      : '{test,tests,visual,visualtest,visualtests}.js',
+      'changelog'  : 'changelog.{md,markdown}'
+  }
   ```
 
 
@@ -104,7 +193,7 @@ This basic set of options is similar to the one set for the 'Panini' module used
 
   **Type:** `String`
   
-  Set the sub-path search-pattern under 'partials'-path to find the patterns.
+  search sub-path under 'partials' path
   _optional_, default: '*/**/',
     
 
@@ -114,27 +203,27 @@ This basic set of options is similar to the one set for the 'Panini' module used
   
   Set template files and template options
   ```js
-    {
-        // Patternlibrary helpers path
-        'helpers'          : 'helpers/',
-        
-        // Patternlibrary layout file
-        'layout'           : 'patternlibrary',
+  {
+      // Patternlibrary helpers path
+      'helpers'          : 'helpers/',
+      
+      // Patternlibrary layout file
+      'layout'           : 'patternlibrary',
           
         
-        // Patternlibrary partials templates
-        //
+      // Patternlibrary partials templates
+      //
 
-        // Patternlibrary main page template
-        'page'             : 'patternlibrary',
+      // Patternlibrary main page template
+      'page'             : 'patternlibrary',
         
-        // main index page template
-        'mainindex'        : 'templates/index.html',
+      // main index page template
+      'mainindex'        : 'templates/index.html',
         
-        // pattern list template
-        'patternlist'      : 'templates/patternlist.html',
-        // pattern display template
-        'patterndisplay'   : 'templates/patterndisplay.html', 
+      // pattern list template
+      'patternlist'      : 'templates/patternlist.html',
+      // pattern display template
+     'patterndisplay'   : 'templates/patterndisplay.html', 
  
         // pattern main index page template
         'patternindex'     : 'templates/pattern-index.html', 
@@ -164,33 +253,12 @@ This basic set of options is similar to the one set for the 'Panini' module used
 - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-### Plug-in options
+### Middleware options
 
 
-- #### `plugins`
+- #### `middleware`
 
   **Type:** `Object`
-
-  - `docparser`
-
-      **Type:** `Object`
-
-      Set special 'DocParser' options
-      _optional_
-
-  - `docrenderer`
-
-      **Type:** `Object`
-
-      Set special 'DocRenderer' options
-      _optional_
-
-  - `filestream`
-
-      **Type:** `Object`
-
-      Set special 'filestream' options
-      _optional_
 
   - `middleware`
 
@@ -216,23 +284,11 @@ Some really critical options are overruled by hard-coded settings.
 
   Set 'handlebars' options.
 
-- #### `panini`
+- #### `markdown`
 
   **Type:** `Object`
 
-  Set 'panini' options.
-
-- #### `supercollider`
-
-  **Type:** `Object`
-
-  Set 'supercollider' options.
-
-- #### `marked`
-
-  **Type:** `Object`
-
-  Set 'marked' options.
+  Set 'markdown-it' options.
 
 - #### `sassdoc`
 
@@ -247,4 +303,5 @@ Some really critical options are overruled by hard-coded settings.
   Set 'jsdoc' options.
 
 
+---
 

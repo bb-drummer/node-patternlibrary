@@ -1,36 +1,16 @@
-*   [Generating the library and pattern documentation](#generating-the-library-and-pattern-documentation) 
-    *   [Pattern files and folders](#pattern-files-and-folders)
-    *   [Including a pattern inside other templates](#including-a-pattern-inside-other-templates)
-    *   [Main pattern file: index.html](#main-pattern-file-indexhtml) 
-        *   [Pattern specifications](#pattern-specifications)
-            *   [pattern](#pattern)
-            *   [params](#params)
-            *   [defaults](#defaults)
-        *   [Pattern parameters](#pattern-parameters)
-            *   [Parameter formats and legend:](#parameter-formats-and-legend)
-    *   [Pattern documentation](#pattern-documentation)
-        *   [The pattern and its variants](#the-pattern-and-its-variants)
-        *   [Pattern file: ‘readme.md’](#pattern-file-readmemd)
-        *   [CSS/SCSS documentation](#cssscss-documentation)
-        *   [JavaScript documentation](#javascript-documentation)
-        *   [Pattern tests](#pattern-tests)
-        *   [Pattern log](#pattern-log)
-    *   [Patternlibrary helpers](#patternlibrary-helpers)
-        *   [the “PL” helper](#the-pl-helper)
-            *   [Including a pattern using the default {{>...}}](#including-a-pattern-using-the-default-)
-            *   [Differences between {{>...}} and {{PL...}}](#differences-between-and-pl) (!)
-        *   [the “texthelper”](#the-texthelper)
-            *   [“texthelper” modes](#texthelper-modes)
-        *   [the “uniqueid” helper](#the-uniqueid-helper)
-            *   [“uniqueid” examples](#uniqueid-examples)
-        *   [the “raw” helper](#the-raw-helper)
-        *   [the “categorylink” helper](#the-categorylink-helper) (internal)
-        *   [the “patternlink” helper](#the-patternlink-helper) (internal)
+---
+layout: patternlibrary
+---
+# Patternlibrary - Generating the library and pattern documentation
+
+
+
+[[TOC]]
+
 
 
 ---
 
-# Generating the library and pattern documentation
 
 
 ## Pattern files and folders
@@ -132,7 +112,7 @@ Example pattern files structure:
 ## Including a pattern inside other templates
 
 A pattern inside other (pattern) templates is included utilizing ether the default *handlebars* build-in helper `{{> "..."}}` or by using the *Patternlibrary* helper `{{PL ...}}`. 
-The pattern can be referenced by its structural item path `{{> "{type}/{group}/{patternname}"}` or `{{PL {type}="{group}/{patternname}"}`, which is defined in the pattern specification's [`pattern.name`](#name) property.
+The pattern can be referenced by its structural item path `{{> "{type}/{group}/{patternname}"}}` or `{{PL {type}="{group}/{patternname}"}}`, which is defined in the pattern specification's [`pattern.name`](#name) property.
 
 
 Referencing when using the *handlebars* helper:

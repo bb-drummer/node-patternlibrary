@@ -1,3 +1,7 @@
+---
+layout: patternlibrary
+---
+
 ## SASS and JavaScript Reference
 
 
