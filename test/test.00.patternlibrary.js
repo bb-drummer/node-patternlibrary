@@ -22,7 +22,32 @@ describe('Patternlibrary instanciation and configuration:', function() {
 		    expect(p.data.patterns).to.be.an('object');
 		    expect(p.data.categories).to.be.an('object');
 		    expect(p.template).to.be.null;
+
+		    expect(p.handlebars).to.be.an('object');
+
+		    expect(p.markdown).to.be.an('object');
+		    
 	    });
+	
+	    it('initalizes Handlebars instance', function() {
+		    var p = new Patternlibrary.Patternlibrary();
+		
+
+	        expect(p).to.be.an.instanceOf(Patternlibrary.Patternlibrary);
+
+		    expect(p.handlebars).to.be.an('object');
+		    
+	    });
+	
+	    it('initalizes MarkdownIt instance', function() {
+		    var p = new Patternlibrary.Patternlibrary();
+
+	        expect(p).to.be.an.instanceOf(Patternlibrary.Patternlibrary);
+
+		    expect(p.markdown).to.be.an('object');
+		    
+	    });
+	    
 	});
 	
 	describe('Patternlibrary.config()', function() {
@@ -44,17 +69,18 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	    	
 	    });
 		
-	    it('throws error if the "partials" source path option is missing', function() {
+	    it('throws error if the "partials" source path option is missing or empty', function() {
 	        var p = new Patternlibrary.Patternlibrary();
 	        var cfg = extend({}, defaults);
+	        
 	    	cfg.partials = null;
-	    	
-	        expect(function() {
-	            p.config(cfg);
-	        }).to.throw(Error);
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	        
+	    	cfg.partials = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
 	    });
 		
-	    it('throws error if the destination directory "dest" option is missing', function() {
+	    it('throws error if the destination directory "dest" option is missing or empty', function() {
 	        var p = new Patternlibrary.Patternlibrary();
 	        var cfg = extend({}, defaults);
 	    	cfg.dest = null;
@@ -62,9 +88,12 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	        expect(function() {
 	            p.config(cfg);
 	        }).to.throw(Error);
+	        
+	    	cfg.dest = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
 	    });
 		
-	    it('throws error if the URL "basepath" sub-path option is missing', function() {
+	    it('throws error if the URL "basepath" sub-path option is missing or empty', function() {
 	        var p = new Patternlibrary.Patternlibrary();
 	        var cfg = extend({}, defaults);
 	    	cfg.basepath = null;
@@ -72,9 +101,12 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	        expect(function() {
 	            p.config(cfg);
 	        }).to.throw(Error);
+	        
+	    	cfg.basepath = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
 	    });
 		
-	    it('throws error if the URL "patternspath" sub-path option is missing', function() {
+	    it('throws error if the URL "patternspath" sub-path option is missing or empty', function() {
 	        var p = new Patternlibrary.Patternlibrary();
 	        var cfg = extend({}, defaults);
 	    	cfg.patternspath = null;
@@ -82,9 +114,12 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	        expect(function() {
 	            p.config(cfg);
 	        }).to.throw(Error);
+	        
+	    	cfg.patternspath = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
 	    });
 		
-	    it('throws error if the URL "categoriespath" sub-path option is missing', function() {
+	    it('throws error if the URL "categoriespath" sub-path option is missing or empty', function() {
 	        var p = new Patternlibrary.Patternlibrary();
 	        var cfg = extend({}, defaults);
 	    	cfg.categoriespath = null;
@@ -92,9 +127,12 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	        expect(function() {
 	            p.config(cfg);
 	        }).to.throw(Error);
+	        
+	    	cfg.categoriespath = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
 	    });
 		
-	    it('throws error if the pattern\'s "pattern" option is missing', function() {
+	    it('throws error if the pattern\'s "pattern" option is missing or empty', function() {
 	        var p = new Patternlibrary.Patternlibrary();
 	        var cfg = extend({}, defaults);
 	    	cfg.pattern = null;
@@ -102,9 +140,10 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	        expect(function() {
 	            p.config(cfg);
 	        }).to.throw(Error);
+	        
 	    });
 		
-	    it('throws error if the pattern\'s "dirs" option is missing', function() {
+	    it('throws error if the pattern\'s "dirs" option is missing or empty', function() {
 	        var p = new Patternlibrary.Patternlibrary();
 	        var cfg = extend({}, defaults);
 	    	cfg.pattern.dirs = null;
@@ -112,20 +151,25 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	        expect(function() {
 	            p.config(cfg);
 	        }).to.throw(Error);
+	        
+	    	cfg.pattern.dirs = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
 	    });
 		
-	    it('throws error if the pattern\'s "atoms" sub-path option is missing', function() {
+	    it('throws error if the pattern\'s "atoms" sub-path option is missing or empty', function() {
 	        var p = new Patternlibrary.Patternlibrary();
 	        var cfg = extend({}, defaults);
-	    	cfg.pattern.dirs.atoms = '';
-	    	console.log('pattern dirs', cfg.pattern);
+	    	cfg.pattern.dirs.atoms = null;
 	    	
 	        expect(function() {
 	            p.config(cfg);
 	        }).to.throw(Error);
+	        
+	    	cfg.pattern.dirs.atoms = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
 	    });
 		
-	    it('throws error if the pattern\'s "molecules" sub-path option is missing', function() {
+	    it('throws error if the pattern\'s "molecules" sub-path option is missing or empty', function() {
 	        var p = new Patternlibrary.Patternlibrary();
 	        var cfg = extend({}, defaults);
 	    	cfg.pattern.dirs.molecules = null;
@@ -133,9 +177,12 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	        expect(function() {
 	            p.config(cfg);
 	        }).to.throw(Error);
+	        
+	    	cfg.pattern.dirs.molecules = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
 	    });
 		
-	    it('throws error if the pattern\'s "organisms" sub-path option is missing', function() {
+	    it('throws error if the pattern\'s "organisms" sub-path option is missing or empty', function() {
 	        var p = new Patternlibrary.Patternlibrary();
 	        var cfg = extend({}, defaults);
 	    	cfg.pattern.dirs.organisms = null;
@@ -143,9 +190,12 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	        expect(function() {
 	            p.config(cfg);
 	        }).to.throw(Error);
+	        
+	    	cfg.pattern.dirs.organisms = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
 	    });
 		
-	    it('throws error if the pattern\'s "templates" sub-path option is missing', function() {
+	    it('throws error if the pattern\'s "templates" sub-path option is missing or empty', function() {
 	        var p = new Patternlibrary.Patternlibrary();
 	        var cfg = extend({}, defaults);
 	    	cfg.pattern.dirs.templates = null;
@@ -153,9 +203,12 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	        expect(function() {
 	            p.config(cfg);
 	        }).to.throw(Error);
+	        
+	    	cfg.pattern.dirs.templates = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
 	    });
 		
-	    it('throws error if the pattern\'s "pages" sub-path option is missing', function() {
+	    it('throws error if the pattern\'s "pages" sub-path option is missing or empty', function() {
 	        var p = new Patternlibrary.Patternlibrary();
 	        var cfg = extend({}, defaults);
 	    	cfg.pattern.dirs.pages = null;
@@ -163,9 +216,12 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	        expect(function() {
 	            p.config(cfg);
 	        }).to.throw(Error);
+	        
+	    	cfg.pattern.dirs.pages = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
 	    });
 		
-	    it('throws error if the pattern\'s "searchpath" sub-path pattern option is missing', function() {
+	    it('throws error if the pattern\'s "searchpath" sub-path pattern option is missing or empty', function() {
 	        var p = new Patternlibrary.Patternlibrary();
 	        var cfg = extend({}, defaults);
 	    	cfg.pattern.searchpath = null;
@@ -173,9 +229,12 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	        expect(function() {
 	            p.config(cfg);
 	        }).to.throw(Error);
+	        
+	    	cfg.pattern.searchpath = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
 	    });
 		
-	    it('throws error if the pattern\'s "target" filename option is missing', function() {
+	    it('throws error if the pattern\'s "target" filename option is missing or empty', function() {
 	        var p = new Patternlibrary.Patternlibrary();
 	        var cfg = extend({}, defaults);
 	    	cfg.pattern.target = null;
@@ -183,6 +242,9 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	        expect(function() {
 	            p.config(cfg);
 	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
 	    });
 	    
 	    
