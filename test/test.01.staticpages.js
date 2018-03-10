@@ -1,5 +1,5 @@
 import { src, dest } from 'vinyl-fs';
-import assert from 'assert';
+//import assert from 'assert';
 import equal from 'assert-dir-equal';
 import Patternlibrary from '..';
 import rimraf from 'rimraf';
@@ -18,7 +18,7 @@ var patternlibraryOptions = {
 }
 
 
-describe('Patternlibrary, the basic page genarator, ', () => {
+describe('Patternlibrary static page genarator:', () => {
 
     beforeEach(function(done) {
         this.timeout(5000); // A very long environment setup.
@@ -359,7 +359,7 @@ describe('Patternlibrary, assigning', () => {
 	
 });
 
-
+/*
 describe('Patternlibrary built-in', () => {
 
     it('#code helper that renders code blocks', function (done) {
@@ -509,4 +509,4 @@ describe('Patternlibrary built-in', () => {
     });
 	
 });
-
+*/

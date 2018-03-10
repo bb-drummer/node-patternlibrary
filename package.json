@@ -4,7 +4,7 @@
   "description": "a tiny flat file pattern-library generator",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-register",
+    "test": "mocha --require babel-register",
     "dev": "gulp",
     "build": "gulp",
     "demo": "gulp --demo"
@@ -14,7 +14,7 @@
   "bin": {},
   "dependencies": {
     "assert-dir-equal": "^1",
-    "chalk": "^2.3.2",
+    "chalk": "^2",
     "cheerio": "^0.22",
     "coveralls": "^3",
     "curl": "^0.1",
@@ -22,6 +22,7 @@
     "deep-extend": "^0.5",
     "front-matter": "^2",
     "fs-extra": "^5",
+    "galenframework": "^2",
     "glob": "^7",
     "handlebars": "^4",
     "highlight.js": "^9",
