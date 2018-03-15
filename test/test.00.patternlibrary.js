@@ -250,6 +250,25 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	    
 	});
 	
+	describe('Patternlibrary.init()', function() {
+		it('should contain no \'handlebars\' instance before first execution', function () {
+			expect(Patternlibrary.handlebars).to.be.undefined;
+		});
+		it('should contain no \'markdowm-it\' instance before first execution', function () {
+			expect(Patternlibrary.markdown).to.be.undefined;
+		});
+		it('should contain a \'handlebars\' instance after instanciation', function () {
+	        var p = new Patternlibrary.Patternlibrary();
+			expect(p.handlebars).not.to.be.undefined;
+			expect(p.handlebars).to.be.a('object');
+		});
+		it('should contain a \'markdowm-it\' instance after instanciation', function () {
+	        var p = new Patternlibrary.Patternlibrary();
+			expect(p.markdown).not.to.be.undefined;
+			expect(p.markdown).to.be.a('object');
+		});
+	});
+	
 	describe('Patternlibrary.adapter()', function() {
 	    it('loads built-in adapters', function() {
 	        var p = new Patternlibrary.Patternlibrary();
