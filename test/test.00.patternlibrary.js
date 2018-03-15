@@ -257,12 +257,12 @@ describe('Patternlibrary instanciation and configuration:', function() {
 		it('should contain no \'markdowm-it\' instance before first execution', function () {
 			expect(Patternlibrary.markdown).to.be.undefined;
 		});
-		it('should contain a \'handlebars\' instance after instanciation', function () {
+		it('should contain a \'handlebars\' instance after instantiation', function () {
 	        var p = new Patternlibrary.Patternlibrary();
 			expect(p.handlebars).not.to.be.undefined;
 			expect(p.handlebars).to.be.a('object');
 		});
-		it('should contain a \'markdowm-it\' instance after instanciation', function () {
+		it('should contain a \'markdowm-it\' instance after instantiation', function () {
 	        var p = new Patternlibrary.Patternlibrary();
 			expect(p.markdown).not.to.be.undefined;
 			expect(p.markdown).to.be.a('object');
