@@ -251,22 +251,57 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	});
 	
 	describe('Patternlibrary.init()', function() {
+		
 		it('should contain no \'handlebars\' instance before first execution', function () {
 			expect(Patternlibrary.handlebars).to.be.undefined;
-		});
-		it('should contain no \'markdowm-it\' instance before first execution', function () {
-			expect(Patternlibrary.markdown).to.be.undefined;
 		});
 		it('should contain a \'handlebars\' instance after instantiation', function () {
 	        var p = new Patternlibrary.Patternlibrary();
 			expect(p.handlebars).not.to.be.undefined;
 			expect(p.handlebars).to.be.a('object');
 		});
-		it('should contain a \'markdowm-it\' instance after instantiation', function () {
+		
+		it('should contain no \'markdown-it\' instance before first execution', function () {
+			expect(Patternlibrary.markdown).to.be.undefined;
+		});
+		it('should contain a \'markdown-it\' instance after instantiation', function () {
 	        var p = new Patternlibrary.Patternlibrary();
 			expect(p.markdown).not.to.be.undefined;
 			expect(p.markdown).to.be.a('object');
 		});
+		
+	});
+	
+	describe('Patternlibrary.layout', function() {
+		
+	    it('assings a handlebars default layout "{{> body}}" from an empty template name', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        p.layout = '';
+	        expect(p.layout).to.be.a('function');
+	        
+	        p.handlebars.registerPartial('body', 'I am here');
+	        var rendered = p.layout({});
+	        expect(rendered).to.equal('I am here')
+		});
+		
+	    it('assings a handlebars layout from template name', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        p.layout = 'ajax';
+	        expect(p.layout).to.be.a('function');
+	        
+	        p.handlebars.registerPartial('body', 'I am here');
+	        var rendered = p.layout({});
+	        expect(rendered).to.equal('I am here')
+		});
+		
+	    it('throws an error if layout could not be found by template name', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+
+	        expect(function() {
+		        p.layout = 'some_unknown_templatefile';
+	        }).to.throw(Error);
+		});
+        
 	});
 	
 	describe('Patternlibrary.adapter()', function() {
