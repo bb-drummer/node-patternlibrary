@@ -31,7 +31,9 @@ function loadConfig() {
 // Start a server with BrowserSync to preview the site in
 gulp.task('server', function (done) {
     browser.init({
-        server: PATHS.dist, port: PORT
+        server: PATHS.dist, 
+        port: PORT,
+        startPath: "/pl"
     });
     done();
 });
