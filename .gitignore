@@ -10,6 +10,9 @@ npm-debug.log
 .project
 .settings
 
+# IstanbulJS test coverage files
+.nyc_*
+
 # FE
 bower_components
 dist
