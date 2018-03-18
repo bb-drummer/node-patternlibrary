@@ -4,8 +4,7 @@
   "description": "a tiny flat file pattern-library generator",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --require babel-register",
-    "testcov": "nyc mocha --require babel-register",
+    "test": "nyc mocha --require babel-register",
     "dev": "gulp",
     "build": "gulp",
     "demo": "gulp --demo"
