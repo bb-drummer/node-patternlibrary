@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --require babel-register",
+    "testcov": "nyc mocha --require babel-register",
     "dev": "gulp",
     "build": "gulp",
     "demo": "gulp --demo"
@@ -52,6 +53,7 @@
     "mocha-lcov-reporter": "^1",
     "multiline": "^1",
     "nopt": "^4",
+    "nyc": "^11.6.0",
     "prismjs": "^1.6.0",
     "query-string": "^5.1.0",
     "querystring": "^0.2",
@@ -139,6 +141,20 @@
     "presets": [
       "env"
     ]
+  },
+  "nyc": {
+    "include": [
+      "lib/**/*.js"
+    ],
+    "exclude": [
+      "lib/patterntemplate/**/*"
+    ],
+    "reporter": [
+      "clover",
+      "html",
+      "text-summary"
+    ],
+    "report-dir": "./dist/coverage"
   },
   "private": false
 }
