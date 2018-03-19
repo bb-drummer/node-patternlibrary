@@ -149,6 +149,8 @@
       "lib/patterntemplate/**/*"
     ],
     "reporter": [
+      "lcov",
+      "lcov-text",
       "clover",
       "html",
       "text-summary"
