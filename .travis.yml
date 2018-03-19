@@ -28,6 +28,7 @@ before_script:
 
 script:
   - npm test
+  - nyc --report-dir ./ mocha --require babel-register
 
 after_script:
   - ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $TRAVIS_TEST_RESULT
