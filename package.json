@@ -150,7 +150,6 @@
     ],
     "reporter": [
       "lcov",
-      "text-lcov",
       "clover",
       "html",
       "text-summary"
