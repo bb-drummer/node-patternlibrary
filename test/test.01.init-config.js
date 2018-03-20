@@ -227,5 +227,18 @@ describe('Patternlibrary instanciation and configuration:', function() {
 		
 	});
 	
+	describe('Patternlibrary.reset()', function() {
+		it('should clear all pattern-, category- and user data', function () {
+	        var p = new Patternlibrary.Patternlibrary();
+	        p.data.someKey = 'some value';
+	        p.reset();
+			expect(p.data).not.to.have.a.key('someKey');
+			expect(p.data.patterns).to.be.a('object');
+			expect(p.data.categories).to.be.a('object');
+			expect(Object.keys(p.data.patterns).length).to.equal(0);
+			expect(Object.keys(p.data.categories).length).to.equal(0);
+		});
+	});
+	
 
 });

@@ -10,6 +10,23 @@ const CLEAN_UP = !true;
 describe('Patternlibrary basic templating:', function() {
 
     describe('Patternlibrary.layout', function() {
+    	
+    	it('retrieves the default GUI layout if none is set (yet)', function(){
+            var p = new Patternlibrary.Patternlibrary();
+            var layout = p.layout;
+
+            expect(p.layout).to.be.a('function');
+            expect(layout).to.be.a('function');
+
+            p.handlebars.registerPartial('docs-htmlhead', '<head>');
+            p.handlebars.registerPartial('body', '<body>');
+            p.handlebars.registerPartial('docs-htmlclose', '<close>');
+            var rendered = layout({});
+            expect(rendered).to.contain('<head>');
+            expect(rendered).to.contain('<body>');
+            expect(rendered).to.contain('<close>');
+            
+    	});
         
         it('assings a handlebars default layout "{{> body}}" from an empty template name string', function() {
             var p = new Patternlibrary.Patternlibrary();

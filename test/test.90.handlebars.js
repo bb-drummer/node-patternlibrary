@@ -41,7 +41,7 @@ describe('Patternlibrary built-in Handlebars helpers', () => {
 	
 	describe('Structural', () => {
 
-		describe('{{#repeat}}{{/repeat}}', () => {
+		describe('{{#repeat}}...{{/repeat}}', () => {
 		    it('prints content multiple times', function (done) {
 		    
 		        patternlibraryOptions = {
@@ -67,7 +67,7 @@ describe('Patternlibrary built-in Handlebars helpers', () => {
 		    });
 	    });
 
-	    describe('{{#ifEqual}}{{/ifEqual}}', () => {
+	    describe('{{#ifEqual}}...{{/ifEqual}}', () => {
 		    it('compares two values', function (done) {
 		    
 		        patternlibraryOptions = {
@@ -93,7 +93,7 @@ describe('Patternlibrary built-in Handlebars helpers', () => {
 		    });
 	    });
 
-	    describe('{{#ifpage}}{{/ifpage}}', () => {
+	    describe('{{#ifpage}}...{{/ifpage}}', () => {
 		    it('checks the current page', function (done) {
 		    
 		        patternlibraryOptions = {
@@ -120,7 +120,7 @@ describe('Patternlibrary built-in Handlebars helpers', () => {
 		    });
 	    });
 
-	    describe('{{#unlesspage}}{{/unlesspage}}', () => {
+	    describe('{{#unlesspage}}...{{/unlesspage}}', () => {
 		    it('checks the current page (negation of ifpage)', function (done) {
 		    
 		        patternlibraryOptions = {
@@ -146,13 +146,71 @@ describe('Patternlibrary built-in Handlebars helpers', () => {
 		    
 		    });
 	    });
+
+	    describe('{{#ifCond}}...{{else}}...{{/ifCond}}', () => {
+	    	
+		    it('{{#ifCond mode="eq" value... comp...}} checks if "value" "equals" "comp"', function () {
+		    	compare('{{#ifCond mode="eq" value="a" comp="a"}}true{{/ifCond}}', 'true');
+		    	compare('{{#ifCond mode="eq" value="a" comp="b"}}true{{/ifCond}}', '');
+		    	compare('{{#ifCond mode="eq" value="b" comp="a"}}true{{/ifCond}}', '');
+		    	compare('{{#ifCond mode="eq" value="a" comp="a"}}true{{else}}false{{/ifCond}}', 'true');
+		    	compare('{{#ifCond mode="eq" value="a" comp="b"}}true{{else}}false{{/ifCond}}', 'false');
+		    	compare('{{#ifCond mode="eq" value="b" comp="a"}}true{{else}}false{{/ifCond}}', 'false');
+		    });
+	    	
+		    it('{{#ifCond mode="neq" value... comp...}} checks if "value" "not equals" "comp"', function () {
+		    	compare('{{#ifCond mode="neq" value="a" comp="a"}}true{{/ifCond}}', '');
+		    	compare('{{#ifCond mode="neq" value="a" comp="b"}}true{{/ifCond}}', 'true');
+		    	compare('{{#ifCond mode="neq" value="b" comp="a"}}true{{/ifCond}}', 'true');
+		    	compare('{{#ifCond mode="neq" value="a" comp="a"}}true{{else}}false{{/ifCond}}', 'false');
+		    	compare('{{#ifCond mode="neq" value="a" comp="b"}}true{{else}}false{{/ifCond}}', 'true');
+		    	compare('{{#ifCond mode="neq" value="b" comp="a"}}true{{else}}false{{/ifCond}}', 'true');
+		    });
+	    	
+		    it('{{#ifCond mode="lt" value... comp...}} checks if "value" "is lower to" "comp"', function () {
+		    	compare('{{#ifCond mode="lt" value="a" comp="a"}}true{{/ifCond}}', '');
+		    	compare('{{#ifCond mode="lt" value="a" comp="b"}}true{{/ifCond}}', 'true');
+		    	compare('{{#ifCond mode="lt" value="b" comp="a"}}true{{/ifCond}}', '');
+		    	compare('{{#ifCond mode="lt" value="a" comp="a"}}true{{else}}false{{/ifCond}}', 'false');
+		    	compare('{{#ifCond mode="lt" value="a" comp="b"}}true{{else}}false{{/ifCond}}', 'true');
+		    	compare('{{#ifCond mode="lt" value="b" comp="a"}}true{{else}}false{{/ifCond}}', 'false');
+		    });
+	    	
+		    it('{{#ifCond mode="lte" value... comp...}} checks if "value" "is lower or equal to" "comp"', function () {
+		    	compare('{{#ifCond mode="lte" value="a" comp="a"}}true{{/ifCond}}', 'true');
+		    	compare('{{#ifCond mode="lte" value="a" comp="b"}}true{{/ifCond}}', 'true');
+		    	compare('{{#ifCond mode="lte" value="b" comp="a"}}true{{/ifCond}}', '');
+		    	compare('{{#ifCond mode="lte" value="a" comp="a"}}true{{else}}false{{/ifCond}}', 'true');
+		    	compare('{{#ifCond mode="lte" value="a" comp="b"}}true{{else}}false{{/ifCond}}', 'true');
+		    	compare('{{#ifCond mode="lte" value="b" comp="a"}}true{{else}}false{{/ifCond}}', 'false');
+		    });
+	    	
+		    it('{{#ifCond mode="gt" value... comp...}} checks if "value" "is greater to" "comp"', function () {
+		    	compare('{{#ifCond mode="gt" value="a" comp="a"}}true{{/ifCond}}', '');
+		    	compare('{{#ifCond mode="gt" value="a" comp="b"}}true{{/ifCond}}', '');
+		    	compare('{{#ifCond mode="gt" value="b" comp="a"}}true{{/ifCond}}', 'true');
+		    	compare('{{#ifCond mode="gt" value="a" comp="a"}}true{{else}}false{{/ifCond}}', 'false');
+		    	compare('{{#ifCond mode="gt" value="a" comp="b"}}true{{else}}false{{/ifCond}}', 'false');
+		    	compare('{{#ifCond mode="gt" value="b" comp="a"}}true{{else}}false{{/ifCond}}', 'true');
+		    });
+	    	
+		    it('{{#ifCond mode="gte" value... comp...}} checks if "value" "is greater or equal to" "comp"', function () {
+		    	compare('{{#ifCond mode="gte" value="a" comp="a"}}true{{/ifCond}}', 'true');
+		    	compare('{{#ifCond mode="gte" value="a" comp="b"}}true{{/ifCond}}', '');
+		    	compare('{{#ifCond mode="gte" value="b" comp="a"}}true{{/ifCond}}', 'true');
+		    	compare('{{#ifCond mode="gte" value="a" comp="a"}}true{{else}}false{{/ifCond}}', 'true');
+		    	compare('{{#ifCond mode="gte" value="a" comp="b"}}true{{else}}false{{/ifCond}}', 'false');
+		    	compare('{{#ifCond mode="gte" value="b" comp="a"}}true{{else}}false{{/ifCond}}', 'true');
+		    });
+		    
+	    });
 		
 	});
 
 	describe('Formatting', () => {
 
-		describe('{{#code}}{{/code}}', () => {
-		    it('renders code blocks', function (done) {
+		describe('{{#code}}...{{/code}}', () => {
+		    it('renders code blocks (given style "css") ', function (done) {
 		    
 		        patternlibraryOptions = {
 		            verbose : false,
@@ -175,9 +233,33 @@ describe('Patternlibrary built-in Handlebars helpers', () => {
 		        }, 250);
 		    
 		    });
+		    
+		    it('renders code blocks (default style "html")', function (done) {
+		    
+		        patternlibraryOptions = {
+		            verbose : false,
+		            dest    : FIXTURES + 'helper-code-default/build',
+		            root    : FIXTURES + 'helper-code-default/pages/',
+		            layouts : FIXTURES + 'helper-code-default/layouts/',
+		            partials: FIXTURES + 'helper-code-default/partials/',
+		            nogui   : true,
+		            testing : true
+		        };
+		        rimraf.sync(FIXTURES + 'helper-code-default/build'); mkdirp(FIXTURES + 'helper-code-default/build');
+		        var p = new Patternlibrary.Patternlibrary(patternlibraryOptions);
+		    
+		        p.run();
+		    
+		        setTimeout( function () {
+		            equal(FIXTURES + 'helper-code-default/expected/index.html', FIXTURES + 'helper-code-default/build/index.html');
+		            if (CLEAN_UP) rimraf.sync(FIXTURES + 'helper-code-default/build');
+		            done();
+		        }, 250);
+		    
+		    });
         });
 
-	    describe('{{#markdown}}{{/markdown}}', () => {
+	    describe('{{#markdown}}...{{/markdown}}', () => {
 		    it('converts Markdown to HTML (block-helper)', function (done) {
 		    
 		        patternlibraryOptions = {
@@ -209,7 +291,7 @@ describe('Patternlibrary built-in Handlebars helpers', () => {
             });
         });
     
-        describe('{{#heading}}{{/heading}}', () => {
+        describe('{{#heading}}...{{/heading}}', () => {
             it('creates a heading of a specific level', () => {
                 var expected = '<h1 id="title" class="docs-heading">Title<a class="docs-heading-icon" href="#title"></a></h1>';
         
@@ -233,21 +315,50 @@ describe('Patternlibrary built-in Handlebars helpers', () => {
             it('capitalizes the first letter of a string', () => {
                 compare('{{toUpper "kittens"}}', 'Kittens');
             });
+            it('retruns empty string when missing parameter', () => {
+                compare('{{toUpper }}', '');
+            });
         });
     
         describe('{{toLower}}', () => {
             it('converts a string to lowercase', () => {
                 compare('{{toLower "SHOUT"}}', 'shout')
             });
+            it('retruns empty string when missing parameter', () => {
+                compare('{{toLower }}', '');
+            });
         });
     
-        describe('{{raw}}{{/raw}}', () => {
+        describe('{{raw}}...{{/raw}}', () => {
             it('ignores $handlebars', () => {
                 compare('{{{{raw}}}}{{ignore}}{{{{/raw}}}}', '{{ignore}}');
             });
         });
     
-        describe('{{#filter}}{{/filter}}', () => {
+        describe('{{formatJson}}', () => {
+            it('ignores $handlebars', () => {
+            	var data = {
+            		myObj : {
+            			"myKey" : "some value"
+            		}
+            	}
+                compare('{{formatJson myObj}}', '{&quot;myKey&quot;:&quot;some value&quot;}', data);
+            });
+        });
+    
+        describe('{{texthelper}}', () => {
+            it('outputs predefined static text pattern', () => {
+                compare('{{texthelper "lastname"}}', 'Mustermann')
+            });
+            it('outputs parameter value when text pattern is unknown', () => {
+                compare('{{texthelper "some pattern"}}', 'some pattern')
+            });
+            it('outputs default medium length lorem-ipsum text when parameter is missing', () => {
+                compare('{{texthelper }}', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.');
+            });
+        });
+    
+        describe('{{#filter}}...{{/filter}}', () => {
             it('filters private SassDoc and JSDoc objects', () => {
                 var data = {
                     item: { access: 'private' }
@@ -353,6 +464,22 @@ describe('Patternlibrary built-in Handlebars helpers', () => {
                 compare('{{formatJsOptionValue undef}}', '');
             });
         });
+        
+        describe('{{formatJsOptionTypes}}', () => {
+            it('formats JsDoc "type" definitions to read "x or y or z"', () => {
+                var data = {
+                	types : {
+                        names: ['abc', 'def', 'ghi']
+                    }
+                };
+        
+                compare(`{{formatJsOptionTypes types}}`, 'abc or def or ghi', data);
+            });
+    
+            it('returns an empty string if no type names are present', () => {
+                compare('{{formatJsOptionTypes undef}}', '');
+            });
+        });
     
         describe('{{formatJsEventName}}', () => {
             it('formats a JSDoc event to look like "YourApp"-namespaced events', () => {
@@ -376,6 +503,7 @@ describe('Patternlibrary built-in Handlebars helpers', () => {
     });
 
     describe('Links', () => {
+    	
         describe('{{editLink}}', () => {
             it('generates a GitHub edit link point to a repository, branch, and file', () => {
                 compare('{{editLink "foundation-sites" "master" "docs/pages/index.html"}}', 'https://github.com/zurb/foundation-sites/edit/master/docs/pages/index.md');
@@ -392,6 +520,33 @@ describe('Patternlibrary built-in Handlebars helpers', () => {
                 expect(output, 'includes super loud title that you should replace').to.contain('ISSUE%20NAME%20HERE');
             });
         });
+        
+        describe('{{categorylink}}', () => {
+        	it('generates a relative url assembled from a current categories\' root path and category name', () => {
+        		var data = {
+        			categoriesroot : '../pl/categories'
+        		}
+        		
+        		compare('{{categorylink "basic"}}', '../pl/categories/basic', data);
+        	});
+        });
+        
+        describe('{{patternlink}}', () => {
+        	it('generates a relative url assembled from a current patterns\' root path and pattern\'s type/name identifier', () => {
+        		var data = {
+        				patternsroot : '../pl/'
+        		}
+        		
+        		compare('{{patternlink "atom/link"}}', '../pl/atoms/link', data);
+        		compare('{{patternlink "molecule/panel"}}', '../pl/molecules/panel', data);
+        		compare('{{patternlink "organism/teaser"}}', '../pl/organisms/teaser', data);
+        		compare('{{patternlink "component/dropdown"}}', '../pl/components/dropdown', data);
+        		compare('{{patternlink "template/servicepages"}}', '../pl/templates/servicepages', data);
+        		compare('{{patternlink "page/contactpage"}}', '../pl/pages/contactpage', data);
+        		
+        	});
+        });
+        
     });
 
     describe('Sass', () => {
