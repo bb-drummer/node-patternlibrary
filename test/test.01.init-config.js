@@ -3,10 +3,11 @@ import Patternlibrary from '..';
 var extend = require('deep-extend');
 var expect = require('chai').expect;
 
+var defaults = require('../lib/config/defaults');
+
 describe('Patternlibrary instanciation and configuration:', function() {
 
 	describe('Patternlibrary.config()', function() {
-		var defaults = require('../lib/config/defaults');
 		
 	    it('merges default and user configuration objects', function() {
 	        var p = new Patternlibrary.Patternlibrary();
@@ -86,7 +87,9 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	    	cfg.categoriespath = '';
 	        expect(function() { p.config(cfg); }).to.throw(Error);
 	    });
-		
+	});
+	
+	describe('Patternlibrary.config() - patterns\' options checks', function() {
 	    it('throws error if the pattern\'s "pattern" option is missing or empty', function() {
 	        var p = new Patternlibrary.Patternlibrary();
 	        var cfg = extend({}, defaults);
@@ -202,8 +205,18 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	        expect(function() { p.config(cfg); }).to.throw(Error);
 	    });
 	    
+	});
+	
+	describe('Patternlibrary.config() - adapter patterns\' options checks', function() {
+	});
+	
+	describe('Patternlibrary.config() - GUI paths\' options checks', function() {
+	});
+	
+	describe('Patternlibrary.config() - static pages paths\' options checks', function() {
 	    
 	});
+	
 	
 	describe('Patternlibrary.init()', function() {
 		
