@@ -204,7 +204,7 @@ describe('Patternlibrary built-in Handlebars helpers', () => {
         });
 	    
         describe('{{md}}', () => {
-            it('converts Markdown to HTML', () => {
+            it('converts Markdown to HTML (helper with parameter)', () => {
                 compare('{{md "**Bold**"}}', '<p><strong>Bold</strong></p>\n');
             });
         });
