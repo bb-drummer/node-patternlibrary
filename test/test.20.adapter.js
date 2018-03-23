@@ -41,10 +41,10 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	    });
 	
 	    it('throws an error if you try to pass something other than a function as an adapter', function() {
-	        var s = new Patternlibrary.Patternlibrary();
-	    
+	        var p = new Patternlibrary.Patternlibrary();
+
 	        expect(function() {
-	            p.adapter('docs', 'kittens');
+	            p.adapter('cats', 'kittens');
 	        }).to.throw(Error);
 	    });
 	});
