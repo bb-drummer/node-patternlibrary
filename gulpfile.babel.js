@@ -5,7 +5,7 @@ import yargs         from 'yargs';
 import browser       from 'browser-sync';
 import gulp          from 'gulp';
 import path          from 'path';
-import panini        from 'panini';
+//import panini        from 'panini';
 import rimraf        from 'rimraf';
 import sherpa        from 'style-sherpa';
 import yaml          from 'js-yaml';
