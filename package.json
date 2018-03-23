@@ -1,13 +1,26 @@
 {
   "name": "node-patternlibrary",
   "version": "0.0.3",
-  "description": "a tiny flat file pattern-library generator",
+  "description": "a tiny pattern-library documention generator",
+  "keywords": [
+    "pattern-library",
+    "partials",
+    "components",
+    "documentation",
+    "generator",
+    "handlebars",
+    "markdown-it",
+    "sassdoc",
+    "jsdoc",
+    "GUI"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "nyc mocha --require babel-register",
     "dev": "gulp",
     "build": "gulp",
-    "demo": "gulp --demo"
+    "demo": "gulp --demo",
+    "reinstall": "rm -rf node_modules bower_components package-lock.json ; npm install; bower link siteapp; npm test; npm run demo"
   },
   "author": "Björn Bartels <coding@bjoernbartels.earth>",
   "license": "Apache-2.0",
@@ -46,7 +59,7 @@
     "markdown-it-sup": "^1",
     "markdown-it-table-of-contents": "^0.3",
     "markdown-it-task-lists": "^2",
-    "minimatch": "^3.0.2",
+    "minimatch": "^3",
     "mkdirp": "^0.5",
     "mocha": "^5",
     "mocha-lcov-reporter": "^1",
@@ -63,7 +76,7 @@
     "strip-indent": "^2",
     "supercollider": "^1",
     "through2": "^2",
-    "uglify-js": "^2.6.0",
+    "uglify-js": "^2",
     "vinyl-fs": "^3"
   },
   "devDependencies": {
@@ -75,7 +88,7 @@
     "chai": "^4",
     "chai-jquery": "^2",
     "clipboard": "^1",
-    "corejs-typeahead": "^1.1.1",
+    "corejs-typeahead": "^1",
     "eslint-html-reporter": "^0",
     "foundation-sites": "^6",
     "gulp": "github:gulpjs/gulp#4.0",
@@ -96,7 +109,7 @@
     "gulp-sass": "^2",
     "gulp-sass-lint": "^1",
     "gulp-scss-lint": "^0.4",
-    "gulp-sourcemaps": "^1.12.1",
+    "gulp-sourcemaps": "^1",
     "gulp-strip-debug": "^1",
     "gulp-uglify": "^1",
     "gulp-uncss": "^1",
@@ -123,10 +136,10 @@
     "striptags": "^2.1.1",
     "style-sherpa": "^1",
     "vinyl-named": "^1",
-    "webpack": "^2.7.0",
+    "webpack": "^2",
     "webpack-stream": "^3",
     "what-input": "^4",
-    "yargs": "^3.32.0"
+    "yargs": "^3"
   },
   "repository": {
     "type": "git",

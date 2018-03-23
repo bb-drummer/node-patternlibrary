@@ -68,6 +68,26 @@ describe('Patternlibrary basic templating:', function() {
             expect(rendered).to.equal("<html>\n  <body>\n    <h1>My Layout</h1>\n    I am here  </body>\n</html>\n");
         });
         
+        it('assings a handlebars layout by template name from project dir overriding file in module dir', function() {
+            const FIXTURES = 'test/fixtures.templating/layout-override/';
+
+            var patternlibraryOptions = {
+                verbose : false,
+                dest    : FIXTURES + 'build',
+                root    : FIXTURES + 'pages/',
+                layouts : FIXTURES + 'layouts',
+                partials: FIXTURES + 'partials'
+            }
+
+            var p = new Patternlibrary.Patternlibrary(patternlibraryOptions);
+            p.layout = 'ajax';
+            expect(p.layout).to.be.a('function');
+            
+            p.handlebars.registerPartial('body', 'I am here');
+            var rendered = p.layout({});
+            expect(rendered).to.equal("User: I am here\n");
+        });
+        
         it('throws an error if layout could not be found by template name', function() {
             var p = new Patternlibrary.Patternlibrary();
 

@@ -208,12 +208,249 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	});
 	
 	describe('Patternlibrary.config() - adapter patterns\' options checks', function() {
+		
+	    it('throws error if the pattern\'s adapter "source" search pattern option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.pattern.source = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+		
+	    it('throws error if the pattern\'s adapter "readme" search pattern option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.pattern.readme = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+		
+	    it('throws error if the pattern\'s adapter "scss" search pattern option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.pattern.scss = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+		
+	    it('throws error if the pattern\'s adapter "javascript" search pattern option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.pattern.javascript = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+		
+	    it('throws error if the pattern\'s adapter "changelog" search pattern option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.pattern.changelog = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+		
+	    it('throws error if the pattern\'s adapter "tests" search pattern option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.pattern.tests = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+	    
 	});
 	
 	describe('Patternlibrary.config() - GUI paths\' options checks', function() {
+		
+	    it('throws error if the GUI\'s options are missing in the first place', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.gui = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+		
+	    it('...but is ok when no GUI is requested at all', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.gui = null;
+	    	cfg.nogui = true;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).not.to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+		
+	    it('throws error if the GUI\'s pages option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.gui.pages = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+		
+	    it('throws error if the GUI\'s partials option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.gui.partials = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+		
+	    it('throws error if the GUI\'s layouts dir option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.gui.layouts = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+		
+	    it('throws error if the GUI\'s layout template-file option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.gui.layout = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+		
+	    it('throws error if the GUI\'s doc-page template-file option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.gui.docpage = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+		
+	    it('throws error if the GUI\'s dashboard template-file option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.gui.dashboard = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+		
+	    it('throws error if the GUI\'s pattern-list template-file option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.gui.patternlist = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+		
+	    it('throws error if the GUI\'s category-list template-file option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.gui.categorylist = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+	    
 	});
 	
 	describe('Patternlibrary.config() - static pages paths\' options checks', function() {
+		
+	    it('throws error if the static pages\' "root" source dir option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.root = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
+		
+	    it('throws error if the static pages\' "layouts" source-dir option is missing or empty', function() {
+	        var p = new Patternlibrary.Patternlibrary();
+	        var cfg = extend({}, defaults);
+	    	cfg.layouts = null;
+	    	
+	        expect(function() {
+	            p.config(cfg);
+	        }).to.throw(Error);
+	        
+	    	cfg.pattern.target = '';
+	        expect(function() { p.config(cfg); }).to.throw(Error);
+	    });
 	    
 	});
 	
