@@ -1,3 +1,4 @@
+
 # **Patternlibrary**
 
 
@@ -14,27 +15,42 @@
 
 
 
-## Welcome to the self-documenting demo
+## Welcome to the **Patternlibrary** demo
 
 
 
-**Patternlibrary** (@ npm: _node-patternlibrary_) is a static site and pattern/component documentation generator for use with Node, Gulp or Grunt. 
+**Patternlibrary** (@ npm: _node-patternlibrary_) is a pattern/component documentation and static site generator for use with Node-JS. 
 
-It compiles a series of HTML **patterns**, or _partials_, or _components_, structured in an **atomic desing pattern**. These patterns can also include other **patterns**, external Handlebars **helpers**, or external **data** as JSON or YAML. 
+It generates a series of documentation pages for each of the HTML **patterns**, or _partials_, or _components_, structured in an **atomic design pattern**.
+Documentation details are assembled from the specific pattern-files's source codes and supplied meta-data. 
+Of course, like any other (Handlebars) partial, those patterns can also include other patterns, external (Handlebars) helpers or data as JSON or YAML, by themselfs.
 
-Documentation pages for each pattern are created according to the specific pattern meta-data supplied. Those pages are combined under a GUI to view in your browser.
-
-The GUI provides an overview dashboard, lists to browse patterns and categories and (kind of) interactive pattern documentation.
+These pages are combined under a GUI to view in your browser. It provides an overview dashboard, lists to browse patterns and categories and (kind of) interactive pattern documentation.
 
 The template engine used is [*Handlebars*](http://handlebarsjs.com) and rendering _markdown_ is accomplished with [*MarkdownIt*](https://github.com/markdown-it/markdown-it). Parsing the style and script source files is utilizing ([*SassDoc*](http://sassdoc.com/)) and ([*JSDoc*](http://usejsdoc.org)).
 
+
+
+### 3,... 2,... 1...
+
+
+
+The main **Patternlibrary** GUI entrance page is
+
+> [**The Dashboard**](./pl/)
+
+which can also be accessed by clicking the \[title/logo\] in the upper left corner.
+
+
+
+It may be appropriate, but it is not mandatory, to put an introductory page like this up on the front of the pattern-library for a possible consumer, maybe a plugin or an application's (micro)service developer, to get to know what she/he is going to find here and/or what that project is about.
 
 
 ## Documentation
 
 
 
-For detailed explanations on how to use **Patternlibrary**, please see the browse the [help pages](./pl/help/docs/).
+[**The help pages**](./pl/help/docs/) provide detailed explanations on how to install and use **Patternlibrary**.
 
 
 
@@ -52,10 +68,8 @@ For detailed explanations on how to use **Patternlibrary**, please see the brows
 
 ### Work-In-Progress disclaimer
 
-This project is now going from some kind of *Proof Of Concept* to real implementation.
-Most of its features and behavour is fixed so far.
-
-DO NOT USE IN PRODUCTION ENVIRONMENTS YET!
+This project is now going from some kind of *Proof Of Concept* to real-life implementation.
+Most of its behavour and features are fixed for now.
 
 When using this software, absolutely no warranties of any sort are granted. Please see the license file for more information.
 

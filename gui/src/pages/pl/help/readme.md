@@ -13,27 +13,28 @@ layout: patternlibrary
 
 [![Build Status](https://travis-ci.org/bb-drummer/node-patternlibrary.svg?branch=master)](https://travis-ci.org/bb-drummer/node-patternlibrary)
 
-### Work-In-Progress disclaimer
-
-This project is now still a work in progress!
-Some of its features and options are or may be a subject to change!
-
-DO NOT USE IN PRODUCTION ENVIRONMENTS !
-
-When using this software, absolutely no warranties of any sort are granted. Please see the license file for more information.
 
 ---
+
 
 ## About
 
 
-**Patternlibrary** (a.k.a. _node-patternlibrary_) is a simple flat file documentaion generator for use with Node, Gulp or Grunt. 
+**Patternlibrary** (@ npm: _node-patternlibrary_) is a pattern/component documentation and static site generator for use with Node-JS. 
 
-It compiles a series of HTML **patterns** (a.k.a. _partials_) structured in an **atomic desing pattern**. These patterns can also include other HTML **patterns**/**partials**, external Handlebars **helpers**, or external **data** as JSON or YAML. 
+It generates a series of documentation pages for each of the HTML **patterns**, or _partials_, or _components_, structured in an **atomic design pattern**.
+Documentation details are assembled from the specific pattern-files's source codes and supplied meta-data. 
+Of course, like any other (Handlebars) partial, those patterns can also include other patterns, external (Handlebars) helpers or data as JSON or YAML, by themselfs.
 
-Documentation pages for each pattern are created according to the specific pattern meta-data supplied. Those pages are combined under a GUI to view in your browser.
+These pages are combined under a GUI to view in your browser. It provides an overview dashboard, lists to browse patterns and categories and (kind of) interactive pattern documentation.
 
-The main template engine behind this is *handlebars* ([-> homepage](http://handlebarsjs.com)) which itself is extended by *Zurb Foundation*'s *Panini* ([-> GitHub](https://github.com/zurb/panini)). The style and script source files are parsed by *Zurb Foundation*'s *Supercollider* ([-> GitHub](https://github.com/zurb/supercollider)) utilizing *SassDoc* ([-> homepage](http://sassdoc.com/)) and *JSDoc* ([-> homepage](http://usejsdoc.org)).
+The template engine used is [*Handlebars*](http://handlebarsjs.com) and rendering _markdown_ is accomplished with [*MarkdownIt*](https://github.com/markdown-it/markdown-it). Parsing the style and script source files is utilizing ([*SassDoc*](http://sassdoc.com/)) and ([*JSDoc*](http://usejsdoc.org)).
+
+
+## Live-Demo
+
+
+A live demonstration of a **Patternlibrary** GUI build can be found at [demo.patternlibrary.net](https://demo.patternlibrary.net)
 
 
 ## Documentation
@@ -78,7 +79,20 @@ For detailed explanations of each of the parts that made up **Patternlibrary**, 
 
 [An example front-end/theme project](https://gitlab.bjoernbartels.earth//themes/node-patternlibrary-demo) can be found in our [GitLab](https://gitlab.bjoernbartels.earth//themes/node-patternlibrary-demo).
 
+
 ---
+
+
+### Work-In-Progress disclaimer
+
+This project is now going from some kind of *Proof Of Concept* to real-life implementation.
+Most of its behavour and features are fixed for now.
+
+When using this software, absolutely no warranties of any sort are granted. Please see the license file for more information.
+
+
+---
+
 
 Copyright (c) 2017, [bjoernbartels.earth]
 
