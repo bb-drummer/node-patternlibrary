@@ -88,7 +88,7 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	            expect(docFile).to.include('<my example>');
 	            if (CLEAN_UP) rimraf.sync(FIXTURES + 'example/build');
 	            done();
-	        }, 2000);
+	        }, 3000);
 
 	    });
 
@@ -120,7 +120,7 @@ describe('Patternlibrary instanciation and configuration:', function() {
 		        );
 	            if (CLEAN_UP) rimraf.sync(FIXTURES + 'noexample/build');
 	            done();
-	        }, 2000);
+	        }, 3000);
 
 	    });
 
@@ -154,7 +154,7 @@ describe('Patternlibrary instanciation and configuration:', function() {
 		        );
 	            if (CLEAN_UP) rimraf.sync(FIXTURES + 'examplemissing/build');
 	            done();
-	        }, 2000);
+	        }, 3000);
 
 	    });
 	    
@@ -184,7 +184,7 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	            expect(docFile).to.include('<h3 id="062017">06/2017</h3>');
 	            if (CLEAN_UP) rimraf.sync(FIXTURES + 'changelog/build');
 	            done();
-	        }, 2000);
+	        }, 3000);
 
 	    });
 
@@ -210,7 +210,7 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	            expect(docFile).to.include('no change-log info available...');
 	            if (CLEAN_UP) rimraf.sync(FIXTURES + 'nochangelog/build');
 	            done();
-	        }, 2000);
+	        }, 3000);
 
 	    });
 	    

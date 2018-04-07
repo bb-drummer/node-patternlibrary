@@ -1581,9 +1581,22 @@
                 "tests": false,
                 "gitinfo": {
                     "log": {
-                        "data": {},
-                        "list": "",
-                        "full": ""
+                        "data": {
+                            "07/04/2018": [
+                                {
+                                    "date": "07/04/2018",
+                                    "timestamp": 1523135853,
+                                    "author": "Björn Bartels",
+                                    "email": "me@bjoernbartels.earth",
+                                    "message": "PATLAB-7 add adapter tests",
+                                    "commit": "fa9752f",
+                                    "hash": "fa9752f0c84ab2d18770a282ff527b37be7c5a94",
+                                    "body": ""
+                                }
+                            ]
+                        },
+                        "list": "<h3 id=\"07042018\">07/04/2018</h3>\n<ul>\n<li>PATLAB-7 add adapter tests (fa9752f, by <a href=\"mailto:me@bjoernbartels.earth\">Björn Bartels</a>, <a href=\"mailto:me@bjoernbartels.earth\">me@bjoernbartels.earth</a>)</li>\n</ul>\n",
+                        "full": "<h3 id=\"sat-7-apr-2018-231733-0200\">Sat, 7 Apr 2018 23:17:33 +0200</h3>\n<ul>\n<li>\n<p>Author: <a href=\"mailto:me@bjoernbartels.earth\">Björn Bartels</a> (<a href=\"mailto:me@bjoernbartels.earth\">me@bjoernbartels.earth</a>)</p>\n<p>Commit: fa9752f0c84ab2d18770a282ff527b37be7c5a94</p>\n<p>Message: PATLAB-7 add adapter tests</p>\n</li>\n</ul>\n"
                     }
                 }
             }
@@ -3172,9 +3185,22 @@
                 "tests": false,
                 "gitinfo": {
                     "log": {
-                        "data": {},
-                        "list": "",
-                        "full": ""
+                        "data": {
+                            "07/04/2018": [
+                                {
+                                    "date": "07/04/2018",
+                                    "timestamp": 1523135853,
+                                    "author": "Björn Bartels",
+                                    "email": "me@bjoernbartels.earth",
+                                    "message": "PATLAB-7 add adapter tests",
+                                    "commit": "fa9752f",
+                                    "hash": "fa9752f0c84ab2d18770a282ff527b37be7c5a94",
+                                    "body": ""
+                                }
+                            ]
+                        },
+                        "list": "<h3 id=\"07042018\">07/04/2018</h3>\n<ul>\n<li>PATLAB-7 add adapter tests (fa9752f, by <a href=\"mailto:me@bjoernbartels.earth\">Björn Bartels</a>, <a href=\"mailto:me@bjoernbartels.earth\">me@bjoernbartels.earth</a>)</li>\n</ul>\n",
+                        "full": "<h3 id=\"sat-7-apr-2018-231733-0200\">Sat, 7 Apr 2018 23:17:33 +0200</h3>\n<ul>\n<li>\n<p>Author: <a href=\"mailto:me@bjoernbartels.earth\">Björn Bartels</a> (<a href=\"mailto:me@bjoernbartels.earth\">me@bjoernbartels.earth</a>)</p>\n<p>Commit: fa9752f0c84ab2d18770a282ff527b37be7c5a94</p>\n<p>Message: PATLAB-7 add adapter tests</p>\n</li>\n</ul>\n"
                     }
                 }
             }
