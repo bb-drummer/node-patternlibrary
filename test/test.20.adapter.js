@@ -11,7 +11,7 @@ var expect = require('chai').expect;
 
 const FIXTURES = 'test/fixtures/adapters/';
 
-const CLEAN_UP = !true;
+const CLEAN_UP = true;
 
 describe('Patternlibrary instanciation and configuration:', function() {
 	
