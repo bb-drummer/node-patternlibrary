@@ -20,7 +20,7 @@
     "dev": "gulp",
     "build": "gulp",
     "demo": "gulp --demo",
-    "reinstall": "rm -rf node_modules bower_components package-lock.json ; npm install; bower link siteapp; npm test; npm run demo"
+    "reinstall": "rm -rf node_modules bower_components package-lock.json ; npm install; bower link siteapp; npm test;"
   },
   "author": "Björn Bartels <coding@bjoernbartels.earth>",
   "license": "Apache-2.0",

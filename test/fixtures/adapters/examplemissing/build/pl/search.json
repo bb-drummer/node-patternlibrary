@@ -1,0 +1,9 @@
+[
+  {
+    "type": "component",
+    "name": "atom/link",
+    "description": "an inline link",
+    "link": "pl/patterns/atoms/link/index.html",
+    "tags": []
+  }
+]

@@ -5,7 +5,7 @@ import mkdirp from 'mkdirp';
 var extend = require('deep-extend');
 var expect = require('chai').expect;
 
-const CLEAN_UP = !true;
+const CLEAN_UP = true;
 
 describe('Patternlibrary basic templating:', function() {
 

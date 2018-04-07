@@ -29,7 +29,7 @@ describe('Patternlibrary built-in Handlebars helpers', () => {
 
 	const FIXTURES = 'test/fixtures.staticpages/';
 
-	const CLEAN_UP = !true;
+	const CLEAN_UP = true;
 
 	var patternlibraryOptions = {
 	    verbose: false,

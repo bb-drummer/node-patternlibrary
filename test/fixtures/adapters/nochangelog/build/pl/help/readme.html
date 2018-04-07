@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>[]
+</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-touch-fullscreen" content="YES">
+		<link rel="stylesheet" media="screen" type="text/css" href="/assets/css/patternlibrary.css" />
+		<script src="/assets/js/vendor.js"></script>
+		<script src="/assets/js/patternlibrary.js"></script>
+	</head>
+	<body>
+		<section id="patternlibrarySection" class="patternlibrary">
+			<div class="row column small-12">
+			    <!-- #PL:TOPBAR -->
+			    <div class="row">
+			    	<div class="large-12 columns">
+			    		<div class="title-bar" data-responsive-toggle="pl-main-menu" data-hide-for="medium">
+			    		    <button class="menu-icon" type="button" data-toggle="pl-main-menu"></button>
+			    		    <div class="title-bar-title">[]
+			    </div>
+			    		    <div class="title-bar-title float-right"><ul class="menu">
+			    	<li class="menu-text">
+			    		<span class="label is-hidden">Size:</span>
+			    		<span class="show-for-small-only">S</span>
+			    		<span class="show-for-medium-only">M</span>
+			    		<span class="show-for-large-only">L</span>
+			    		<span class="show-for-xlarge-only">XL</span>
+			    		<span class="show-for-xxlarge-only">XXL</span>
+			    	</li>
+			    </ul>
+			    
+			    </div>
+			    		</div> 
+			    
+			    		<div class="top-bar" id="pl-main-menu">
+			    		    <div class="top-bar-left">  
+			    		    	<ul class="dropdown menu" data-dropdown-menu>
+			    		    	    <li class="hide-for-small show-for-medium"><a href="../">[]
+			    		    	</a></li>
+			    		    	    <li class="show-for-small-only hide-for-medium"><a href="../"><i class="fa fa-home"></i> Home</a></li>
+			    		    	    <li><a href="../patterns"><i class="fa fa-puzzle-piece"></i> Patterns</a></li>
+			    		    	    <li><a href="../pages"><i class="fa fa-photo"></i> Pages</a></li>
+			    		    	    <li><a href="../builder"><i class="fa fa-magic"></i> Builder</a></li>
+			    		    	    <li>
+			    		    	        <a href="../help"><i class="fa fa-question"></i> Help</a> 
+			    		    	        <ul class="menu">
+			    		    	        	<li><a href="../help/docs">Docs</a></li>
+			    		    	        	<li><a href="../help/readme.html">About</a></li>
+			    		    	        </ul>
+			    		    	    </li> 
+			    		    	</ul>
+			    		    </div>
+			    		    <div class="top-bar-right">
+			    		    	<ul class="menu">
+			    		    		<li class="patternlibrary-search-wrapper"><input type="text" data-patternlibrary-search placeholder="Search" class="patternlibrary-search"></li>
+			    		    	</ul>
+			    		    	
+			    		    </div>
+			    		    <div class="top-bar-right hide-for-small-only">
+			    		    	<ul class="menu">
+			    		    		<li class="menu-text">
+			    		    			<span class="label is-hidden">Size:</span>
+			    		    			<span class="show-for-small-only">S</span>
+			    		    			<span class="show-for-medium-only">M</span>
+			    		    			<span class="show-for-large-only">L</span>
+			    		    			<span class="show-for-xlarge-only">XL</span>
+			    		    			<span class="show-for-xxlarge-only">XXL</span>
+			    		    		</li>
+			    		    	</ul>
+			    		    	
+			    		    </div>
+			    		</div>
+			    	</div>
+			    </div>
+			    <!-- /PL:TOPBAR -->
+			    
+		
+		
+
+<h1 id="node-patternlibrary">(Node-)<strong>Patternlibrary</strong></h1>
+<p><a href="https://badge.fury.io/js/node-patternlibrary"><img src="https://badge.fury.io/js/node-patternlibrary.svg" alt="npm version"></a></p>
+<p><a href="https://david-dm.org/bb-drummer/node-patternlibrary"><img src="https://david-dm.org/bb-drummer/node-patternlibrary.svg" alt="dependencies status"></a></p>
+<p><a href="https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/?branch=master"><img src="https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/build-status/master"><img src="https://scrutinizer-ci.com/g/bb-drummer/node-patternlibrary/badges/build.png?b=master" alt="Build Status"></a></p>
+<p><a href="https://travis-ci.org/bb-drummer/node-patternlibrary"><img src="https://travis-ci.org/bb-drummer/node-patternlibrary.svg?branch=master" alt="Build Status"></a></p>
+<hr>
+<h2 id="about">About</h2>
+<p><strong>Patternlibrary</strong> (@ npm: <em>node-patternlibrary</em>) is a pattern/component documentation and static site generator for use with Node-JS.</p>
+<p>It generates a series of documentation pages for each of the HTML <strong>patterns</strong>, or <em>partials</em>, or <em>components</em>, structured in an <strong>atomic design pattern</strong>.
+Documentation details are assembled from the specific pattern-files's source codes and supplied meta-data.
+Of course, like any other (Handlebars) partial, those patterns can also include other patterns, external (Handlebars) helpers or data as JSON or YAML, by themselfs.</p>
+<p>These pages are combined under a GUI to view in your browser. It provides an overview dashboard, lists to browse patterns and categories and (kind of) interactive pattern documentation.</p>
+<p>The template engine used is <a href="http://handlebarsjs.com"><em>Handlebars</em></a> and rendering <em>markdown</em> is accomplished with <a href="https://github.com/markdown-it/markdown-it"><em>MarkdownIt</em></a>. Parsing the style and script source files is utilizing (<a href="http://sassdoc.com/"><em>SassDoc</em></a>) and (<a href="http://usejsdoc.org"><em>JSDoc</em></a>).</p>
+<h2 id="live-demo">Live-Demo</h2>
+<p>A live demonstration of a <strong>Patternlibrary</strong> GUI build can be found at <a href="https://demo.patternlibrary.net">demo.patternlibrary.net</a></p>
+<h2 id="documentation">Documentation</h2>
+<p>For detailed explanations of each of the parts that made up <strong>Patternlibrary</strong>, please see the following pages:</p>
+<ul>
+<li>
+<p><a href="https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/usage_docs.md">Installation and (basic) usage</a></p>
+</li>
+<li>
+<p><a href="https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/options_docs.md">Options</a></p>
+</li>
+<li>
+<p><a href="https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/patternspecs_docs.md">Generating pattern documentation</a></p>
+<p>To generate the pattern-specific documentation pages, some requirements must be satisfied for each pattern:</p>
+<ul>
+<li>the <a href="https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/patternspecs_docs.md">Pattern specifications</a></li>
+</ul>
+<p>and...</p>
+<ul>
+<li>a <a href="https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/patternspecs_docs.md"><code>readme.md</code> file</a></li>
+</ul>
+<p>Optionally, you can also apply...</p>
+<ul>
+<li>
+<p><a href="https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/sassdoc_docs.md">SASS reference documentation</a>,</p>
+</li>
+<li>
+<p><a href="https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/jsdoc_docs.md">JavaScript reference documentation</a>,</p>
+</li>
+<li>
+<p>a <a href="https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/changelog_docs.md"><code>changelog.md</code> file</a> and</p>
+</li>
+<li>
+<p><a href="https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/testing_docs.md">Test files and testing</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/gui_docs.md">GUI usage</a></p>
+</li>
+<li>
+<p><a href="https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/api_docs.md">API documentation and advanced usage</a></p>
+</li>
+<li>
+<p><a href="https://gitlab.bjoernbartels.earth/js/patternlibrary/tree/master/docs/middleware_docs.md">Gulp/Grunt middleware usage</a></p>
+</li>
+</ul>
+<h2 id="example-project">Example project</h2>
+<p><a href="https://gitlab.bjoernbartels.earth//themes/node-patternlibrary-demo">An example front-end/theme project</a> can be found in our <a href="https://gitlab.bjoernbartels.earth//themes/node-patternlibrary-demo">GitLab</a>.</p>
+<hr>
+<h3 id="work-in-progress-disclaimer">Work-In-Progress disclaimer</h3>
+<p>This project is now going from some kind of <em>Proof Of Concept</em> to real-life implementation.
+Most of its behavour and features are fixed for now.</p>
+<p>When using this software, absolutely no warranties of any sort are granted. Please see the license file for more information.</p>
+<hr>
+<p>Copyright (c) 2017, [bjoernbartels.earth]</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<p>Please, see the license file for more information.</p>
+
+			
+				<!-- Footer -->
+				<footer id="footer" class="row columns">
+					<div class="small-12 medium-6 column text-left">
+						<span class="patterns"  ><a href="../">Patterns</a></span>
+						<span class="typography">| <a href="../pages/typography.html">Typography</a></span>
+						<span class="plfoundation">| <a href="../pages/kitchensink.html">Kitchen Sink</a></span>
+						<span class="styleguide">| <a href="../pages/styleguide.html">Styleguide</a></span>
+						<span class="plfoundation">| <a href="../pages/htmlelements.html">Elements</a></span>
+					</div>
+					<div class="small-12 medium-6 column text-right">
+						<span class="copyright" >[]
+				</a></span>
+						<span class="copyright" >| &copy; <a href="" target="_blank"></a></span>
+					</div>
+				</footer>
+			
+			</div>
+		
+		</section>
+
+        <!-- Matomo -->
+        <script type="text/javascript">
+          var _paq = _paq || [];
+          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+          _paq.push(["setCookieDomain", "*.demo.patternlibrary.bjoernbartels.earth"]);
+          _paq.push(["setDomains", ["*.demo.patternlibrary.bjoernbartels.earth","*.demo.patternlibrary.net","*.demo.patternlibrary.org"]]);
+          _paq.push(["enableCrossDomainLinking"]);
+          _paq.push(['trackPageView']);
+          _paq.push(['enableLinkTracking']);
+          (function() {
+            var u="//analytics.bjoernbartels.earth/piwik/";
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setSiteId', '7']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+          })();
+        </script>
+        <noscript><p><img src="//analytics.bjoernbartels.earth/piwik/piwik.php?idsite=7&rec=1" style="border:0;" alt="" /></p></noscript>
+        <!-- End Matomo Code -->
+        
+	</body>
+</html>
+

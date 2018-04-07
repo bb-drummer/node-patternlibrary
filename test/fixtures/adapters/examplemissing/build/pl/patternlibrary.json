@@ -1,0 +1,269 @@
+{
+    "patterns": {
+        "atom/link": {
+            "pattern": {
+                "name": "atom/link",
+                "categories": [
+                    "basics",
+                    "texts"
+                ],
+                "uses": null,
+                "type": "atom"
+            },
+            "params": {
+                "class": [
+                    "*"
+                ],
+                "href": [
+                    "*"
+                ],
+                "label": [
+                    "*"
+                ]
+            },
+            "body": "<a class=\"{{class}}\" href=\"{{href}}\">{{label}}</a>",
+            "filepath": "test/fixtures/adapters/examplemissing/partials/atoms/link/atom-link.html",
+            "_adapterData": {
+                "specs": "atoms/link/atom-link.html",
+                "example": "example.html",
+                "changelog": "atoms/link/changelog.md",
+                "gitinfo": "atoms/link",
+                "tests": "atoms/link/test.js",
+                "sourcecode": "atoms/link/atom-link.html"
+            },
+            "title": "atom/link",
+            "description": "an inline link",
+            "source": "atoms/link/atom-link.html",
+            "example": false,
+            "docs": "<p>Here you can either give a rather brief description of your pattern or provide extended usage information.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"a-markup-example\">A Markup Example</h2>\n<pre class=\"hide hidden\" style=\"display: none !important;\"></pre><h3>Source</h3><pre class=\"docs-code\" data-docs-code><code class=\"html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#\"</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{your classnames}\"</span>&gt;</span>some link label<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n</code></pre><h3>Output</h3><div class=\"code-example\"><a href=\"#\" class=\"{your classnames}\">some link label</a>\n</div>\n",
+            "fileName": "test/fixtures/adapters/examplemissing/partials/atoms/link/readme.md",
+            "_adapterFiles": {
+                "specs": "test/fixtures/adapters/examplemissing/partials/atoms/link/atom-link.html",
+                "example": "example.html",
+                "changelog": "atoms/link/changelog.md",
+                "gitinfo": "test/fixtures/adapters/examplemissing/partials/atoms/link",
+                "tests": "atoms/link/test.js",
+                "sourcecode": "test/fixtures/adapters/examplemissing/partials/atoms/link/atom-link.html"
+            },
+            "relatedFiles": [],
+            "sourcecode": {
+                "highlight": "<div class=\"docs-code\" data-patternlibrary-copycode>\n<pre><code class=\"language-html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{{class}}\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"{{href}}\"</span>&gt;</span>{{label}}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span></code></pre>\n</div>",
+                "escaped": "&lt;a class=&quot;{{class}}&quot; href=&quot;{{href}}&quot;&gt;{{label}}&lt;/a&gt;",
+                "raw": "<a class=\"{{class}}\" href=\"{{href}}\">{{label}}</a>"
+            },
+            "specs": {
+                "pattern": {
+                    "name": "atom/link",
+                    "categories": [
+                        "basics",
+                        "texts"
+                    ],
+                    "uses": null,
+                    "type": "atom"
+                },
+                "params": {
+                    "class": [
+                        "*"
+                    ],
+                    "href": [
+                        "*"
+                    ],
+                    "label": [
+                        "*"
+                    ]
+                }
+            },
+            "changelog": false,
+            "tests": false,
+            "gitinfo": {
+                "log": {
+                    "data": {},
+                    "list": "",
+                    "full": ""
+                }
+            }
+        }
+    },
+    "categories": [
+        {
+            "name": "basics",
+            "slug": "basics",
+            "patterns": {
+                "atom/link": {
+                    "pattern": {
+                        "name": "atom/link",
+                        "categories": [
+                            "basics",
+                            "texts"
+                        ],
+                        "uses": null,
+                        "type": "atom"
+                    },
+                    "params": {
+                        "class": [
+                            "*"
+                        ],
+                        "href": [
+                            "*"
+                        ],
+                        "label": [
+                            "*"
+                        ]
+                    },
+                    "body": "<a class=\"{{class}}\" href=\"{{href}}\">{{label}}</a>",
+                    "filepath": "test/fixtures/adapters/examplemissing/partials/atoms/link/atom-link.html",
+                    "_adapterData": {
+                        "specs": "atoms/link/atom-link.html",
+                        "example": "example.html",
+                        "changelog": "atoms/link/changelog.md",
+                        "gitinfo": "atoms/link",
+                        "tests": "atoms/link/test.js",
+                        "sourcecode": "atoms/link/atom-link.html"
+                    },
+                    "title": "atom/link",
+                    "description": "an inline link",
+                    "source": "atoms/link/atom-link.html",
+                    "example": false,
+                    "docs": "<p>Here you can either give a rather brief description of your pattern or provide extended usage information.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"a-markup-example\">A Markup Example</h2>\n<pre class=\"hide hidden\" style=\"display: none !important;\"></pre><h3>Source</h3><pre class=\"docs-code\" data-docs-code><code class=\"html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#\"</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{your classnames}\"</span>&gt;</span>some link label<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n</code></pre><h3>Output</h3><div class=\"code-example\"><a href=\"#\" class=\"{your classnames}\">some link label</a>\n</div>\n",
+                    "fileName": "test/fixtures/adapters/examplemissing/partials/atoms/link/readme.md",
+                    "_adapterFiles": {
+                        "specs": "test/fixtures/adapters/examplemissing/partials/atoms/link/atom-link.html",
+                        "example": "example.html",
+                        "changelog": "atoms/link/changelog.md",
+                        "gitinfo": "test/fixtures/adapters/examplemissing/partials/atoms/link",
+                        "tests": "atoms/link/test.js",
+                        "sourcecode": "test/fixtures/adapters/examplemissing/partials/atoms/link/atom-link.html"
+                    },
+                    "relatedFiles": [],
+                    "sourcecode": {
+                        "highlight": "<div class=\"docs-code\" data-patternlibrary-copycode>\n<pre><code class=\"language-html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{{class}}\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"{{href}}\"</span>&gt;</span>{{label}}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span></code></pre>\n</div>",
+                        "escaped": "&lt;a class=&quot;{{class}}&quot; href=&quot;{{href}}&quot;&gt;{{label}}&lt;/a&gt;",
+                        "raw": "<a class=\"{{class}}\" href=\"{{href}}\">{{label}}</a>"
+                    },
+                    "specs": {
+                        "pattern": {
+                            "name": "atom/link",
+                            "categories": [
+                                "basics",
+                                "texts"
+                            ],
+                            "uses": null,
+                            "type": "atom"
+                        },
+                        "params": {
+                            "class": [
+                                "*"
+                            ],
+                            "href": [
+                                "*"
+                            ],
+                            "label": [
+                                "*"
+                            ]
+                        }
+                    },
+                    "changelog": false,
+                    "tests": false,
+                    "gitinfo": {
+                        "log": {
+                            "data": {},
+                            "list": "",
+                            "full": ""
+                        }
+                    }
+                }
+            },
+            "patternsCount": 1
+        },
+        {
+            "name": "texts",
+            "slug": "texts",
+            "patterns": {
+                "atom/link": {
+                    "pattern": {
+                        "name": "atom/link",
+                        "categories": [
+                            "basics",
+                            "texts"
+                        ],
+                        "uses": null,
+                        "type": "atom"
+                    },
+                    "params": {
+                        "class": [
+                            "*"
+                        ],
+                        "href": [
+                            "*"
+                        ],
+                        "label": [
+                            "*"
+                        ]
+                    },
+                    "body": "<a class=\"{{class}}\" href=\"{{href}}\">{{label}}</a>",
+                    "filepath": "test/fixtures/adapters/examplemissing/partials/atoms/link/atom-link.html",
+                    "_adapterData": {
+                        "specs": "atoms/link/atom-link.html",
+                        "example": "example.html",
+                        "changelog": "atoms/link/changelog.md",
+                        "gitinfo": "atoms/link",
+                        "tests": "atoms/link/test.js",
+                        "sourcecode": "atoms/link/atom-link.html"
+                    },
+                    "title": "atom/link",
+                    "description": "an inline link",
+                    "source": "atoms/link/atom-link.html",
+                    "example": false,
+                    "docs": "<p>Here you can either give a rather brief description of your pattern or provide extended usage information.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti voluptatum inventore magnam, ea quod similique delectus doloremque ratione, accusamus assumenda error hic? Ea consequuntur quibusdam alias asperiores quisquam inventore deleniti.</p>\n<h2 id=\"a-markup-example\">A Markup Example</h2>\n<pre class=\"hide hidden\" style=\"display: none !important;\"></pre><h3>Source</h3><pre class=\"docs-code\" data-docs-code><code class=\"html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"#\"</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{your classnames}\"</span>&gt;</span>some link label<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span>\n</code></pre><h3>Output</h3><div class=\"code-example\"><a href=\"#\" class=\"{your classnames}\">some link label</a>\n</div>\n",
+                    "fileName": "test/fixtures/adapters/examplemissing/partials/atoms/link/readme.md",
+                    "_adapterFiles": {
+                        "specs": "test/fixtures/adapters/examplemissing/partials/atoms/link/atom-link.html",
+                        "example": "example.html",
+                        "changelog": "atoms/link/changelog.md",
+                        "gitinfo": "test/fixtures/adapters/examplemissing/partials/atoms/link",
+                        "tests": "atoms/link/test.js",
+                        "sourcecode": "test/fixtures/adapters/examplemissing/partials/atoms/link/atom-link.html"
+                    },
+                    "relatedFiles": [],
+                    "sourcecode": {
+                        "highlight": "<div class=\"docs-code\" data-patternlibrary-copycode>\n<pre><code class=\"language-html\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">a</span> <span class=\"hljs-attr\">class</span>=<span class=\"hljs-string\">\"{{class}}\"</span> <span class=\"hljs-attr\">href</span>=<span class=\"hljs-string\">\"{{href}}\"</span>&gt;</span>{{label}}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">a</span>&gt;</span></code></pre>\n</div>",
+                        "escaped": "&lt;a class=&quot;{{class}}&quot; href=&quot;{{href}}&quot;&gt;{{label}}&lt;/a&gt;",
+                        "raw": "<a class=\"{{class}}\" href=\"{{href}}\">{{label}}</a>"
+                    },
+                    "specs": {
+                        "pattern": {
+                            "name": "atom/link",
+                            "categories": [
+                                "basics",
+                                "texts"
+                            ],
+                            "uses": null,
+                            "type": "atom"
+                        },
+                        "params": {
+                            "class": [
+                                "*"
+                            ],
+                            "href": [
+                                "*"
+                            ],
+                            "label": [
+                                "*"
+                            ]
+                        }
+                    },
+                    "changelog": false,
+                    "tests": false,
+                    "gitinfo": {
+                        "log": {
+                            "data": {},
+                            "list": "",
+                            "full": ""
+                        }
+                    }
+                }
+            },
+            "patternsCount": 1
+        }
+    ]
+}
