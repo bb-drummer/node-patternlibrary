@@ -64,6 +64,229 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	    });
 	});
 
+	describe('Patternlibrary "specs" adapter:', () => {
+		
+    	let adapter = require('../lib/adapters/specs.js');
+
+	    it('scans data from pattern source file', function (done) {
+	    	
+	    	adapter(
+	    		'test/fixtures/adapters/example/partials/atoms/link/atom-link.html',
+	    		{},
+	    		( a, b ) => { 
+	    			console.log(b);
+	    			expect(b.pattern.name).to.be.a('string').that.is.equal('atom/link'); 
+	    			expect(b.pattern.categories).to.be.an('array').that.is.deep.equal(['basics','texts']); 
+	    			done(); 
+	    		},
+	    		null
+	    	);
+	    });
+
+	    it('search method returns empty result', function () {
+	    	
+	    	let result = adapter.search();
+	    	expect(result).to.be.empty;
+	    });
+	    
+    });
+
+	describe('Patternlibrary "sourcecode" adapter:', () => {
+		
+    	let adapter = require('../lib/adapters/sourcecode.js');
+
+	    it('retrieves pattern\'s source-code from file', function (done) {
+	    	
+	    	adapter(
+	    		'test/fixtures/adapters/example/partials/atoms/link/atom-link.html',
+	    		{},
+	    		( a, b ) => { 
+	    			expect(b).to.be.an('object')
+	    			         .that.has.a.property('raw')
+	    			         .that.is.not.empty;
+	    			expect(b.raw).to.be.a('string')
+	    			             .that.is.equal('<a class="{{class}}" href="{{href}}">{{label}}</a>');
+	    			
+	    			expect(b).to.be.an('object')
+	    			         .that.has.a.property('highlight')
+	    			         .that.is.not.empty;
+	    			
+	    			expect(b).to.be.an('object')
+	    			         .that.has.a.property('escaped')
+	    			         .that.is.not.empty;
+	    			expect(b.escaped).to.be.a('string')
+		                             .that.is.equal('&lt;a class=&quot;{{class}}&quot; href=&quot;{{href}}&quot;&gt;{{label}}&lt;/a&gt;');
+	    			
+	    			done(); 
+	    		},
+	    		null
+	    	);
+	    });
+
+	    it('search method returns empty result', function () {
+	    	
+	    	let result = adapter.search();
+	    	expect(result).to.be.empty;
+	    });
+	    
+    });
+
+	describe('Patternlibrary "example" adapter:', () => {
+		
+    	let adapter = require('../lib/adapters/example.js');
+        let patternlibraryOptions = {
+            verbose : false,
+            dest    : FIXTURES + 'example/build',
+            root    : FIXTURES + 'example/pages/',
+            layouts : FIXTURES + 'example/layouts/',
+            partials: FIXTURES + 'example/partials/',
+            testing : true
+        };
+        var p = new Patternlibrary.Patternlibrary(patternlibraryOptions);
+
+	    it('retrieves example\'s source-code from file', function (done) {
+	    	
+	    	adapter(
+	    		'test/fixtures/adapters/example/partials/atoms/link/example.html',
+	    		{},
+	    		( a, b ) => { 
+	    			expect(b).to.be.an('object')
+	    			         .that.has.a.property('raw')
+	    			         .that.is.not.empty;
+	    			expect(b.raw).to.be.a('string')
+	    			             .that.is.equal('<a href="/somewhere.html">anywhere</a>');
+	    			
+	    			expect(b).to.be.an('object')
+	    			         .that.has.a.property('highlight')
+	    			         .that.is.not.empty;
+	    			
+	    			expect(b).to.be.an('object')
+	    			         .that.has.a.property('escaped')
+	    			         .that.is.not.empty;
+	    			expect(b.escaped).to.be.a('string')
+		                             .that.is.equal('&lt;a href=&quot;/somewhere.html&quot;&gt;anywhere&lt;/a&gt;');
+	    			
+	    			done(); 
+	    		},
+	    		p
+	    	);
+	    });
+
+	    it('returns flase if file is not readable/does not exist', function (done) {
+	    	adapter(
+	    		'test/fixtures/adapters/example/partials/atoms/link/example_not_found.html',
+	    		{},
+	    		( a, b ) => { 
+	    			expect(b).to.equal(false);
+	    			
+	    			done(); 
+	    		},
+	    		p
+	    	);
+	    });
+
+	    it('search method returns empty result', function () {
+	    	
+	    	let result = adapter.search();
+	    	expect(result).to.be.empty;
+	    });
+	    
+    });
+
+	describe('Patternlibrary "sass" adapter:', () => {
+		
+    	let adapter = require('../lib/adapters/sass.js');
+        var items;
+        
+	    it('retrieves sass\'s source-code from file', function (done) {
+	    	
+	    	adapter(
+	    		'test/fixtures/adapters/example/partials/atoms/link/styles.scss',
+	    		{},
+	    		( a, b ) => { 
+	    			expect(b).to.be.an('object')
+	    			         .that.is.not.empty;
+
+	    			items = b;
+	    			done(); 
+	    		},
+	    		null
+	    	);
+	    });
+
+	    it('search method returns an array with sourcecode items given', function () {
+	    	
+	    	let result = adapter.search(items);
+	    	expect(result).to.be.an('array')
+	                      .that.is.not.empty;
+	    });
+
+	    it('search method returns empty array with no sourcecode items list given', function () {
+	    	
+	    	let result = adapter.search({});
+	    	expect(result).to.be.an('array')
+                          .that.is.empty;
+	    });
+	    
+    });
+
+	describe('Patternlibrary "javascript" adapter:', () => {
+		
+    	let adapter = require('../lib/adapters/js.js');
+        var items;
+        
+	    it('retrieves javascript\'s source-code from file', function (done) {
+	    	
+	    	adapter(
+	    		'test/fixtures/adapters/example/partials/atoms/link/module.js',
+	    		{},
+	    		( a, b ) => { 
+	    			console.log(b);
+	    			expect(b).to.be.an('object')
+	    			         .that.is.not.empty;
+
+	    			items = b;
+	    			done(); 
+	    		},
+	    		null
+	    	);
+	    });
+
+	    it('search method returns an array with sourcecode items given', function () {
+	    	
+	    	let result = adapter.search(items);
+	    	expect(result).to.be.an('array')
+	                      .that.is.not.empty;
+	    });
+
+	    it('search method returns empty array with no sourcecode items list given', function () {
+	    	
+	    	let result = adapter.search({});
+	    	expect(result).to.be.an('array')
+                          .that.is.empty;
+	    });
+
+	    it('module has no defaults', function (done) {
+
+	    	adapter(
+	    		'test/fixtures/adapters/example/partials/atoms/link/module_no_defaults.js',
+	    		{},
+	    		( a, b ) => { 
+	    			console.log(b);
+	    			expect(b).to.be.an('object')
+	    			         .that.is.not.empty;
+
+	    			items = b;
+	    			done(); 
+	    		},
+	    		null
+	    	);
+	    });
+	    
+    });
+	
+	
+	/*
 	describe('Patternlibrary "example" adapter:', () => {
 
 	    it('builds a page with extra file rendered as example', function (done) {
@@ -215,5 +438,5 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	    });
 	    
     });
-
+    */
 });

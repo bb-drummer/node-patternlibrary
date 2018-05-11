@@ -20,7 +20,7 @@ class TextExcerptToggle {
      */
     constructor(element, options) {
         this.$element = element;
-        this.options = $.extend({}, TextExcerptToggle.defaults, this.$element.data(), options);
+        this.options = $.extend({}, TextExcerptToggle.initoptions, this.$element.data(), options);
         this._init();
 
     }
@@ -347,7 +347,7 @@ class TextExcerptToggle {
   }
 }
 
-TextExcerptToggle.defaults = {
+TextExcerptToggle.initoptions = {
   /**
    * Class that designates bounding container of TextExcerptToggle (default: window)
    * @option
