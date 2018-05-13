@@ -134,7 +134,7 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	describe('Patternlibrary "example" adapter:', () => {
 		
     	let adapter = require('../lib/adapters/example.js');
-        let patternlibraryOptions = {
+        /*let patternlibraryOptions = {
             verbose : false,
             dest    : FIXTURES + 'example/build',
             root    : FIXTURES + 'example/pages/',
@@ -142,7 +142,8 @@ describe('Patternlibrary instanciation and configuration:', function() {
             partials: FIXTURES + 'example/partials/',
             testing : true
         };
-        var p = new Patternlibrary.Patternlibrary(patternlibraryOptions);
+        var p = new Patternlibrary.Patternlibrary(patternlibraryOptions);*/
+        var p = new Patternlibrary.Patternlibrary();
 
 	    it('retrieves example\'s source-code from file', function (done) {
 	    	
@@ -241,7 +242,6 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	    		'test/fixtures/adapters/example/partials/atoms/link/module.js',
 	    		{},
 	    		( a, b ) => { 
-	    			console.log(b);
 	    			expect(b).to.be.an('object')
 	    			         .that.is.not.empty;
 
@@ -272,7 +272,6 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	    		'test/fixtures/adapters/example/partials/atoms/link/module_no_defaults.js',
 	    		{},
 	    		( a, b ) => { 
-	    			console.log(b);
 	    			expect(b).to.be.an('object')
 	    			         .that.is.not.empty;
 
@@ -281,6 +280,123 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	    		},
 	    		null
 	    	);
+	    });
+	    
+    });
+
+	describe('Patternlibrary "changelog" adapter:', () => {
+		
+    	let adapter = require('../lib/adapters/changelog.js');
+        var p = new Patternlibrary.Patternlibrary();
+
+	    it('retrieves example\'s source-code from file', function (done) {
+	    	
+	    	adapter(
+	    		'test/fixtures/adapters/example/partials/atoms/link/changelog.md',
+	    		{},
+	    		( a, b ) => { 
+	    			expect(b).to.be.a('string');
+	    			
+	    			done(); 
+	    		},
+	    		p
+	    	);
+	    });
+
+	    it('returns flase if file is not readable/does not exist', function (done) {
+	    	adapter(
+	    		'test/fixtures/adapters/example/partials/atoms/link/changelog_not_found.md',
+	    		{},
+	    		( a, b ) => { 
+	    			expect(b).to.equal(false);
+	    			
+	    			done(); 
+	    		},
+	    		p
+	    	);
+	    });
+
+	    it('search method returns empty result', function () {
+	    	
+	    	let result = adapter.search();
+	    	expect(result).to.be.empty;
+	    });
+	    
+    });
+
+	describe('Patternlibrary "tests" adapter:', () => {
+		
+    	let adapter = require('../lib/adapters/tests.js');
+
+	    it('retrieves test-results from test-file', function (done) {
+	    	
+	    	adapter(
+	    		'test/fixtures/adapters/example/partials/atoms/link/test.js',
+	    		{},
+	    		( a, b ) => { 
+	    			expect(b).to.be.a('object');
+	    			
+	    			done(); 
+	    		}
+	    	);
+	    });
+
+	    it('returns flase if file is not readable/does not exist', function (done) {
+	    	adapter(
+	    		'test/fixtures/adapters/example/partials/atoms/link/test_not_found.js',
+	    		{},
+	    		( a, b ) => { 
+	    			expect(b).to.equal(false);
+	    			
+	    			done(); 
+	    		}
+	    	);
+	    });
+
+	    it('search method returns empty result', function () {
+	    	
+	    	let result = adapter.search();
+	    	expect(result).to.be.empty;
+	    });
+	    
+    });
+
+	describe('Patternlibrary "gitinfo" adapter:', () => {
+		
+    	let adapter = require('../lib/adapters/gitinfo.js');
+        var p = new Patternlibrary.Patternlibrary();
+
+	    it('retrieves git-info from file', function (done) {
+	    	
+	    	adapter(
+	    		'test/fixtures/adapters/example/partials/atoms/link/atom-link.html',
+	    		{},
+	    		( a, b ) => { 
+	    			expect(b).to.be.a('object');
+	    			
+	    			done(); 
+	    		},
+	    		p
+	    	);
+	    });
+
+	    it('returns flase if file is not readable/does not exist', function (done) {
+	    	adapter(
+	    		'test/fixtures/adapters/example/partials/atoms/link/file_not_found.html',
+	    		{},
+	    		( a, b ) => { 
+	    			expect(b).to.equal(false);
+	    			
+	    			done(); 
+	    		},
+	    		p
+	    	);
+	    });
+
+	    it('search method returns empty result', function () {
+	    	
+	    	let result = adapter.search();
+	    	expect(result).to.be.empty;
 	    });
 	    
     });
