@@ -6,7 +6,6 @@ import mkdirp from 'mkdirp';
 
 var expect = require('chai').expect;
 var $md = require('../lib/vendor/markdown-it.js');
-var stripHtml = require('striptags');
 
 describe('Markdown-It plugin helpers', function () {
 	
@@ -17,7 +16,6 @@ describe('Markdown-It plugin helpers', function () {
 		"```"].join("\n");
 		let result = $md.render(codeblock);
 		
-		console.log(result);
 		expect(result).to.be.a('string');
 	});
 	
@@ -28,7 +26,6 @@ describe('Markdown-It plugin helpers', function () {
 		"```"].join("\n");
 		let result = $md.render(codeblock);
 		
-		console.log(result);
 		expect(result).to.be.a('string');
 	});
 	
@@ -39,7 +36,6 @@ describe('Markdown-It plugin helpers', function () {
 		"```"].join("\n");
 		let result = $md.render(codeblock);
 		
-		console.log(result);
 		expect(result).to.be.a('string');
 	});
 	

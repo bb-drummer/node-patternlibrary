@@ -74,7 +74,6 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	    		'test/fixtures/adapters/example/partials/atoms/link/atom-link.html',
 	    		{},
 	    		( a, b ) => { 
-	    			console.log(b);
 	    			expect(b.pattern.name).to.be.a('string').that.is.equal('atom/link'); 
 	    			expect(b.pattern.categories).to.be.an('array').that.is.deep.equal(['basics','texts']); 
 	    			done(); 
@@ -134,15 +133,6 @@ describe('Patternlibrary instanciation and configuration:', function() {
 	describe('Patternlibrary "example" adapter:', () => {
 		
     	let adapter = require('../lib/adapters/example.js');
-        /*let patternlibraryOptions = {
-            verbose : false,
-            dest    : FIXTURES + 'example/build',
-            root    : FIXTURES + 'example/pages/',
-            layouts : FIXTURES + 'example/layouts/',
-            partials: FIXTURES + 'example/partials/',
-            testing : true
-        };
-        var p = new Patternlibrary.Patternlibrary(patternlibraryOptions);*/
         var p = new Patternlibrary.Patternlibrary();
 
 	    it('retrieves example\'s source-code from file', function (done) {
