@@ -25,5 +25,3 @@ $(document).ready(function () {
 	Patternlibrary.run();
 	
 });
-
-//export default Patterlibrary;

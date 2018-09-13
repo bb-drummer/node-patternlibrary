@@ -16,7 +16,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha --require babel-register",
+    "test": "nyc mocha --require babel-register;",
     "dev": "gulp",
     "build": "gulp",
     "demo": "gulp --demo",
@@ -26,6 +26,7 @@
   "license": "Apache-2.0",
   "bin": {},
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.1.0",
     "assert-dir-equal": "^1",
     "chalk": "^2",
     "cheerio": "^0.22",
@@ -91,7 +92,7 @@
     "corejs-typeahead": "^1",
     "eslint-html-reporter": "^0",
     "foundation-sites": "^6",
-    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp": "^4.0",
     "gulp-autoprefixer": "^3",
     "gulp-babel": "^6",
     "gulp-clean-css": "^3",

@@ -8,25 +8,25 @@ params:
 ---
 {{#unless type}}
 {{#if pattern.type}}
-    {{#ifCond value=pattern.type comp="atom" mode="eq"}}<i class="fa fa-square-o"></i>{{/ifCond}}
+    {{#ifCond value=pattern.type comp="atom" mode="eq"}}<i class="fa fa-dot-circle"></i>{{/ifCond}}
     {{#ifCond value=pattern.type comp="molecule" mode="eq"}}<i class="fa fa-cube"></i>{{/ifCond}}
     {{#ifCond value=pattern.type comp="organism" mode="eq"}}<i class="fa fa-cubes"></i>{{/ifCond}}
-    {{#ifCond value=pattern.type comp="template" mode="eq"}}<i class="fa fa-file-picture-o"></i>{{/ifCond}}
-    {{#ifCond value=pattern.type comp="page" mode="eq"}}<i class="fa fa-file-picture-o"></i>{{/ifCond}}
-    {{#ifCond value=pattern.type comp="component" mode="eq"}}<i class="fa fa-file-picture-o"></i>{{/ifCond}}
+    {{#ifCond value=pattern.type comp="template" mode="eq"}}<i class="fa fa-file-image"></i>{{/ifCond}}
+    {{#ifCond value=pattern.type comp="page" mode="eq"}}<i class="fa fa-images"></i>{{/ifCond}}
+    {{#ifCond value=pattern.type comp="component" mode="eq"}}<i class="fa fa-file-image"></i>{{/ifCond}}
 {{/if}}
 {{/unless}}
 {{#if type}}
-    {{#ifCond value=type comp="atom" mode="eq"}}<i class="fa fa-square-o"></i>{{/ifCond}}
+    {{#ifCond value=type comp="atom" mode="eq"}}<i class="fa fa-dot-circle"></i>{{/ifCond}}
     {{#ifCond value=type comp="molecule" mode="eq"}}<i class="fa fa-cube"></i>{{/ifCond}}
     {{#ifCond value=type comp="organism" mode="eq"}}<i class="fa fa-cubes"></i>{{/ifCond}}
-    {{#ifCond value=type comp="template" mode="eq"}}<i class="fa fa-file-picture-o"></i>{{/ifCond}}
-    {{#ifCond value=type comp="page" mode="eq"}}<i class="fa fa-file-picture-o"></i>{{/ifCond}}
-    {{#ifCond value=type comp="component" mode="eq"}}<i class="fa fa-file-picture-o"></i>{{/ifCond}}
-    {{#ifCond value=type comp="atoms" mode="eq"}}<i class="fa fa-square-o"></i>{{/ifCond}}
+    {{#ifCond value=type comp="template" mode="eq"}}<i class="fa fa-file-image"></i>{{/ifCond}}
+    {{#ifCond value=type comp="page" mode="eq"}}<i class="fa fa-images"></i>{{/ifCond}}
+    {{#ifCond value=type comp="component" mode="eq"}}<i class="fa fa-file-image"></i>{{/ifCond}}
+    {{#ifCond value=type comp="atoms" mode="eq"}}<i class="fa fa-dot-circle"></i>{{/ifCond}}
     {{#ifCond value=type comp="molecules" mode="eq"}}<i class="fa fa-cube"></i>{{/ifCond}}
     {{#ifCond value=type comp="organisms" mode="eq"}}<i class="fa fa-cubes"></i>{{/ifCond}}
-    {{#ifCond value=type comp="templates" mode="eq"}}<i class="fa fa-file-picture-o"></i>{{/ifCond}}
-    {{#ifCond value=type comp="pages" mode="eq"}}<i class="fa fa-file-picture-o"></i>{{/ifCond}}
-    {{#ifCond value=type comp="components" mode="eq"}}<i class="fa fa-file-picture-o"></i>{{/ifCond}}
+    {{#ifCond value=type comp="templates" mode="eq"}}<i class="fa fa-file-image"></i>{{/ifCond}}
+    {{#ifCond value=type comp="pages" mode="eq"}}<i class="fa fa-images"></i>{{/ifCond}}
+    {{#ifCond value=type comp="components" mode="eq"}}<i class="fa fa-file-image"></i>{{/ifCond}}
 {{/if}}

@@ -70,6 +70,9 @@
 	@import '_components';
 
     // font-awesome icons
-	@import '../css/font-awesome.min.css';
+  @import '../css/fontawesome-all.css';
+  //@import '../css/regular.css';
+  //@import '../css/solid.css';
+  @import '../css/brands.css';
 }
 // end project namespace
