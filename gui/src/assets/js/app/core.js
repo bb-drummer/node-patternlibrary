@@ -1,4 +1,4 @@
-import Siteapp          from '../../../../../bower_components/siteapp/js/entries/siteapp';
+import Siteapp          from 'siteapp/js/entries/siteapp';
 
 const PatternlibraryApp = class Patternlibrary extends Siteapp {
 	

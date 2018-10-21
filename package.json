@@ -18,9 +18,9 @@
   "scripts": {
     "test": "nyc mocha --require babel-register;",
     "dev": "gulp",
-    "build": "gulp",
+    "build": "gulp build",
     "demo": "gulp --demo",
-    "reinstall": "rm -rf node_modules bower_components package-lock.json ; npm install; bower link siteapp;"
+    "reinstall": "rm -rf node_modules bower_components package-lock.json ; npm install;"
   },
   "author": "Björn Bartels <coding@bjoernbartels.earth>",
   "license": "Apache-2.0",
@@ -126,6 +126,7 @@
     "rimraf": "^2",
     "sass-true": "^2",
     "sinon": "^1",
+    "siteapp": "git+https://gitlab.bjoernbartels.earth/js/siteapp.git",
     "striptags": "^2.1.1",
     "style-sherpa": "^1",
     "vinyl-named": "^1",
