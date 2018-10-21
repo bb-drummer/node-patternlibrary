@@ -37,8 +37,8 @@ init:
   stage: setup
   tags:
     #- kunden-web
-    #- node
-    - php
+    - node
+    #- php
   before_script:
     - export BUILD_LABEL=$(TZ=Europe/Berlin date +%Y%m%d-%H%M)
   script:
@@ -56,8 +56,8 @@ app-build:
   stage: build
   tags:
     #- kunden-web
-    #- node
-    - php
+    - node
+    #- php
   dependencies:
     - init
   variables:
