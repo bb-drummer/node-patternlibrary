@@ -111,10 +111,10 @@ app-tests:
       - ${BUILD_TARGET}
 
 
-rsync:
+deploy-package:
   stage: deploy
   tags:
-    - web-rsync-runner
+    - npm
   dependencies:
     - app-build
     - app-tests
@@ -132,13 +132,13 @@ rsync:
     - ssh -p22 user@staging.example.com "rm -rf /${BUILD_TARGET}_save"
   only:
     refs:
-      - master
+      - tags
   when: manual
 
-ftp-demo:
+deploy-demo:
   stage: deploy
   tags:
-    - kunden-web
+    - ftp
   dependencies:
     - app-build
     - app-tests
@@ -148,4 +148,4 @@ ftp-demo:
   only:
     refs:
       - master
-  when: manual
+  #when: manual
